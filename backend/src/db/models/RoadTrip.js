@@ -11,4 +11,4 @@ const roadTripSchema = new Schema({
     spotify: { type: Schema.Types.ObjectId, ref: 'Spotify' }
 });
 
-export const RoadTrip = mongoose.model('RoadTrip', roadTripSchema);
+export default RoadTrip = mongoose.model('RoadTrip', roadTripSchema);

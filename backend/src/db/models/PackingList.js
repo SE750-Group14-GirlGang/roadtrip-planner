@@ -6,4 +6,4 @@ const packingListSchema = new Schema({
     items: [string]
 });
 
-export const PackingList = mongoose.model('PackingList', packingListSchema);
+export default PackingList = mongoose.model('PackingList', packingListSchema);

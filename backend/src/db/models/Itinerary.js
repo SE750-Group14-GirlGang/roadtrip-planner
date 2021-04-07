@@ -12,4 +12,4 @@ const itinerarySchema = new Schema({
     }]
 });
 
-export const Itinerary = mongoose.model('Itinerary', itinerarySchema);
+export default Itinerary = mongoose.model('Itinerary', itinerarySchema);
