@@ -1,11 +1,7 @@
 import express from 'express';
 
+import * as constants from '../../constants';
 import * as roadtrips from '../../../db/controllers/roadtrips';
-
-const HTTP_CREATED = 201;
-const HTTP_NOT_FOUND = 404;
-const HTTP_NO_CONTENT = 204;
-const HTTP_BAD_REQUEST = 400;
 
 const router = express.Router();
 
@@ -24,7 +20,7 @@ router.get('/', async (req, res) => {
 // create new roadtrip
 router.post('/', async (req, res) => {
     const newRoadTrip = await roadtrips.createRoadTrip(req.body);
-    res.status(HTTP_CREATED)
+    res.status(constants.HTTP_CREATED)
     .header('Location', `/api/roadtrip/${newRoadTrip._id}`)
     .json(newRoadTrip);
 });

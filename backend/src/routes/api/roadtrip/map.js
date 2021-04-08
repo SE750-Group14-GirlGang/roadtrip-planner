@@ -1,8 +1,7 @@
 import express from 'express';
 
+import * as constants from '../../constants';
 import * as maps from '../../../db/controllers/maps';
-
-const HTTP_CREATED = 201;
 
 const router = express.Router();
 
@@ -19,7 +18,7 @@ router.post('/:id/map', async (req, res) => {
     const { id: roadTripId } = req.params;
 
     const newMap = await maps.createMap(roadTripId, req.body);
-    res.status(HTTP_CREATED)
+    res.status(constants.HTTP_CREATED)
     .header('Location', `/api/roadtrip/${roadTripId}/map`)
     .json(newMap);
 });
