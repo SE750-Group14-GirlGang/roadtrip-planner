@@ -6,4 +6,4 @@ const spotifySchema = new Schema({
     playlistLink: string
 });
 
-export default Spotify = mongoose.model('Spotify', spotifySchema);
+export const Spotify = mongoose.model('Spotify', spotifySchema);

@@ -1,5 +1,4 @@
 import express from 'express';
-import mongoose from 'mongoose';
 
 import * as roadtrips from '../../../db/controllers/roadtrips';
 
@@ -12,7 +11,13 @@ const router = express.Router();
 
 // get all roadtrips
 router.get('/', async (req, res) => {
-    const allRoadTrips = await roadtrips.getAllRoadTrips();
+    let allRoadTrips;
+    if(req.query.user){
+        allRoadTrips = await roadtrips.getAllRoadTripsForUser(req.query.user);
+    } else {
+        allRoadTrips = await roadtrips.getAllRoadTrips();
+    }
+    
     res.json(allRoadTrips);
 });
 

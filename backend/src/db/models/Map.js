@@ -7,8 +7,8 @@ const mapSchema = new Schema({
         number: String,
         street: String,
         city: String,
-        postcode: Number
+        postcode: String
     },
 });
 
-export default Map = mongoose.model('Map', mapSchema);
+export const Map = mongoose.model('Map', mapSchema);
