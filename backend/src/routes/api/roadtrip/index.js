@@ -32,6 +32,9 @@ router.get('/:id', async (req, res) => {
     res.json(roadTrip);
 });
 
+import itinerary from './itinerary';
+router.use('/', itinerary);
+
 import map from './map';
 router.use('/', map);
 
@@ -40,5 +43,7 @@ router.use('/', packinglist);
 
 import spotify from './spotify';
 router.use('/', spotify);
+
+
 
 export default router;

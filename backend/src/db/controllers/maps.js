@@ -14,7 +14,7 @@ export async function createMap(roadTripId, map) {
     await dbMap.save();
 
     const dbRoadTrip = await getRoadTrip(roadTripId);
-    dbRoadTrip.map = dbMap._id; // TODO: remove orphaned map object from database
+    dbRoadTrip.map = dbMap._id;
     await dbRoadTrip.save();
 
     return dbMap;
