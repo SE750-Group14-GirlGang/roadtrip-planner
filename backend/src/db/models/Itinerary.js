@@ -6,9 +6,9 @@ const itinerarySchema = new Schema({
     dates: [Date],
     itineraryDays: [{
         day: Date,
-        time: string,
-        location: string,
-        notes: string
+        time: String,
+        location: String,
+        notes: String
     }]
 });
 

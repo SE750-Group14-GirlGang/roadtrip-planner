@@ -3,18 +3,18 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    email: { type: string, unique: true, required: true },
-    firstName: string,
-    lastName: string,
-    phoneNumber: string,
+    email: { type: String, unique: true, required: true },
+    firstName: String,
+    lastName: String,
+    phoneNumber: String,
     emergencyContact: {
-        name: string,
-        phoneNumber: string,
-        relation: string
+        name: String,
+        phoneNumber: String,
+        relation: String
     },
-    allergies: [string],
-    medicalConditions: [string],
-    packedItems: [string]
+    allergies: [String],
+    medicalConditions: [String],
+    packedItems: [String]
 });
 
 export const User = mongoose.model('User', userSchema);

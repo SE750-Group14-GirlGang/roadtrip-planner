@@ -35,4 +35,7 @@ router.get('/:id', async (req, res) => {
 import map from './map';
 router.use('/', map);
 
+import packinglist from './packinglist';
+router.use('/', packinglist);
+
 export default router;
