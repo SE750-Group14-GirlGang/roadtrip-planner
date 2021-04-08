@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 
 import * as constants from '../../constants';
 import * as roadtrips from '../../../db/controllers/roadtrips';
@@ -23,6 +24,18 @@ router.post('/', async (req, res) => {
     res.status(constants.HTTP_CREATED)
     .header('Location', `/api/roadtrip/${newRoadTrip._id}`)
     .json(newRoadTrip);
+});
+
+// id validation check
+router.use('/:id', async (req, res, next) => {
+    const { id } = req.params;
+    if (mongoose.isValidObjectId(id)) {
+        next();
+    }
+    else {
+        res.status(constants.HTTP_BAD_REQUEST)
+            .contentType('text/plain').send('Invalid ID');
+    }
 });
 
 // get roadtrip
