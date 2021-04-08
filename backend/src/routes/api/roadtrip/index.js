@@ -38,4 +38,7 @@ router.use('/', map);
 import packinglist from './packinglist';
 router.use('/', packinglist);
 
+import spotify from './spotify';
+router.use('/', spotify);
+
 export default router;
