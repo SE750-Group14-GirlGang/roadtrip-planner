@@ -17,4 +17,4 @@ const userSchema = new Schema({
     packedItems: [string]
 });
 
-export default User = mongoose.model('User', userSchema);
+export const User = mongoose.model('User', userSchema);
