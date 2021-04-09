@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Drawer, IconButton } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import { BrowserRouter as Router, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "../styles/SideBar.module.css";
 import { makeStyles } from "@material-ui/core";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     "& .MuiPaper-root": {
       backgroundColor: "#a8d0e6",
@@ -25,10 +26,10 @@ export default function SideBar() {
   return (
     <div>
       <IconButton
-        color="inherit"
         aria-label="open drawer"
         onClick={() => handleSideBarToggle()}
         edge="start"
+        color="#24305e"
       >
         <MenuIcon />
       </IconButton>
@@ -39,31 +40,35 @@ export default function SideBar() {
         open={sideBarOpen}
         className={classes.root}
       >
+        <IconButton
+          aria-label="close drawer"
+          onClick={() => handleSideBarToggle()}
+          className={styles.iconButtonSideBar}
+        >
+          <div className={styles.filler} />
+          <ArrowBackIosIcon />
+        </IconButton>
+
         <div className={styles.navSideBar}>
-          <Router>
-            <NavLink to="/map" activeClassName={styles.activeLink}>
-              Map
-            </NavLink>
+          <NavLink to="/map" activeClassName={styles.activeLink}>
+            Map
+          </NavLink>
 
-            <NavLink to="/itinerary" activeClassName={styles.activeLink}>
-              Itinerary
-            </NavLink>
+          <NavLink to="/itinerary" activeClassName={styles.activeLink}>
+            Itinerary
+          </NavLink>
 
-            <NavLink
-              to="/emergency-details"
-              activeClassName={styles.activeLink}
-            >
-              Emergency Details
-            </NavLink>
+          <NavLink to="/emergency-details" activeClassName={styles.activeLink}>
+            Emergency Details
+          </NavLink>
 
-            <NavLink to="/packing-list" activeClassName={styles.activeLink}>
-              Packing List
-            </NavLink>
+          <NavLink to="/packing-list" activeClassName={styles.activeLink}>
+            Packing List
+          </NavLink>
 
-            <NavLink to="/spotify-playlist" activeClassName={styles.activeLink}>
-              Spotify Playlist
-            </NavLink>
-          </Router>
+          <NavLink to="/spotify-playlist" activeClassName={styles.activeLink}>
+            Spotify Playlist
+          </NavLink>
         </div>
       </Drawer>
     </div>
