@@ -1,7 +1,7 @@
 import express from 'express';
 
 import * as constants from '../../constants';
-import * as itinerarys from '../../../db/controllers/itinerarys';
+import * as itineraries from '../../../db/controllers/itineraries';
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/:id/itinerary', async (req, res) => {
     const { id: roadTripId } = req.params;
 
-    const itinerary = await itinerarys.getItinerary(roadTripId);
+    const itinerary = await itineraries.getItinerary(roadTripId);
     res.json(itinerary);
 });
 
@@ -17,7 +17,7 @@ router.get('/:id/itinerary', async (req, res) => {
 router.post('/:id/itinerary', async (req, res) => {
     const { id: roadTripId } = req.params;
 
-    const newItinerary = await itinerarys.createItinerary(roadTripId, req.body);
+    const newItinerary = await itineraries.createItinerary(roadTripId, req.body);
     res.status(constants.HTTP_CREATED)
     .header('Location', `/api/roadtrip/${roadTripId}/itinerary`)
     .json(newItinerary);

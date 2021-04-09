@@ -9,6 +9,6 @@ const mapSchema = new Schema({
         city: String,
         postcode: String
     },
-});
+}, { collection: 'maps' });
 
 export const Map = mongoose.model('Map', mapSchema);

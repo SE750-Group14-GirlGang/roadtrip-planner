@@ -10,6 +10,6 @@ const itinerarySchema = new Schema({
         location: String,
         notes: String
     }]
-});
+}, { collection: 'itineraries' });
 
 export const Itinerary = mongoose.model('Itinerary', itinerarySchema);

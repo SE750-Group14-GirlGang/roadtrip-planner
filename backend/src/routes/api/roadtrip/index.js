@@ -45,6 +45,9 @@ router.get('/:id', async (req, res) => {
     res.json(roadTrip);
 });
 
+import emergencydetails from './emergencydetails';
+router.use('/', emergencydetails);
+
 import itinerary from './itinerary';
 router.use('/', itinerary);
 
