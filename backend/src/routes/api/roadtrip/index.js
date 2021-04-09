@@ -54,6 +54,9 @@ router.use('/', itinerary);
 import map from './map';
 router.use('/', map);
 
+import packeditems from './packeditems';
+router.use('/', packeditems);
+
 import packinglist from './packinglist';
 router.use('/', packinglist);
 
