@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import SideBar from "./components/SideBar";
+import "./App.css";
+import { Switch, Route, Redirect } from "react-router-dom";
+import MapPage from "./pages/MapPage";
+import ItineraryPage from "./pages/ItineraryPage";
+import EmergencyDetailsPage from "./pages/EmergencyDetailsPage";
+import PackingListPage from "./pages/PackingListPage";
+import SpotifyPlaylistPage from "./pages/SpotifyPlaylistPage";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SideBar />
+      <Switch>
+        <Route path="/map">
+          <MapPage />
+        </Route>
+
+        <Route path="/itinerary">
+          <ItineraryPage />
+        </Route>
+
+        <Route path="/emergency-details">
+          <EmergencyDetailsPage />
+        </Route>
+
+        <Route path="/packing-list">
+          <PackingListPage />
+        </Route>
+
+        <Route path="/spotify-playlist">
+          <SpotifyPlaylistPage />
+        </Route>
+
+        <Route path="*">
+          <Redirect to="/map" />
+        </Route>
+      </Switch>
     </div>
   );
 }
