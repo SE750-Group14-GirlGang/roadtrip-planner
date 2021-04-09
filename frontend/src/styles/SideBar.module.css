@@ -1,0 +1,19 @@
+.navSideBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  background-color: #a8d0e6;
+}
+
+.navSideBar > a {
+  background-color: transparent;
+  text-decoration: none;
+  color: #24305e;
+  padding: 15px;
+}
+
+.navSideBar > a.activeLink {
+  background-color: #24305e;
+  color: white;
+}
