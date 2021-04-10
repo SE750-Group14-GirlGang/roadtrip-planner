@@ -1,30 +1,29 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import RoadtripPage from "../pages/Roadtrip";
-import HomePage from "../pages/HomePage";
+import RoadtripPage from "../pages/Roadtrip/RoadTrip";
+import HomePage from "../pages/HomePage/HomePage";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <Switch>
-                <Route exact path="/">
-                    <Redirect to="/home" />
-                </Route>
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
 
-                <Route exact path="/Roadtrip">
-                    <RoadtripPage />
-                </Route>
+        <Route exact path="/Roadtrip">
+          <RoadtripPage />
+        </Route>
 
-                <Route exact path="/home">
-                    <HomePage />
-                </Route>
-            </Switch>
-        </BrowserRouter>
-    );
+        <Route exact path="/home">
+          <HomePage />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
 }
 
 export default App;
-
 
 // import React from "react";
 // import {
