@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const DEFAULT_CONNECTION_STRING = 'mongodb://localhost:27017/roadtrip-planner';
+const DEFAULT_CONNECTION_STRING = 'mongodb+srv://dpUser:vXYcCjUYahPZXoKV@roadtrip-planner.dellc.mongodb.net/roadtrip-planner';
 
 /**
  * This function begins the process of connecting to the database, and returns a promise that will
