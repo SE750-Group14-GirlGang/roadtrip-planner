@@ -17,13 +17,11 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 // };
 
 export default function TopBar() {
-  // <Grid container spacing={0} alignItems="center" className={styles.topBar}>
   return (
     <div className={styles.topBar}>
       <Typography variant="h2" className={styles.title}>
         Roadie
       </Typography>
-      {/*<h1>Roadie</h1>*/}
       <div className={styles.navItems}>
         <Button>Join Existing Group</Button>
         <Button>Create New Group</Button>
