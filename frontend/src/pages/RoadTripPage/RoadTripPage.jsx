@@ -1,5 +1,5 @@
 import React from "react";
-import SideBar from "../../components/SideBar";
+import SideBar from "../../components/SideBar/SideBar";
 import "./RoadTrip.css";
 import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
 import MapPage from "./MapPage/MapPage";

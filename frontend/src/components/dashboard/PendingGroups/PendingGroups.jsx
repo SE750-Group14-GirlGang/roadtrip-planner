@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from '../../styles/DashboardPage.module.css'
-import GroupsList from "./GroupsList";
+import styles from '../../../pages/DashboardPage/DashboardPage.module.css'
+import GroupsList from "../commons/GroupsList/GroupsList";
 
 export default function PendingGroups() {
   let groupNames=["01/01/2022 USA"];

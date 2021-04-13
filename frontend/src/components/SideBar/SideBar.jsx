@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Drawer, IconButton } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import { NavLink } from "react-router-dom";
-import styles from "../styles/SideBar.module.css";
+import styles from "./SideBar.module.css";
 import { makeStyles } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 

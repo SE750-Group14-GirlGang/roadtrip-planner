@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from '../../styles/DashboardPage.module.css'
-import GroupsList from "./GroupsList";
+import styles from '../../../pages/DashboardPage/DashboardPage.module.css'
+import GroupsList from "../commons/GroupsList/GroupsList";
 
 export default function MyGroups() {
   let groupNames=["ROADI3", "Bay Of Islands", "Queenstown", "Seeing Manually", "Auckland", "Christchurch"];

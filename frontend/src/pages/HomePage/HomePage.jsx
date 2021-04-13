@@ -1,5 +1,5 @@
 import React from "react";
-import LoginButton from "../../components/LoginButton";
+import LoginButton from "../../components/LoginButton/LoginButton";
 import styles from "./HomePage.module.css";
 import background from "../../assets/images/ROADI3-22.jpg";
 

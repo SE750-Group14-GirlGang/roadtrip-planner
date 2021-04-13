@@ -6,10 +6,11 @@ import {
   Switch,
 } from "react-router-dom";
 import RoadTripPage from "../pages/RoadTripPage/RoadTripPage";
-import Dashboard from "../pages/DashboardPage"
+import DashboardPage from "../pages/DashboardPage/DashboardPage";
 import HomePage from "../pages/HomePage/HomePage";
 import { useAuth0 } from "@auth0/auth0-react";
 import ProtectedRoute from "../auth/protected-route";
+import styles from "./App.module.css";
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -37,10 +38,16 @@ function App() {
 
   return (
     <Router>
-      <Switch>
-
-         <Route path="/" component ={RoadTripPage}/>
-      </Switch>
+      <div className={styles.App}>
+        <Switch>
+          <Route path="/home">
+            <DashboardPage />
+          </Route>
+          <Route path="/">
+            <RoadTripPage />
+          </Route>
+        </Switch>
+      </div>
     </Router>
   );
 }
