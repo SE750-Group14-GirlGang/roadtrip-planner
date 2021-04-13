@@ -1,6 +1,6 @@
 import React from "react";
 import SideBar from "../../components/SideBar";
-import "./Roadtrip.css";
+import "./RoadTrip.css";
 import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
 import MapPage from "./MapPage";
 import ItineraryPage from "./ItineraryPage";
@@ -8,37 +8,32 @@ import EmergencyDetailsPage from "./EmergencyDetailsPage";
 import PackingListPage from "./PackingListPage";
 import SpotifyPlaylistPage from "./SpotifyPlaylistPage";
 
-export default function RoadtripPage() {
-  const { path } = useRouteMatch();
+export default function RoadTripPage() {
 
   return (
-    <div className="Roadtrip">
-      <SideBar />
+    <div className="roadTrip">
       <Switch>
-        <Route path={`${path}map`}>
+        <Route path="/map">
           <MapPage />
         </Route>
 
-        <Route path={`${path}itinerary`}>
+        <Route path="/itinerary">
           <ItineraryPage />
         </Route>
 
-        <Route path={`${path}emergency-details`}>
+        <Route path="/emergency-details">
           <EmergencyDetailsPage />
         </Route>
 
-        <Route path={`${path}packing-list`}>
+        <Route path="/packing-list">
           <PackingListPage />
         </Route>
 
-        <Route path={`${path}spotify-playlist`}>
+        <Route path="/spotify-playlist">
           <SpotifyPlaylistPage />
         </Route>
-
-        <Route path="*">
-          <Redirect to={`${path}map`} />
-        </Route>
       </Switch>
+      <SideBar />
     </div>
   );
 }

@@ -1,67 +1,48 @@
 import React from "react";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import RoadtripPage from "../pages/Roadtrip/RoadTrip";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
+import RoadTripPage from "../pages/RoadTripPage/RoadTripPage";
+import Dashboard from "../pages/DashboardPage"
 import HomePage from "../pages/HomePage/HomePage";
+import { useAuth0 } from "@auth0/auth0-react";
+import ProtectedRoute from "../auth/protected-route";
 
 function App() {
+  const { isAuthenticated } = useAuth0();
+
+  // const PublicRoute = ({ auth, ...props }) => {
+  //   return isAuthenticated ? (
+  //     <Route to="/">
+  //       <Dashboard />
+  //     </Route>
+  //   ) : (
+  //     <Route {...props} />
+  //   );
+  // };
+
+  // const ProtectedRoute = ({ auth, ...props }) => {
+  //   console.log(isAuthenticated);
+  //   return isAuthenticated ? (
+  //     <Route {...props} />
+  //   ) : (
+  //     <Route to="/home">
+  //       <HomePage />
+  //     </Route>
+  //   );
+  // };
+
   return (
-    <BrowserRouter>
+    <Router>
       <Switch>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
 
-        <Route exact path="/Roadtrip">
-          <RoadtripPage />
-        </Route>
-
-        <Route exact path="/home">
-          <HomePage />
-        </Route>
+         <Route path="/" component ={RoadTripPage}/>
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 }
 
 export default App;
-
-// import React from "react";
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Redirect,
-// } from "react-router-dom";
-// import RoadtripPage from "./pages/RoadtripPage";
-// import PublicHomePage from "./pages/PublicHomePage";
-// import { useAuth0 } from "@auth0/auth0-react";
-
-// import ProtectedRoute from "./auth/protected-route";
-
-// function App() {
-//   const { isAuthenticated } = useAuth0();
-
-//   const PublicRoute = ({ auth, ...props }) => {
-//     return isAuthenticated ? (
-//       <Route to="/roadtrip">
-//         <RoadtripPage />
-//       </Route>
-//     ) : (
-//       <Route {...props} />
-//     );
-//   };
-
-//   const ProtectedRoute = ({ auth, ...props }) => {
-//     return isAuthenticated ? (
-//       <Route {...props} />
-//     ) : (
-//       <Route to="/">
-//         <PublicHomePage />
-//       </Route>
-//     );
-//   };
-
-//   return <ProtectedRoute path="/roadtrip/" component={RoadtripPage} />;
-// }
-
-// export default App;
