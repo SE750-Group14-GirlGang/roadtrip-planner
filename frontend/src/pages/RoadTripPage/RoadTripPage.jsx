@@ -2,11 +2,11 @@ import React from "react";
 import SideBar from "../../components/SideBar";
 import "./RoadTrip.css";
 import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
-import MapPage from "./MapPage";
-import ItineraryPage from "./ItineraryPage";
-import EmergencyDetailsPage from "./EmergencyDetailsPage";
-import PackingListPage from "./PackingListPage";
-import SpotifyPlaylistPage from "./SpotifyPlaylistPage";
+import MapPage from "./MapPage/MapPage";
+import ItineraryPage from "./ItineraryPage/ItineraryPage";
+import EmergencyDetailsPage from "./EmergencyDetailsPage/EmergencyDetailsPage";
+import PackingListPage from "./PackingListPage/PackingListPage";
+import SpotifyPlaylistPage from "./SpotifyPlaylistPage/SpotifyPlaylistPage";
 
 export default function RoadTripPage() {
 
