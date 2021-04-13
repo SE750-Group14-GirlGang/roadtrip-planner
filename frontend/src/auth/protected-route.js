@@ -6,7 +6,7 @@ import Loading from "../components/Loading/Loading";
 const ProtectedRoute = ({ component, ...args }) => (
   <Route
     component={withAuthenticationRequired(component, {
-      onRedirecting: () => <Loading/>,
+      onRedirecting: () => <Loading />,
     })}
     {...args}
   />
