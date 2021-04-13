@@ -40,10 +40,10 @@ function App() {
     <Router>
       <div className={styles.App}>
         <Switch>
-          <Route path="/home">
+          <Route exact path="/">
             <DashboardPage />
           </Route>
-          <Route path="/">
+          <Route path="/road-trip/:id">
             <RoadTripPage />
           </Route>
         </Switch>
