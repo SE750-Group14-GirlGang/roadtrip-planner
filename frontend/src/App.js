@@ -7,12 +7,17 @@ import ItineraryPage from "./pages/ItineraryPage";
 import EmergencyDetailsPage from "./pages/EmergencyDetailsPage";
 import PackingListPage from "./pages/PackingListPage";
 import SpotifyPlaylistPage from "./pages/SpotifyPlaylistPage";
+import DashboardPage from "./pages/DashboardPage";
 
 function App() {
   return (
     <div className="App">
       <SideBar />
       <Switch>
+        <Route path="/home">
+          <DashboardPage />
+        </Route>
+
         <Route path="/map">
           <MapPage />
         </Route>
