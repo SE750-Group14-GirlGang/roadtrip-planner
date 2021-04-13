@@ -7,7 +7,7 @@ import ItineraryPage from "./pages/ItineraryPage";
 import EmergencyDetailsPage from "./pages/EmergencyDetailsPage";
 import PackingListPage from "./pages/PackingListPage";
 import SpotifyPlaylistPage from "./pages/SpotifyPlaylistPage";
-import Dashboard from "./pages/DashboardPage";
+import DashboardPage from "./pages/DashboardPage";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
       <SideBar />
       <Switch>
         <Route path="/home">
-          <Dashboard />
+          <DashboardPage />
         </Route>
 
         <Route path="/map">

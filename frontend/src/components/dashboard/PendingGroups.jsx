@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../styles/Dashboard.module.css'
+import styles from '../../styles/DashboardPage.module.css'
 import GroupsList from "./GroupsList";
 
 export default function PendingGroups() {

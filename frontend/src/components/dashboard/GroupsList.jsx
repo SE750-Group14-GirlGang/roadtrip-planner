@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Card, CardActionArea} from "@material-ui/core";
-import styles from '../../styles/Dashboard.module.css'
+import styles from '../../styles/DashboardPage.module.css'
 
 export default function GroupsList({groups}) {
   return (
