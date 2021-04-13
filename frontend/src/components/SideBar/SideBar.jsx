@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Drawer, IconButton } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import { NavLink } from "react-router-dom";
-import styles from "../styles/SideBar.module.css";
+import { NavLink, useRouteMatch } from "react-router-dom";
+import styles from "./SideBar.module.css";
 import { makeStyles } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
@@ -22,6 +22,7 @@ export default function SideBar() {
   };
 
   const classes = useStyles();
+  const { url } = useRouteMatch();
 
   return (
     <div>
@@ -50,23 +51,32 @@ export default function SideBar() {
         </IconButton>
 
         <div className={styles.navSideBar}>
-          <NavLink to="/map" activeClassName={styles.activeLink}>
+          <NavLink to={`${url}/map`} activeClassName={styles.activeLink}>
             Map
           </NavLink>
 
-          <NavLink to="/itinerary" activeClassName={styles.activeLink}>
+          <NavLink to={`${url}/itinerary`} activeClassName={styles.activeLink}>
             Itinerary
           </NavLink>
 
-          <NavLink to="/emergency-details" activeClassName={styles.activeLink}>
+          <NavLink
+            to={`${url}/emergency-details`}
+            activeClassName={styles.activeLink}
+          >
             Emergency Details
           </NavLink>
 
-          <NavLink to="/packing-list" activeClassName={styles.activeLink}>
+          <NavLink
+            to={`${url}/packing-list`}
+            activeClassName={styles.activeLink}
+          >
             Packing List
           </NavLink>
 
-          <NavLink to="/spotify-playlist" activeClassName={styles.activeLink}>
+          <NavLink
+            to={`${url}/spotify-playlist`}
+            activeClassName={styles.activeLink}
+          >
             Spotify Playlist
           </NavLink>
         </div>

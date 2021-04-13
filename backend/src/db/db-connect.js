@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
+const dotenv = require('dotenv');
+dotenv.config()
 
-const DEFAULT_CONNECTION_STRING = 'mongodb://localhost:27017/roadtrip-planner';
+const pw = process.env.MONGO_DB_PW
+const user = process.env.MONGO_DB_USERNAME
+
+const DEFAULT_CONNECTION_STRING = 'mongodb+srv://' + user + ':'  + pw + '@roadtrip-planner.dellc.mongodb.net/roadtrip-planner';
 
 /**
  * This function begins the process of connecting to the database, and returns a promise that will

@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const roadTripSchema = new Schema({
     organiser: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    name: {type: String, required: true},
     attendees: { 
         type: [{ type: Schema.Types.ObjectId, ref: 'User' }], 
         default: [] 

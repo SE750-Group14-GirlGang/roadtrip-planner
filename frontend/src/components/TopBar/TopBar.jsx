@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/TopBar.module.css'
+import styles from './TopBar.module.css'
 import { Button, Typography } from "@material-ui/core";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 // import * as PropTypes from "prop-types";
