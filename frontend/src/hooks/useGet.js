@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
 
 export default function useGet(url, config = {}) {
     
-    const [data, setData] = useState(null);
+    const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -11,18 +11,18 @@ export default function useGet(url, config = {}) {
         async function performGet() {
             setLoading(true);
             try {
-                const response = await axios.get(url, config);
-                setData(response.data);
+                const axiosResponse = await axios.get(url, config);
+                setResponse(axiosResponse);
                 setError(null);
             } catch (error) {
                 setError(error);
-                setData(null);
+                setResponse(null);
             }
             setLoading(false);
         }
         performGet();
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    return { data, error, loading };
+    return { response, error, loading };
 
 }
