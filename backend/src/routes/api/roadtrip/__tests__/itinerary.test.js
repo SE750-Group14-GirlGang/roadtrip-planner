@@ -23,7 +23,7 @@ beforeAll(async done => {
 
 beforeEach(async () => {
     const roadTripsColl = await mongoose.connection.db.createCollection('roadtrips');
-    const itineraryColl = await mongoose.connection.db.createCollection('itineraries');
+    const itinerariesColl = await mongoose.connection.db.createCollection('itineraries');
 
     const april_21_2021 = new Date(2021,3,21); // months are indexed from 0
 
@@ -36,7 +36,7 @@ beforeEach(async () => {
             notes: "Bring your togs!"
         }]
     };
-    await itineraryColl.insertOne(itinerary);
+    await itinerariesColl.insertOne(itinerary);
 
     roadTrip = {
         organiser: 0,

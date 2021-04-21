@@ -6,7 +6,7 @@ import axios from 'axios';
 
 let mongod, app, server;
 
-let roadTrip, map;
+let roadTrip, spotify;
 
 beforeAll(async done => {
 
@@ -23,29 +23,24 @@ beforeAll(async done => {
 
 beforeEach(async () => {
     const roadTripsColl = await mongoose.connection.db.createCollection('roadtrips');
-    const mapsColl = await mongoose.connection.db.createCollection('maps');
+    const spotifysColl = await mongoose.connection.db.createCollection('spotifys');
 
-    map = {
-        primaryDestination: {
-            number: "123",
-            street: "Queen Street",
-            city: "Auckland",
-            postcode: "1010"
-        }
+    spotify = {
+        playListLink: "https://open.spotify.com/playlist/1uiJXPKTFDnlgvlJzhksSE?si=pyx5hNQjRWuXtAyaqsvbIQ"
     };
-    await mapsColl.insertOne(map);
+    await spotifysColl.insertOne(spotify);
 
     roadTrip = {
         organiser: 0,
         name: 'My Road Trip',
-        map: map._id
+        spotify: spotify._id
     };
     await roadTripsColl.insertOne(roadTrip);
 });
 
 afterEach(async () => {
     await mongoose.connection.db.dropCollection('roadtrips');
-    await mongoose.connection.db.dropCollection('maps');
+    await mongoose.connection.db.dropCollection('spotifys');
 });
 
 afterAll(done => {
@@ -57,14 +52,11 @@ afterAll(done => {
     });
 });
 
-it('gets map for a roadtrip from the server', async () => {
-    const response = await axios.get(`http://localhost:3000/api/roadtrip/${roadTrip._id}/map`);
-    const mapRes = response.data;
+it('gets spotify for a roadtrip from the server', async () => {
+    const response = await axios.get(`http://localhost:3000/api/roadtrip/${roadTrip._id}/spotify`);
+    const spotifyRes = response.data;
 
-    expect(mapRes).toBeTruthy();
+    expect(spotifyRes).toBeTruthy();
 
-    expect(mapRes.primaryDestination.number).toBe("123");
-    expect(mapRes.primaryDestination.street).toBe("Queen Street");
-    expect(mapRes.primaryDestination.city).toBe("Auckland");
-    expect(mapRes.primaryDestination.postcode).toBe("1010");
+    expect(spotifyRes.playListLink).toBe("https://open.spotify.com/playlist/1uiJXPKTFDnlgvlJzhksSE?si=pyx5hNQjRWuXtAyaqsvbIQ");
 });
