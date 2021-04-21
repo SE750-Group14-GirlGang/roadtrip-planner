@@ -24,11 +24,9 @@ beforeEach(async () => {
     const roadTripsColl = await mongoose.connection.db.createCollection('roadtrips');
 
     roadTrip1 = {
-        organiser: 0,
         name: 'The First Roadtrip'
     };
     roadTrip2 = {
-        organiser: 0,
         name: 'The Second Roadtrip'
     };
     await roadTripsColl.insertMany([roadTrip1, roadTrip2]);

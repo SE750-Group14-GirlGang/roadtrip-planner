@@ -31,7 +31,6 @@ beforeEach(async () => {
     await spotifysColl.insertOne(spotify);
 
     roadTrip = {
-        organiser: 0,
         name: 'My Road Trip',
         spotify: spotify._id
     };

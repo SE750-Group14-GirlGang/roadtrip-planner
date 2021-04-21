@@ -36,7 +36,6 @@ beforeEach(async () => {
     await mapsColl.insertOne(map);
 
     roadTrip = {
-        organiser: 0,
         name: 'My Road Trip',
         map: map._id
     };

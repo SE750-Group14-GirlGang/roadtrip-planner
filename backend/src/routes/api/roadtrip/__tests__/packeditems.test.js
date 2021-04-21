@@ -40,7 +40,6 @@ beforeEach(async () => {
     await packedItemsColl.insertMany([packedItems1, packedItems2]);
 
     roadTrip = {
-        organiser: 0,
         name: 'My Road Trip',
         packedItems: [
             packedItems1._id,

@@ -26,7 +26,6 @@ beforeEach(async () => {
     const emergencyDetailsColl = await mongoose.connection.db.createCollection('emergencydetails');
 
     emergencyDetails = {
-        user: 1,
         phoneNumber: '0000000',
         emergencyContact: {
             name: 'Peter',
@@ -39,7 +38,6 @@ beforeEach(async () => {
     await emergencyDetailsColl.insertOne(emergencyDetails);
 
     roadTrip = {
-        organiser: 0,
         name: 'My Road Trip',
         emergencyDetails: [
             emergencyDetails._id

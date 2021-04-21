@@ -39,7 +39,6 @@ beforeEach(async () => {
     await itinerariesColl.insertOne(itinerary);
 
     roadTrip = {
-        organiser: 0,
         name: 'My Road Trip',
         itinerary: itinerary._id
     };
