@@ -6,7 +6,7 @@ import axios from 'axios';
 
 let mongod, app, server;
 
-let roadTrip, map;
+let roadTrip, packingList;
 
 beforeAll(async done => {
 
@@ -23,29 +23,31 @@ beforeAll(async done => {
 
 beforeEach(async () => {
     const roadTripsColl = await mongoose.connection.db.createCollection('roadtrips');
-    const mapsColl = await mongoose.connection.db.createCollection('maps');
+    const packingListsColl = await mongoose.connection.db.createCollection('packinglists');
 
-    map = {
-        primaryDestination: {
-            number: "123",
-            street: "Queen Street",
-            city: "Auckland",
-            postcode: "1010"
-        }
+    packingList = {
+        items: [
+            "togs",
+            "sleeping mat",
+            "sleeping bag",
+            "pillow",
+            "clothes",
+            "alcohol", 
+        ]
     };
-    await mapsColl.insertOne(map);
+    await packingListsColl.insertOne(packingList);
 
     roadTrip = {
         organiser: 0,
         name: 'My Road Trip',
-        map: map._id
+        packingList: packingList._id
     };
     await roadTripsColl.insertOne(roadTrip);
 });
 
 afterEach(async () => {
     await mongoose.connection.db.dropCollection('roadtrips');
-    await mongoose.connection.db.dropCollection('maps');
+    await mongoose.connection.db.dropCollection('packinglists');
 });
 
 afterAll(done => {
@@ -57,14 +59,13 @@ afterAll(done => {
     });
 });
 
-it('gets map for a roadtrip from the server', async () => {
-    const response = await axios.get(`http://localhost:3000/api/roadtrip/${roadTrip._id}/map`);
-    const mapRes = response.data;
+it('gets packing list for a roadtrip from the server', async () => {
+    const response = await axios.get(`http://localhost:3000/api/roadtrip/${roadTrip._id}/packinglist`);
+    const packingListRes = response.data;
 
-    expect(mapRes).toBeTruthy();
+    expect(packingListRes).toBeTruthy();
 
-    expect(mapRes.primaryDestination.number).toBe("123");
-    expect(mapRes.primaryDestination.street).toBe("Queen Street");
-    expect(mapRes.primaryDestination.city).toBe("Auckland");
-    expect(mapRes.primaryDestination.postcode).toBe("1010");
+    expect(packingListRes.items.length).toBe(6);
+    expect(packingListRes.items[2]).toBe("sleeping bag");
+    expect(packingListRes.items[4]).toBe("clothes");
 });

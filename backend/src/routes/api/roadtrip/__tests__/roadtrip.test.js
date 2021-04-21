@@ -12,7 +12,7 @@ beforeAll(async done => {
     mongod = new MongoMemoryServer();
 
     const connectionString = await mongod.getUri();
-    await mongoose.connect(connectionString, { useNewUrlParser: true });
+    await mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
 
     app = express();
     app.use('/', router);
