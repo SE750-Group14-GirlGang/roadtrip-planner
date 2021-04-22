@@ -71,32 +71,3 @@ it('gets emergency details for a roadtrip from the server', async () => {
     expect(emergencyDetailsRes[0].phoneNumber).toBe('0000000');
     expect(emergencyDetailsRes[0].emergencyContact.name).toBe('Peter');
 });
-
-// Test times out :( want to ask Andrew for guidance on how to test a POST
-// it('posts emergency details for a roadtrip to the server and then can get', async () => {
-
-//     const postReponse = await axios.post(`http://localhost:3000/api/roadtrip/${roadTrip._id}/emergencydetails`, {
-//         user: 2,
-//         phoneNumber: '1234567',
-//         emergencyContact: {
-//             name: 'Susan',
-//             phoneNumber: '7654321',
-//             relation: 'Father'
-//         },
-//         allergies: [ 'milk' ],
-//         medicalConditions: []
-//     });
-
-//     const emergencyDetailsLocation = postReponse.headers.Location;
-//     const getResponse = await axios.get(emergencyDetailsLocation);
-//     const emergencyDetails = getResponse.data;
-
-//     expect(emergencyDetails).toBeTruthy();
-//     expect(emergencyDetails.length).toBe(2);
-
-//     expect(emergencyDetails[0].phoneNumber).toBe('0000000');
-//     expect(emergencyDetails[0].emergencyContact.name).toBe('Peter');
-
-//     expect(emergencyDetails[1].phoneNumber).toBe('1234567');
-//     expect(emergencyDetails[1].emergencyContact.name).toBe('Susan');
-// });
