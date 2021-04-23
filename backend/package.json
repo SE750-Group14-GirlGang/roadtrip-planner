@@ -17,6 +17,9 @@
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
     "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "express-jwt-authz": "^2.4.1",
+    "jwks-rsa": "^2.0.2",
     "mongoose": "^5.12.0"
   },
   "devDependencies": {
