@@ -8,7 +8,8 @@ export async function getRoadTrip(id) {
     return await RoadTrip.findById(id);
 }
 
-export async function createRoadTrip(roadTrip) {
+export async function createRoadTrip(roadTrip, organiser) {
+    roadTrip.organiser = organiser;
     const dbRoadTrip = new RoadTrip(roadTrip);
     await dbRoadTrip.save();
 

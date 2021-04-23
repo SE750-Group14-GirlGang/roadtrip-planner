@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 
 import * as constants from '../../constants';
 import * as roadtrips from '../../../db/controllers/roadtrips';
+import formatUserId from '../../../utils/formatUserId'
 
 const router = express.Router();
 
@@ -20,7 +21,8 @@ router.get('/', async (req, res) => {
 
 // create new roadtrip
 router.post('/', async (req, res) => {
-    const newRoadTrip = await roadtrips.createRoadTrip(req.body);
+    const userId = formatUserId(req.user.sub);
+    const newRoadTrip = await roadtrips.createRoadTrip(req.body, userId);
     res.status(constants.HTTP_CREATED)
     .header('Location', `/api/roadtrip/${newRoadTrip._id}`)
     .json(newRoadTrip);
