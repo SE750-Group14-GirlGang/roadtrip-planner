@@ -8,6 +8,12 @@ let mongod, app, server;
 
 let roadTrip, map;
 
+jest.mock('../../../../auth/checkJwt', () => {
+    return jest.fn((req, res, next) => {
+        next();
+    });
+});
+
 beforeAll(async done => {
 
     mongod = new MongoMemoryServer();
