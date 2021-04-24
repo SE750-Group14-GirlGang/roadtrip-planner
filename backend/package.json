@@ -7,7 +7,7 @@
     "start": "node -r esm ./src/server.js",
     "server": "npm run start",
     "production": "cross-env NODE_ENV=production PORT=3000 node -r esm ./src/server.js",
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "keywords": [],
   "author": "",
