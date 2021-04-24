@@ -1,10 +1,6 @@
 import { RoadTrip } from '../models/RoadTrip';
 import {addRoadTripsOrganising} from '../controllers/users'
 
-export async function getAllRoadTrips() {
-    return await RoadTrip.find();
-}
-
 export async function getRoadTrip(id) {
     return await RoadTrip.findById(id);
 }
