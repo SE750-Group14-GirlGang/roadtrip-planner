@@ -34,8 +34,7 @@ beforeAll(async done => {
 
 beforeEach(async () => {    
     const roadTripsColl = await mongoose.connection.db.createCollection('roadtrips');
-    
-    // const usersColl = await mongoose.connection.db.createCollection('users');
+
     const usersColl =  mongoose.connection.db.collection("users", function(err, collection){
         collection.find({})
     });
