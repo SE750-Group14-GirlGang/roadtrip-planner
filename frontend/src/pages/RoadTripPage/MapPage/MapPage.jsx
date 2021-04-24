@@ -1,11 +1,23 @@
 import { React } from "react";
 import ReactMapGL from "react-map-gl";
-import TopBar from "../../../components/TopBar/TopBar";
-import { Button } from "@material-ui/core";
+import { Button, withStyles } from "@material-ui/core";
 import styles from "./MapPage.module.css";
 
 const dotenv = require("dotenv");
 dotenv.config();
+
+const CustomButton = withStyles({
+  root: {
+    backgroundColor: "#24305e",
+    border: "none",
+    "&:hover": {
+      backgroundColor: "#374785",
+    },
+  },
+  label: {
+    color: "white",
+  },
+})(Button);
 
 export default function MapPage() {
   const state = {
@@ -18,12 +30,12 @@ export default function MapPage() {
     },
   };
 
+  // TODO: remove when implementing full map page functionality
   const mapPageSetUp = false;
 
   return (
-    <div>
-      <TopBar />
-      <h3>Destination</h3>
+    <div className={styles.mapPage}>
+      <p className={styles.mapPageTitle}>Destination</p>
       {mapPageSetUp ? (
         <ReactMapGL
           {...state.viewport}
@@ -31,11 +43,12 @@ export default function MapPage() {
           mapStyle="mapbox://styles/lhuijser/ckntkputc066c17lz7nby5fxs"
         ></ReactMapGL>
       ) : (
-        <div className={styles.mapPage}>
+        <div>
+          <p className={styles.emptyMapDescription}>
+            The organiser has not entered a destination yet!
+          </p>
           <br />
-          <h4>The host has not entered a destination yet!</h4>
-          <br />
-          <Button>Create New Group</Button>
+          <CustomButton>Add Destination</CustomButton>
         </div>
       )}
     </div>

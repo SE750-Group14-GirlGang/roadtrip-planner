@@ -1,5 +1,6 @@
 import React from "react";
 import SideBar from "../../components/SideBar/SideBar";
+import TopBar from "../../components/TopBar/TopBar";
 import "./RoadTrip.css";
 import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
 import MapPage from "./MapPage/MapPage";
@@ -13,6 +14,7 @@ export default function RoadTripPage() {
 
   return (
     <div className="roadTrip">
+      <TopBar />
       <Switch>
         <Route path={`${path}/map`}>
           <MapPage />
