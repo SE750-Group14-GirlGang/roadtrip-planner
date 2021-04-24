@@ -1,0 +1,14 @@
+.item {
+    width: 200px;
+    margin: 10px;
+    color: #24305e;
+}
+
+.unchecked {
+    background-color: #a8d0e6;
+}
+
+.checked {
+    background-color: #374785;
+    font-style: italic;
+}

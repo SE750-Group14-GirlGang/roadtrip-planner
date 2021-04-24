@@ -1,4 +1,5 @@
 import React from "react";
+import TopBar from "../../components/TopBar/TopBar";
 import SideBar from "../../components/SideBar/SideBar";
 import "./RoadTrip.css";
 import {
@@ -21,6 +22,7 @@ export default function RoadTripPage() {
   return (
     <div className="roadTrip">
       <div>{id}</div>
+      <TopBar />
       <Switch>
         <Route path={`${path}/map`}>
           <MapPage />
