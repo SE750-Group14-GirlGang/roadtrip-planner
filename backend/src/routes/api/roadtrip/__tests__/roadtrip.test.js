@@ -32,12 +32,9 @@ beforeAll(async done => {
 
 });
 
-beforeEach(async () => {    
+beforeEach(async () => {  
+    const usersColl = await mongoose.connection.db.createCollection('users');
     const roadTripsColl = await mongoose.connection.db.createCollection('roadtrips');
-
-    const usersColl =  mongoose.connection.db.collection("users", function(err, collection){
-        collection.find({})
-    });
 
     roadTrip1 = {
         name: 'The First Roadtrip'
