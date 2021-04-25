@@ -1,11 +1,11 @@
-import { Map } from '../models/Map';
-import { RoadTrip } from '../models/RoadTrip';
+import { Map } from "../models/Map";
+import { RoadTrip } from "../models/RoadTrip";
 
-import { getRoadTrip } from './roadtrips';
+import { getRoadTrip } from "./roadtrips";
 
 export async function getMap(roadTripId) {
     const dbRoadTrip = await getRoadTrip(roadTripId);
-    await RoadTrip.populate(dbRoadTrip, 'map');
+    await RoadTrip.populate(dbRoadTrip, "map");
     return dbRoadTrip.map;
 }
 

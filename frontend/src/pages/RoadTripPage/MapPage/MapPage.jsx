@@ -8,68 +8,81 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const DestinationButton = withStyles({
-  root: {
-    backgroundColor: "#24305e",
-    border: "none",
-    "&:hover": {
-      backgroundColor: "#374785",
+    root: {
+        backgroundColor: "#24305e",
+        border: "none",
+        "&:hover": {
+            backgroundColor: "#374785",
+        },
     },
-  },
-  label: {
-    color: "white",
-  },
+    label: {
+        color: "white",
+    },
 })(Button);
 
 export default function MapPage() {
-  const initialViewport = {
-    width: "100vw",
-    height: "100vh",
-    latitude: 40.9006,
-    longitude: -174.886,
-    zoom: 8,
-  };
+    const [modalOpen, setModalOpen] = useState(false);
+    const [destSelected, setDestSelected] = useState(false);
 
-  /* TODO: remove when implementing full map page functionality*/
-  const mapPageSetUp = false;
+    const initialDestination = {
+        primaryDestination: {
+            long: 170.83285,
+            lat: -41.01633,
+            name: "New Zealand",
+        },
+    };
 
-  /* TODO: If map destination set up, then call a get request for the roadie destination 
+    const [destination, setDestination] = useState(initialDestination);
+
+    // TODO: get zoom level
+    const initialViewport = {
+        width: "100vw",
+        height: "100vh",
+        latitude: -41.01633,
+        longitude: 170.83285,
+        zoom: 4,
+    };
+
+    const [viewport, setViewport] = useState(initialViewport);
+
+    /* TODO: If map destination set up, then call a get request for the roadie destination 
   and load it into the map with a marker - do when implementing full map page functionality*/
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [viewport, setViewport] = useState(initialViewport);
+    const handleOpenModal = () => {
+        setModalOpen(true);
+    };
 
-  const handleOpenModal = () => {
-    setModalOpen(true);
-  };
+    const handleCloseModal = () => {
+        setModalOpen(false);
+        setViewport(viewport);
+    };
 
-  const handleCloseModal = () => {
-    setModalOpen(false);
-    setViewport(viewport);
-  };
-
-  return (
-    <div className={styles.mapPage}>
-      <p className={styles.mapPageTitle}>Destination</p>
-      {mapPageSetUp ? (
-        <ReactMapGL
-          {...viewport}
-          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-          mapStyle="mapbox://styles/mapbox/streets-v11"
-
-          
-        ></ReactMapGL>
-      ) : (
-        <div>
-          <p className={styles.emptyMapDescription}>
-            The organiser has not entered a destination yet!
-          </p>
-          <br />
-          <DestinationButton onClick={handleOpenModal}>
-            Add Destination
-          </DestinationButton>
-          <MapModal open={modalOpen} handleClose={handleCloseModal}></MapModal>
+    return (
+        <div className={styles.mapPage}>
+            <p className={styles.mapPageTitle}>Destination</p>
+            {destSelected ? (
+                <ReactMapGL
+                    {...viewport}
+                    mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                    mapStyle="mapbox://styles/mapbox/streets-v11"
+                ></ReactMapGL>
+            ) : (
+                <div>
+                    <p className={styles.emptyMapDescription}>
+                        The organiser has not entered a destination yet!
+                    </p>
+                    <br />
+                    <DestinationButton onClick={handleOpenModal}>
+                        Add Destination
+                    </DestinationButton>
+                    <MapModal
+                        open={modalOpen}
+                        handleClose={handleCloseModal}
+                        setDestination={setDestination}
+                        setDestSelected={setDestSelected}
+                    ></MapModal>
+                </div>
+            )}
         </div>
-      )}
-    </div>
-  );
+    );
 }
