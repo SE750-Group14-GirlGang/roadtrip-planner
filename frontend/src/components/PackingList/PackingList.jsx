@@ -16,7 +16,7 @@ const AddItemButton = withStyles(() => ({
     },
 }))(Button);
 
-const userIsHost = true;
+const userIsOrganiser = true;
 
 export default function PackingList() {
     // TODO: implement full packing list functionality with link to backend
@@ -76,7 +76,7 @@ export default function PackingList() {
                     )}
                 </div>
                 <div className={styles.cardFooter}>
-                    {userIsHost && <AddItemButton>+ Add Item</AddItemButton>}
+                    {userIsOrganiser && <AddItemButton>+ Add Item</AddItemButton>}
                 </div>
             </div>
         </div>
