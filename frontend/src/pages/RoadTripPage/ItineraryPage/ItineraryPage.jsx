@@ -1,9 +1,12 @@
-import { React } from "react";
+import { React, useContext } from "react";
+import { OrganiserContext } from "../../../contexts/OrganiserContextProvider";
 
 export default function ItineraryPage() {
-  return (
-    <div>
-      <p>Itinerary</p>
-    </div>
-  );
+    const { isUserOrganiser } = useContext(OrganiserContext);
+    return (
+        <div>
+            <p>{`User is organiser: ${isUserOrganiser}`}</p>
+            <p>Itinerary</p>
+        </div>
+    );
 }
