@@ -5,7 +5,19 @@ import express from 'express';
 import axios from 'axios';
 
 let mongod, app, server;
-let roadTrip1, roadTrip2;
+let roadTrip1, roadTrip2, roadTrip3, roadTrip4;
+const userId = "608360966dcb41278446d3da";
+
+
+jest.mock('../../../../auth/checkJwt', () => {
+    //mock user id
+    return jest.fn((req, res, next) => {
+        req.user = {
+            sub: "prefix|" + "608360966dcb41278446d3da"
+        }
+        next();
+    });
+});
 
 beforeAll(async done => {
 
@@ -20,7 +32,8 @@ beforeAll(async done => {
 
 });
 
-beforeEach(async () => {
+beforeEach(async () => {  
+    const usersColl = await mongoose.connection.db.createCollection('users');
     const roadTripsColl = await mongoose.connection.db.createCollection('roadtrips');
 
     roadTrip1 = {
@@ -29,11 +42,27 @@ beforeEach(async () => {
     roadTrip2 = {
         name: 'The Second Roadtrip'
     };
-    await roadTripsColl.insertMany([roadTrip1, roadTrip2]);
+    roadTrip3 = {
+        name: 'The First Roadtrip user is organising'
+    };
+    roadTrip4 = {
+        name: 'The Second Roadtrip user is organising'
+    };
+    await roadTripsColl.insertMany([roadTrip1, roadTrip2, roadTrip3, roadTrip4]);
+
+    let user = {
+        _id: mongoose.Types.ObjectId(userId),
+        email: "mockEmail",
+        roadTripsOrganising: [roadTrip3._id, roadTrip4._id],
+        roadTripsAttending: [roadTrip1._id, roadTrip2._id]
+    }
+
+    await usersColl.insertOne(user);
 });
 
 afterEach(async () => {
     await mongoose.connection.db.dropCollection('roadtrips');
+    await mongoose.connection.db.dropCollection('users');
 });
 
 afterAll(done => {
@@ -51,10 +80,14 @@ it('gets all roadtrips', async () => {
     const roadTrips = response.data;
 
     expect(roadTrips).toBeTruthy();
-    expect(roadTrips.length).toBe(2);
 
-    expect(roadTrips[0].name).toBe('The First Roadtrip');
-    expect(roadTrips[1].name).toBe('The Second Roadtrip');
+    expect(roadTrips.roadTripsAttending.length).toBe(2);
+    expect(roadTrips.roadTripsAttending[0].name).toBe('The First Roadtrip');
+    expect(roadTrips.roadTripsAttending[1].name).toBe('The Second Roadtrip');
+
+    expect(roadTrips.roadTripsOrganising.length).toBe(2);
+    expect(roadTrips.roadTripsOrganising[0].name).toBe('The First Roadtrip user is organising');
+    expect(roadTrips.roadTripsOrganising[1].name).toBe('The Second Roadtrip user is organising');
 });
 
 it('gets a single roadtrip', async () => {
