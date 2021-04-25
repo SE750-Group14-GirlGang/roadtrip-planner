@@ -7,7 +7,7 @@ import { RoadTrip } from "./models/RoadTrip.js";
 import { Spotify } from "./models/Spotify.js";
 import { User } from "./models/User.js";
 
-export default async function resetDatabase() {
+export default async function syncAllIndexes() {
     await EmergencyDetails.syncIndexes();
     await Itinerary.syncIndexes();
     await Map.syncIndexes();

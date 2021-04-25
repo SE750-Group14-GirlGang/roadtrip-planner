@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import connectToDatabase from "./db/db-connect";
-import resetDatabase from "./db/db-reset";
+import syncAllIndexes from "./db/db-reset-indexes";
 
 // Setup Express
 const app = express();
@@ -32,7 +32,7 @@ if (process.env.NODE_ENV === "production") {
 
 // Start the DB running. Then, once it's connected, start the server.
 connectToDatabase().then(async () => {
-    await resetDatabase();
+    await syncAllIndexes();
     app.listen(port, () =>
         console.log(`App server listening on port ${port}!`)
     );
