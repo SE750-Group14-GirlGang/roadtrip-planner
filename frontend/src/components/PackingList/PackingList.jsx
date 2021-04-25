@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import styles from "./PackingList.module.css";
-
 import { Button } from "@material-ui/core";
+import { withStyles } from "@material-ui/core";
 
 import Item from "./Item/Item";
 
+const AddItemButton = withStyles((theme) => ({
+    root: {
+      color: "white",
+      backgroundColor: "#24305e",
+      '&:hover': {
+        backgroundColor: "#374785",
+      },
+    },
+  }))(Button);
+
 export default function PackingList() {
-    const packingListItems = ["sleeping bag", "sleeping mat", "pillow", "alcohol", "clothing", "cutlery", "towel", "togs", "phone charger", "ear plugs", "hoons", "bowl"];
+    const packingListItems = ["sleeping bag", "sleeping mat", "rain jacket", "pillow", "alcohol", "clothing", "cutlery", "towel", "togs", "phone charger", "ear plugs", "hoons", "bowl"];
 
     const [userPackedItems, setUserPackedItems] = useState(["sleeping bag", "hoons", "alcohol", "ear plugs"]);
 
@@ -38,9 +48,9 @@ export default function PackingList() {
                         : "The organiser has not added any items to the packing list!"}
                 </div>
                 <div className={styles.cardFooter}>
-                    <Button variant="contained" color="primary">
+                    <AddItemButton>
                         Add Item
-                    </Button>
+                    </AddItemButton>
                 </div>
             </div>
         </div>

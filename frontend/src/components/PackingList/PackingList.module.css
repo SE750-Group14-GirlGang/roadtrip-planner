@@ -14,13 +14,13 @@
 }
 
 .cardHeader {
-    height: 100px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 100px;
+    padding: 10px;
+    font-size: 25px;
+    color: #24305e;
 }
 
 .cardContent {
+    padding: 20px;
     flex: 1;
     overflow: auto;
     display: flex;
@@ -29,8 +29,7 @@
 }
 
 .cardFooter {
-    height: 50px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 50px;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
 }

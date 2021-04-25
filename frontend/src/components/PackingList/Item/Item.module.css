@@ -1,7 +1,10 @@
 .item {
     width: 200px;
-    margin: 10px;
-    color: #24305e;
+    margin: 5px;
+    padding-left: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-content: flex-start;
 }
 
 .unchecked {
@@ -9,6 +12,5 @@
 }
 
 .checked {
-    background-color: #374785;
-    font-style: italic;
+    background-color: lightgray;
 }
