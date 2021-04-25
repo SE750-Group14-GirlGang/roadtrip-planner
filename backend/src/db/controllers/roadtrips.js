@@ -10,7 +10,7 @@ export async function createRoadTrip(roadTrip, organiserId) {
     const dbRoadTrip = new RoadTrip(roadTrip);
     await dbRoadTrip.save();
     //creates bidirectional relationship between User and Roadtrip
-    await addRoadTripsOrganising(dbRoadTrip._id, organiserId);
+    await addRoadTripsOrganising(organiserId, dbRoadTrip._id);
     return dbRoadTrip;
 }
 

@@ -24,7 +24,7 @@ export async function getRoadTripsOrganising(userId) {
     return dbUser.roadTripsOrganising;
 }
 
-export async function addRoadTripsOrganising(roadTripId, userId) {
+export async function addRoadTripsOrganising(userId, roadTripId) {
     const dbUser = await User.findById(userId);
     dbUser.roadTripsOrganising.push(roadTripId);
     await dbUser.save();
