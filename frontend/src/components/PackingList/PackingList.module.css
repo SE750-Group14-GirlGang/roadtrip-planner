@@ -33,3 +33,8 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.emptyText {
+    font-style: italic;
+    color: #24305e;
+}

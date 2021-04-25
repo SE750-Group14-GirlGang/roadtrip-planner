@@ -5,20 +5,43 @@ import { withStyles } from "@material-ui/core";
 
 import Item from "./Item/Item";
 
-const AddItemButton = withStyles((theme) => ({
+const AddItemButton = withStyles(() => ({
     root: {
-      color: "white",
-      backgroundColor: "#24305e",
-      '&:hover': {
-        backgroundColor: "#374785",
-      },
+        color: "white",
+        textTransform: "none",
+        backgroundColor: "#24305e",
+        "&:hover": {
+            backgroundColor: "#374785",
+        },
     },
-  }))(Button);
+}))(Button);
+
+const userIsHost = true;
 
 export default function PackingList() {
-    const packingListItems = ["sleeping bag", "sleeping mat", "rain jacket", "pillow", "alcohol", "clothing", "cutlery", "towel", "togs", "phone charger", "ear plugs", "hoons", "bowl"];
-
-    const [userPackedItems, setUserPackedItems] = useState(["sleeping bag", "hoons", "alcohol", "ear plugs"]);
+    // TODO: implement full packing list functionality with link to backend
+    // const packingListItems = [
+    //     "sleeping bag",
+    //     "sleeping mat",
+    //     "rain jacket",
+    //     "pillow",
+    //     "alcohol",
+    //     "clothing",
+    //     "cutlery",
+    //     "towel",
+    //     "togs",
+    //     "phone charger",
+    //     "ear plugs",
+    //     "hoons",
+    //     "bowl",
+    // ];
+    const packingListItems = [];
+    const [userPackedItems, setUserPackedItems] = useState([
+        "sleeping bag",
+        "hoons",
+        "alcohol",
+        "ear plugs",
+    ]);
 
     const handleChange = (item) => {
         let newUserPackedItems = [...userPackedItems];
@@ -35,22 +58,25 @@ export default function PackingList() {
             <div className={styles.card}>
                 <div className={styles.cardHeader}>Packing List</div>
                 <div className={styles.cardContent}>
-                    {packingListItems.length
-                        ? packingListItems.map((item, index) => (
-                              <div key={index}>
-                                  <Item
-                                      name={item}
-                                      checked={userPackedItems.includes(item)} // TODO: convert this list to a map for speed
-                                      onChange={() => handleChange(item)}
-                                  />
-                              </div>
-                          ))
-                        : "The organiser has not added any items to the packing list!"}
+                    {packingListItems.length ? (
+                        packingListItems.map((item, index) => (
+                            <div key={index}>
+                                <Item
+                                    name={item}
+                                    checked={userPackedItems.includes(item)} // TODO: if time - convert this list to a map for speed
+                                    onChange={() => handleChange(item)}
+                                />
+                            </div>
+                        ))
+                    ) : (
+                        <div className={styles.emptyText}>
+                            The organiser has not added any items to the packing
+                            list!
+                        </div>
+                    )}
                 </div>
                 <div className={styles.cardFooter}>
-                    <AddItemButton>
-                        Add Item
-                    </AddItemButton>
+                    {userIsHost && <AddItemButton>+ Add Item</AddItemButton>}
                 </div>
             </div>
         </div>
