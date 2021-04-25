@@ -1,24 +1,14 @@
 import React, { useState } from "react";
 import styles from "./PackingList.module.css";
+import { useStyles } from "./PackingList.styles";
 import { Button } from "@material-ui/core";
-import { withStyles } from "@material-ui/core";
 
 import Item from "./Item/Item";
-
-const AddItemButton = withStyles(() => ({
-    root: {
-        color: "white",
-        textTransform: "none",
-        backgroundColor: "#24305e",
-        "&:hover": {
-            backgroundColor: "#374785",
-        },
-    },
-}))(Button);
 
 const userIsOrganiser = true;
 
 export default function PackingList() {
+    const classes = useStyles();
     // TODO: implement full packing list functionality with link to backend
     // const packingListItems = [
     //     "sleeping bag",
@@ -76,7 +66,9 @@ export default function PackingList() {
                     )}
                 </div>
                 <div className={styles.cardFooter}>
-                    {userIsOrganiser && <AddItemButton>+ Add Item</AddItemButton>}
+                    {userIsOrganiser && (
+                        <Button className={classes.button}>+ Add Item</Button>
+                    )}
                 </div>
             </div>
         </div>
