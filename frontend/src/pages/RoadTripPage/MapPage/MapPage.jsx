@@ -24,6 +24,9 @@ export default function MapPage() {
     const [modalOpen, setModalOpen] = useState(false);
     const [destSelected, setDestSelected] = useState(false);
 
+    // TODO: implement check to see if user is organiser or attendee
+    const isOrganiser = true;
+
     const initialDestination = {
         primaryDestination: {
             long: 170.83285,
@@ -77,9 +80,11 @@ export default function MapPage() {
                         The organiser has not entered a destination yet!
                     </p>
                     <br />
-                    <DestinationButton onClick={handleOpenModal}>
-                        Add Destination
-                    </DestinationButton>
+                    {isOrganiser && (
+                        <DestinationButton onClick={handleOpenModal}>
+                            Add Destination
+                        </DestinationButton>
+                    )}
                     <MapModal
                         open={modalOpen}
                         handleClose={handleCloseModal}
