@@ -6,7 +6,6 @@ const userSchema = new Schema({
     email: { type: String, unique: true, required: true },
     firstName: String,
     lastName: String,
-    password: String,
     roadTripsOrganising: { 
         type: [{ type: Schema.Types.ObjectId, ref: 'RoadTrip' }], 
         default: [] 
