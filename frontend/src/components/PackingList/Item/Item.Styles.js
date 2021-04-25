@@ -1,4 +1,6 @@
 import { makeStyles } from "@material-ui/core";
+import { withStyles } from "@material-ui/core";
+import Checkbox from "@material-ui/core/Checkbox";
 
 const useStyles = makeStyles(() => ({
     labelUnchecked: {
@@ -12,4 +14,14 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-export { useStyles };
+const CustomCheckbox = withStyles({
+    root: {
+        color: "#24305e",
+        "&$checked": {
+            color: "grey",
+        },
+    },
+    checked: {},
+})((props) => <Checkbox color="default" {...props} />);
+
+export { useStyles, CustomCheckbox };
