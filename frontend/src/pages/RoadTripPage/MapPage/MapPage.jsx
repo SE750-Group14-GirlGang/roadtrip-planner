@@ -32,6 +32,8 @@ export default function MapPage() {
         },
     };
 
+    // TODO: remove eslint disable when implementing full map page
+    // eslint-disable-next-line
     const [destination, setDestination] = useState(initialDestination);
 
     // TODO: get zoom level
@@ -45,7 +47,10 @@ export default function MapPage() {
 
     const [viewport, setViewport] = useState(initialViewport);
 
-    /* TODO: If map destination set up, then call a get request for the roadie destination 
+    /* TODO: If map destination set up & nav to the page, then call a get request for the roadie destination 
+  and load it into the viewport - do when implementing full map page functionality*/
+
+    /* TODO: If map destination FRESHLY set up, then load the destination state variable into the viewport 
   and load it into the map with a marker - do when implementing full map page functionality*/
 
     const handleOpenModal = () => {

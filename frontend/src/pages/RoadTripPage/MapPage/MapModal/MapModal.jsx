@@ -19,7 +19,7 @@ export default function MapModal({
     setDestination,
     setDestSelected,
 }) {
-    // Default location is just New Zealand. If user selects a different location this will be overridden
+    // Default location is just New Zealand. If/when user selects a different location this will be overridden
     const initialViewport = {
         width: "100vw",
         height: "100vh",
@@ -38,6 +38,7 @@ export default function MapModal({
     const mapRef = useRef();
     const geocoderContainerRef = useRef();
 
+    // Size of map inside the modal - unable to split into separate CSS file
     const mapStyle = {
         width: "100%",
         height: 400,
@@ -48,6 +49,7 @@ export default function MapModal({
         []
     );
 
+    // 'Travel' to selected location
     const handleGeocoderViewportChange = useCallback(
         (newViewport) => {
             const geocoderDefaultOverrides = { transitionDuration: 1000 };
@@ -60,6 +62,7 @@ export default function MapModal({
         [handleViewportChange]
     );
 
+    // When location selected, save that location's information
     const getSelectedResult = useCallback(
         (result) => {
             setDestName(result.result.place_name);
@@ -72,6 +75,7 @@ export default function MapModal({
     async function handleSubmit() {
         // POST request to set the destination
         const accessToken = await getAccessTokenSilently();
+
         // set token in Authorization header
         const config = {
             headers: {
@@ -81,9 +85,9 @@ export default function MapModal({
 
         const destToPost = {
             primaryDestination: {
-                long: 123,
-                lat: 123,
-                name: "hello",
+                long: destLongitude,
+                lat: destLatitude,
+                name: destName,
             },
         };
 
@@ -92,8 +96,8 @@ export default function MapModal({
             destToPost,
             config
         );
-        console.log(destination);
-        setDestination(destination);
+
+        setDestination(destination.data);
 
         // Close the modal
         handleClose();
