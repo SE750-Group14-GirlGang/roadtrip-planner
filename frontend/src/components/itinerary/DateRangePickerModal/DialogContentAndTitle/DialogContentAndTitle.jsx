@@ -30,6 +30,7 @@ export default function DialogContentAndTitle({ handleClose, handleSubmit }) {
                     onFocusChange={(focusedInput) =>
                         setFocusedInput(focusedInput)
                     }
+                    displayFormat={() => "DD/MM/YYYY"}
                 />
             </DialogContent>
             <DialogActions>
