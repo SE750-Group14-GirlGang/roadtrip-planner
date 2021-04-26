@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -40,6 +40,8 @@ export default function DialogContentAndTitle({ handleClose, handleSubmit }) {
                 <Button
                     onClick={() => handleSubmit(startDate, endDate)}
                     color="primary"
+                    //only enable submit button is start and end date is selected
+                    disabled={!(startDate && endDate)}
                 >
                     Submit
                 </Button>
