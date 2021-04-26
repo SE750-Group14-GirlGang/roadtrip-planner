@@ -6,7 +6,6 @@ import {
   Route,
   Redirect,
   useRouteMatch,
-  useParams,
 } from "react-router-dom";
 import MapPage from "./MapPage/MapPage";
 import ItineraryPage from "./ItineraryPage/ItineraryPage";
@@ -15,12 +14,10 @@ import PackingListPage from "./PackingListPage/PackingListPage";
 import SpotifyPlaylistPage from "./SpotifyPlaylistPage/SpotifyPlaylistPage";
 
 export default function RoadTripPage() {
-  const { id } = useParams();
   const { path, url } = useRouteMatch();
 
   return (
     <div className="roadTrip">
-      <div>{id}</div>
       <Switch>
         <Route path={`${path}/map`}>
           <MapPage />
