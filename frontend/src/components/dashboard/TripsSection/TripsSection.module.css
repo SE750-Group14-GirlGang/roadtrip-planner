@@ -1,0 +1,9 @@
+.section {
+    width: 100%;
+}
+
+.section h1 {
+    color: #ffffff;
+    background: #24305e;
+    padding: 20px;
+}

@@ -1,9 +1,8 @@
 import mongoose from 'mongoose';
-const dotenv = require('dotenv');
-dotenv.config()
+import {MONGO_DB_PW, MONGO_DB_USERNAME} from '../config';
 
-const pw = process.env.MONGO_DB_PW
-const user = process.env.MONGO_DB_USERNAME
+const pw = MONGO_DB_PW
+const user = MONGO_DB_USERNAME
 
 const DEFAULT_CONNECTION_STRING = 'mongodb+srv://' + user + ':'  + pw + '@roadtrip-planner.dellc.mongodb.net/roadtrip-planner';
 
