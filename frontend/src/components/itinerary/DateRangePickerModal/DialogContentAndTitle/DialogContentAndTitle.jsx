@@ -6,7 +6,6 @@ import Button from "@material-ui/core/Button";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { DateRangePicker } from "react-dates";
-import "./DateRangePicker.module.css";
 
 export default function DialogContentAndTitle({ handleClose, handleSubmit }) {
     const [startDate, setStartDate] = useState(null);

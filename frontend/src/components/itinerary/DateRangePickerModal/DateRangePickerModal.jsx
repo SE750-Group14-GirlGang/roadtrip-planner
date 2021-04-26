@@ -1,22 +1,25 @@
 import React from "react";
 import { withStyles } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
-import DialogContentAndTitle from "./DialogContentAndTitle";
+import DialogContentAndTitle from "./DialogContentAndTitle/DialogContentAndTitle";
 import { useAuth0 } from "@auth0/auth0-react";
-import axios from 'axios';
-import getDaysInbetween from "../../../utils/dates/getDaysInbetween"
+import axios from "axios";
+import getDaysInbetween from "../../../utils/dates/getDaysInbetween";
+import "./DateRangePicker.module.css";
 
-
-export default function DateRangePickerModal({ open, handleClose, setItinerary}) {
+export default function DateRangePickerModal({
+    open,
+    handleClose,
+    setItinerary,
+}) {
     const { getAccessTokenSilently } = useAuth0();
 
-    async function handleSubmit(startDate, endDate ) {
-        console.log(startDate);
-        console.log(endDate);
+    async function handleSubmit(startDate, endDate) {
+        // // TODO: roadTripId will be passed in
 
         ///POST request to set the itinerary
         const accessToken = await getAccessTokenSilently();
-        const url = "/api/roadtrip/6083614ff19eef2de864003d/itinerary"
+        const url = "/api/roadtrip/6083614ff19eef2de864003d/itinerary";
 
         // set token in Authorization header
         const config = {
@@ -25,20 +28,16 @@ export default function DateRangePickerModal({ open, handleClose, setItinerary})
             },
         };
 
-        const body =  {
-            dates: getDaysInbetween(startDate,endDate),
-        }
+        const body = {
+            dates: getDaysInbetween(startDate, endDate),
+        };
 
-        const response = await axios.post(
-            url,
-            body,
-            config
-        );
+        const response = await axios.post(url, body, config);
 
         // Close the modal
         handleClose();
 
-        setItinerary(response.data)
+        setItinerary(response.data);
     }
 
     const AddDateDialog = withStyles({

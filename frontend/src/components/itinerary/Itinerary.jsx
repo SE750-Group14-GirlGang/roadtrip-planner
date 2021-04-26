@@ -32,8 +32,6 @@ export default function Itinerary() {
         },
     })(Button);
 
-    console.log(itinerary)
-    
     return (
         <div>
             {itinerary ? (
