@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ItineraryPage.module.css";
-import Itinerary from "../../../components/itinerary/Itinerary";
+import Itinerary from "../../../components/Itinerary/Itinerary";
 
 export default function ItineraryPage() {
     return (
