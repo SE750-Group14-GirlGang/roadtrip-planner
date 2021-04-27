@@ -5,12 +5,14 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
+import "./DialogContentAndTitle.css";
 import { DateRangePicker } from "react-dates";
 
 export default function DialogContentAndTitle({ handleClose, handleSubmit }) {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
-    const [focusedInput, setFocusedInput] = useState(null);
+    //have calendar be open
+    const [focusedInput, setFocusedInput] = useState("startDate");
 
     const handleSelectedDatesChange = ({ startDate, endDate }) => {
         setStartDate(startDate);
@@ -19,7 +21,9 @@ export default function DialogContentAndTitle({ handleClose, handleSubmit }) {
 
     return (
         <React.Fragment>
-            <DialogTitle id="form-dialog-title">Enter Destination</DialogTitle>
+            <DialogTitle id="form-dialog-title">
+                When will you be going?
+            </DialogTitle>
             <DialogContent>
                 <DateRangePicker
                     keepOpenOnDateSelect={true}

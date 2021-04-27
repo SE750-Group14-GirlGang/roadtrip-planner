@@ -1,23 +1,27 @@
 import React from "react";
-import { withStyles } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContentAndTitle from "./DialogContentAndTitle/DialogContentAndTitle";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import getDaysInbetween from "../../../utils/dates/getDaysInbetween";
-import "./DateRangePicker.module.css";
+import "./DateRangePickerModal.module.css";
+import { useStyles } from "./DateRangePickerModal.styles";
 
 export default function DateRangePickerModal({
     open,
     handleClose,
     setItinerary,
 }) {
+    const classes = useStyles();
     const { getAccessTokenSilently } = useAuth0();
 
     async function handleSubmit(startDate, endDate) {
-        // // TODO: roadTripId will be passed in
+        // Close the modal
+        handleClose();
 
-        ///POST request to set the itinerary
+        // TODO: roadTripId will be passed in
+
+        // POST request to set the itinerary
         const accessToken = await getAccessTokenSilently();
         const url = "/api/roadtrip/6083614ff19eef2de864003d/itinerary";
 
@@ -34,30 +38,21 @@ export default function DateRangePickerModal({
 
         const response = await axios.post(url, body, config);
 
-        // Close the modal
-        handleClose();
-
         setItinerary(response.data);
     }
 
-    const AddDateDialog = withStyles({
-        paper: {
-            minHeight: "70%",
-            minWidth: "50%",
-        },
-    })(Dialog);
-
     return (
-        <AddDateDialog
+        <Dialog
             fullWidth={true}
             open={open}
             onClose={handleClose}
             aria-labelledby="form-dialog"
+            classes={{ paper: classes.paper }}
         >
             <DialogContentAndTitle
                 handleClose={handleClose}
                 handleSubmit={handleSubmit}
             />
-        </AddDateDialog>
+        </Dialog>
     );
 }
