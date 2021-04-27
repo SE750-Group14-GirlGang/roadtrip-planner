@@ -16,10 +16,5 @@ export async function createRoadTrip(roadTrip, organiserId) {
 
 export async function isUserOrganiser(roadTripId, userId) {
     const dbRoadTrip = await getRoadTrip(roadTripId);
-    const organiserId =  dbRoadTrip.organiser;
-    console.log("organiser ", organiserId);
-    console.log("user ", userId);
-    const result = new String(organiserId).valueOf() === new String(userId).valueOf();
-    console.log("result ", result);
-    return result;
+    return result = new String(dbRoadTrip.organiser).valueOf() === new String(userId).valueOf();
 }

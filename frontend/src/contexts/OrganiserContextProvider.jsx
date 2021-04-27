@@ -7,8 +7,6 @@ function OrganiserContextProvider({ children, roadTripId }) {
     const { response } = useGet(`/api/roadtrip/${roadTripId}/isUserOrganiser`);
     const isUserOrganiser = response?.data?.result || false;
 
-    console.log(isUserOrganiser);
-
     return (
         <OrganiserContext.Provider value={{ isUserOrganiser }}>
             {children}
