@@ -1,0 +1,16 @@
+.item {
+    width: 200px;
+    margin: 5px;
+    padding-left: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-content: flex-start;
+}
+
+.unchecked {
+    background-color: #a8d0e6;
+}
+
+.checked {
+    background-color: lightgray;
+}

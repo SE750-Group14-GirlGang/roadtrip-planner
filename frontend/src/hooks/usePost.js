@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import axios from 'axios';
-import { useAuth0 } from '@auth0/auth0-react';
-
+import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function usePost(url, body = {}, config = {}) {
-    
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -16,7 +14,7 @@ export default function usePost(url, body = {}, config = {}) {
             // set token in Authorization header
             config.headers = {
                 Authorization: `Bearer ${accessToken}`,
-            }
+            };
 
             setLoading(true);
             try {

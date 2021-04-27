@@ -1,0 +1,16 @@
+.mapPage {
+  justify-content: center;
+  align-items: center;
+}
+
+.mapPage p {
+  color: #24305e;
+}
+
+.mapPageTitle {
+  font-size: 30px;
+}
+
+.emptyMapDescription {
+  font-style: italic;
+}

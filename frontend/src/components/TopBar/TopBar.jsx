@@ -23,8 +23,8 @@ export default function TopBar() {
         Roadie
       </Typography>
       <div className={styles.navItems}>
-        <Button>Join Existing Group</Button>
-        <Button>Create New Group</Button>
+        <Button>Join Existing Trip</Button>
+        <Button>Create New Trip</Button>
         {/*TODO Add person to group only if HOST and in group, not dashboard*/}
         {/*<FlagsProvider features={{ moderate: user.role === "admin" }}>*/}
         {/*  <Button>Host Only</Button>*/}
