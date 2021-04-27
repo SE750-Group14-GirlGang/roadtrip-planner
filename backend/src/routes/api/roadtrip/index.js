@@ -47,16 +47,11 @@ router.get("/:id", async (req, res) => {
     res.json(roadTrip);
 });
 
-// checks if the current user is the organiser of the given roadtrip
-router.get("/:id/isUserOrganiser", async (req, res) => {
-    const userId = formatUserId(req.user.sub);
-    const { id: roadTripId } = req.params;
-    const isUserOrganiser = await roadtrips.isUserOrganiser(roadTripId, userId);
-    res.json({ result: isUserOrganiser });
-});
-
 import emergencydetails from "./emergencydetails";
 router.use("/", emergencydetails);
+
+import isUserOrganiser from "./isUserOrganiser";
+router.use("/", isUserOrganiser);
 
 import itinerary from "./itinerary";
 router.use("/", itinerary);
