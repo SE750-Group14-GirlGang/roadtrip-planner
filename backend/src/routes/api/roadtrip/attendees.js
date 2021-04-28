@@ -5,6 +5,13 @@ import * as roadtrips from '../../../db/controllers/roadtrips';
 
 const router = express.Router();
 
+// get the list of attendees for a roadtrip
+router.get('/:id/attendees', async (req, res) => {
+  const { id: roadTripId } = req.params;
+  const attendees = await roadtrips.getAttendees(roadTripId);
+  res.json(attendees);
+});
+
 // append a user to the list of attendees of a roadtrip
 // the user's email is provided
 router.patch('/:id/attendees', async (req, res) => {

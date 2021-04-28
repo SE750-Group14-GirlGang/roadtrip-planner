@@ -17,12 +17,16 @@ export async function createRoadTrip(roadTrip, organiserId) {
 export async function isUserOrganiser(roadTripId, userId) {
   const dbRoadTrip = await getRoadTrip(roadTripId);
   return new String(dbRoadTrip.organiser).valueOf() === new String(userId).valueOf();
+  
+export async function getAttendees(roadTripId) {
+  const dbRoadTrip = await getRoadTrip(roadTripId);
+  await RoadTrip.populate(dbRoadTrip, "attendees");
+  return dbRoadTrip.attendees;
 }
 
 export async function addAttendee(roadTripId, userId) {
   const dbRoadTrip = await getRoadTrip(roadTripId);
   if (dbRoadTrip.attendees.every((e) => new String(e).valueOf() !== new String(userId).valueOf())) {
-    // only add the user if they haven't already been added
     dbRoadTrip.attendees.push(userId);
     await users.addRoadTripAttending(userId, roadTripId);
   }
