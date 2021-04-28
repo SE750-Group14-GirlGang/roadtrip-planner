@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const spotifySchema = new Schema({
-    playlistLink: String
+  playlistLink: String,
 }, { collection: 'spotifys' });
 
 export const Spotify = mongoose.model('Spotify', spotifySchema);

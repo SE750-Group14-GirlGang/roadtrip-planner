@@ -1,6 +1,6 @@
 module.exports = {
-    testEnvironment: 'node',
-    roots: [
-        './src'
-    ]
-}
+  testEnvironment: 'node',
+  roots: [
+    './src',
+  ],
+};
