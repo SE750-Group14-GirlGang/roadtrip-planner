@@ -8,7 +8,7 @@
     "server": "npm run start",
     "production": "cross-env NODE_ENV=production PORT=3000 node -r esm ./src/server.js",
     "test": "jest --runInBand",
-    "lint": "eslint --ext .js,.jsx .",
+    "lint": "eslint --ext .js .",
     "lint-fix": "eslint --fix --ext .js .",
     "format": "prettier --write \"**/*.{js,json,md}\""
   },
