@@ -1,8 +1,8 @@
 import React from 'react';
+import { Switch, Route, Redirect, useRouteMatch, useParams } from 'react-router-dom';
 import TopBar from '../../components/TopBar/TopBar';
 import SideBar from '../../components/SideBar/SideBar';
 import './RoadTrip.css';
-import { Switch, Route, Redirect, useRouteMatch, useParams } from 'react-router-dom';
 import MapPage from './MapPage/MapPage';
 import ItineraryPage from './ItineraryPage/ItineraryPage';
 import EmergencyDetailsPage from './EmergencyDetailsPage/EmergencyDetailsPage';
