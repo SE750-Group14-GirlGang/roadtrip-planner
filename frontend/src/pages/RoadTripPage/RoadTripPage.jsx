@@ -1,8 +1,14 @@
 import React from "react";
-import TopBar from "../../components/TopBar/TopBar";
+import RoadTripTopBar from "../../components/RoadTripTopBar/RoadTripTopBar";
 import SideBar from "../../components/SideBar/SideBar";
 import "./RoadTrip.css";
-import { Switch, Route, Redirect, useRouteMatch, useParams } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  Redirect,
+  useRouteMatch,
+  useParams,
+} from "react-router-dom";
 import MapPage from "./MapPage/MapPage";
 import ItineraryPage from "./ItineraryPage/ItineraryPage";
 import EmergencyDetailsPage from "./EmergencyDetailsPage/EmergencyDetailsPage";
@@ -18,7 +24,7 @@ export default function RoadTripPage() {
   return (
     <OrganiserContextProvider roadTripId={id}>
       <div className="roadTrip">
-        <TopBar />
+        <RoadTripTopBar />
         <Switch>
           <Route path={`${path}/map`}>
             <MapPage />
