@@ -26,11 +26,7 @@ context('Utilities', () => {
     cy.get('.utility-blob').then(($div) =>
       // https://github.com/nolanlawson/blob-util#imgSrcToDataURL
       // get the dataUrl string for the javascript-logo
-      Cypress.Blob.imgSrcToDataURL(
-        'https://example.cypress.io/assets/img/javascript-logo.png',
-        undefined,
-        'anonymous'
-      ) // eslint-disable-line
+      Cypress.Blob.imgSrcToDataURL('https://example.cypress.io/assets/img/javascript-logo.png', undefined, 'anonymous') // eslint-disable-line
         .then((dataUrl) => {
           // create an <img> element and set its src to the dataUrl
           const img = Cypress.$('<img />', { src: dataUrl });

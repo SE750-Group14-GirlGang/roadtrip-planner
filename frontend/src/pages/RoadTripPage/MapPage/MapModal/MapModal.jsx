@@ -85,11 +85,7 @@ export default function MapModal({ open, handleClose, setDestination, setDestSel
       },
     };
 
-    const destination = await axios.post(
-      '/api/roadtrip/6083614ff19eef2de864003d/map',
-      destToPost,
-      config
-    );
+    const destination = await axios.post('/api/roadtrip/6083614ff19eef2de864003d/map', destToPost, config);
 
     setDestination(destination.data);
 

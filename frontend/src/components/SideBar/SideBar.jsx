@@ -25,12 +25,7 @@ export default function SideBar() {
 
   return (
     <div>
-      <IconButton
-        aria-label="open drawer"
-        onClick={() => handleSideBarToggle()}
-        edge="start"
-        color="#24305e"
-      >
+      <IconButton aria-label="open drawer" onClick={() => handleSideBarToggle()} edge="start" color="#24305e">
         <MenuIcon />
       </IconButton>
 

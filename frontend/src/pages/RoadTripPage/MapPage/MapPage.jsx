@@ -78,13 +78,9 @@ export default function MapPage() {
         />
       ) : (
         <div>
-          <p className={styles.emptyMapDescription}>
-            The organiser has not entered a destination yet!
-          </p>
+          <p className={styles.emptyMapDescription}>The organiser has not entered a destination yet!</p>
           <br />
-          {isOrganiser && (
-            <DestinationButton onClick={handleOpenModal}>Add Destination</DestinationButton>
-          )}
+          {isOrganiser && <DestinationButton onClick={handleOpenModal}>Add Destination</DestinationButton>}
           <MapModal
             open={modalOpen}
             handleClose={handleCloseModal}

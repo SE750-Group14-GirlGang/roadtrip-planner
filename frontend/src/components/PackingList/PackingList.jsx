@@ -26,12 +26,7 @@ export default function PackingList() {
   //     "bowl",
   // ];
   const packingListItems = [];
-  const [userPackedItems, setUserPackedItems] = useState([
-    'sleeping bag',
-    'hoons',
-    'alcohol',
-    'ear plugs',
-  ]);
+  const [userPackedItems, setUserPackedItems] = useState(['sleeping bag', 'hoons', 'alcohol', 'ear plugs']);
 
   const handleChange = (item) => {
     let newUserPackedItems = [...userPackedItems];
@@ -60,9 +55,7 @@ export default function PackingList() {
               </div>
             ))
           ) : (
-            <div className={styles.emptyText}>
-              The organiser has not added any items to the packing list!
-            </div>
+            <div className={styles.emptyText}> The organiser has not added any items to the packing list!</div>
           )}
         </div>
         <div className={styles.cardFooter}>

@@ -40,10 +40,7 @@ context('Assertions', () => {
 
     it('.and() - chain multiple assertions together', () => {
       // https://on.cypress.io/and
-      cy.get('.assertions-link')
-        .should('have.class', 'active')
-        .and('have.attr', 'href')
-        .and('include', 'cypress.io');
+      cy.get('.assertions-link').should('have.class', 'active').and('have.attr', 'href').and('include', 'cypress.io');
     });
   });
 

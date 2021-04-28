@@ -193,11 +193,7 @@ context('Spies, Stubs, and Clock', () => {
     );
 
     // matchers can be used from BDD assertions
-    cy.get('@add').should(
-      'have.been.calledWith',
-      Cypress.sinon.match.number,
-      Cypress.sinon.match(3)
-    );
+    cy.get('@add').should('have.been.calledWith', Cypress.sinon.match.number, Cypress.sinon.match(3));
 
     // you can alias matchers for shorter test code
     const { match: M } = Cypress.sinon;

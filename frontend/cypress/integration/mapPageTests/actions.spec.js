@@ -36,11 +36,7 @@ context('Actions', () => {
 
   it('.focus() - focus on a DOM element', () => {
     // https://on.cypress.io/focus
-    cy.get('.action-focus')
-      .focus()
-      .should('have.class', 'focus')
-      .prev()
-      .should('have.attr', 'style', 'color: orange;');
+    cy.get('.action-focus').focus().should('have.class', 'focus').prev().should('have.attr', 'style', 'color: orange;');
   });
 
   it('.blur() - blur off a DOM element', () => {
@@ -148,9 +144,7 @@ context('Actions', () => {
     cy.get('.action-radios [type="radio"]').check('radio1').should('be.checked');
 
     // .check() accepts an array of values
-    cy.get('.action-multiple-checkboxes [type="checkbox"]')
-      .check(['checkbox1', 'checkbox2'])
-      .should('be.checked');
+    cy.get('.action-multiple-checkboxes [type="checkbox"]').check(['checkbox1', 'checkbox2']).should('be.checked');
 
     // Ignore error checking prior to checking
     cy.get('.action-checkboxes [disabled]').check({ force: true }).should('be.checked');
@@ -166,10 +160,7 @@ context('Actions', () => {
     cy.get('.action-check [type="checkbox"]').not('[disabled]').uncheck().should('not.be.checked');
 
     // .uncheck() accepts a value argument
-    cy.get('.action-check [type="checkbox"]')
-      .check('checkbox1')
-      .uncheck('checkbox1')
-      .should('not.be.checked');
+    cy.get('.action-check [type="checkbox"]').check('checkbox1').uncheck('checkbox1').should('not.be.checked');
 
     // .uncheck() accepts an array of values
     cy.get('.action-check [type="checkbox"]')
