@@ -6,12 +6,26 @@ import * as roadtrips from '../../../db/controllers/roadtrips';
 import * as users from '../../../db/controllers/users';
 import formatUserId from '../../../utils/formatUserId';
 
+import emergencydetails from './emergencydetails';
+
+import isUserOrganiser from './isUserOrganiser';
+
+import itinerary from './itinerary';
+
+import map from './map';
+
+import packeditems from './packeditems';
+
+import packinglist from './packinglist';
+
+import spotify from './spotify';
+
 const router = express.Router();
 
 // get all roadtrips for a user
 router.get('/', async (req, res) => {
   const userId = formatUserId(req.user.sub);
-  let allRoadTrips = {};
+  const allRoadTrips = {};
   allRoadTrips.roadTripsOrganising = await users.getRoadTripsOrganising(userId);
   allRoadTrips.roadTripsAttending = await users.getRoadTripsAttending(userId);
   res.json(allRoadTrips);
@@ -40,26 +54,12 @@ router.get('/:id', async (req, res) => {
   const roadTrip = await roadtrips.getRoadTrip(id);
   res.json(roadTrip);
 });
-
-import emergencydetails from './emergencydetails';
 router.use('/', emergencydetails);
-
-import isUserOrganiser from './isUserOrganiser';
 router.use('/', isUserOrganiser);
-
-import itinerary from './itinerary';
 router.use('/', itinerary);
-
-import map from './map';
 router.use('/', map);
-
-import packeditems from './packeditems';
 router.use('/', packeditems);
-
-import packinglist from './packinglist';
 router.use('/', packinglist);
-
-import spotify from './spotify';
 router.use('/', spotify);
 
 export default router;

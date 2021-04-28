@@ -18,5 +18,6 @@ module.exports = {
     'import/extensions': 0,
     'no-return-await': 0,
     'implicit-arrow-linebreak': 0,
+    'no-new-wrappers': 0,
   },
 };
