@@ -9,6 +9,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'linebreak-style': 0,
     'no-underscore-dangle': 0,
     'jest/no-test-callback': 0,
     'jest/no-done-callback': 0,
