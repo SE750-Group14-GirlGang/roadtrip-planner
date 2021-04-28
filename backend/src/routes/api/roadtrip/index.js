@@ -6,18 +6,13 @@ import * as roadtrips from '../../../db/controllers/roadtrips';
 import * as users from '../../../db/controllers/users';
 import formatUserId from '../../../utils/formatUserId';
 
+import attendees from './attendees';
 import emergencydetails from './emergencydetails';
-
 import isUserOrganiser from './isUserOrganiser';
-
 import itinerary from './itinerary';
-
 import map from './map';
-
 import packeditems from './packeditems';
-
 import packinglist from './packinglist';
-
 import spotify from './spotify';
 
 const router = express.Router();
@@ -54,6 +49,8 @@ router.get('/:id', async (req, res) => {
   const roadTrip = await roadtrips.getRoadTrip(id);
   res.json(roadTrip);
 });
+
+router.use('/', attendees);
 router.use('/', emergencydetails);
 router.use('/', isUserOrganiser);
 router.use('/', itinerary);
