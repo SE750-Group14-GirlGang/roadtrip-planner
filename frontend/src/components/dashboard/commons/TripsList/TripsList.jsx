@@ -7,12 +7,7 @@ export default function TripsList({ trips, disable }) {
   return (
     <div>
       {trips.map((item, index) => (
-        <Trip
-          key={index}
-          tripName={item.name}
-          id={item._id}
-          disable={disable}
-        />
+        <Trip key={index} tripName={item.name} id={item._id} disable={disable} />
       ))}
     </div>
   );
@@ -22,11 +17,7 @@ function Trip({ tripName, id, disable }) {
   return (
     <Card className={styles.trip}>
       <CardActionArea>
-        <Button
-          component={Link}
-          to={`/road-trip/${id}`}
-          disabled={disable}
-        >
+        <Button component={Link} to={`/road-trip/${id}`} disabled={disable}>
           {tripName}
         </Button>
       </CardActionArea>

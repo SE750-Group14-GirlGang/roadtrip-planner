@@ -38,7 +38,7 @@ export default function MapPage() {
 
   // TODO: remove eslint disable when implementing full map page
   // eslint-disable-next-line
-    const [destination, setDestination] = useState(initialDestination);
+  const [destination, setDestination] = useState(initialDestination);
 
   // TODO: get zoom level
   const initialViewport = {
@@ -83,9 +83,7 @@ export default function MapPage() {
           </p>
           <br />
           {isOrganiser && (
-            <DestinationButton onClick={handleOpenModal}>
-              Add Destination
-            </DestinationButton>
+            <DestinationButton onClick={handleOpenModal}>Add Destination</DestinationButton>
           )}
           <MapModal
             open={modalOpen}

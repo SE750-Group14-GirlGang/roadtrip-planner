@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Switch, Route, Redirect, useRouteMatch,
-} from 'react-router-dom';
+import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom';
 import TopBar from '../../components/TopBar/TopBar';
 import SideBar from '../../components/SideBar/SideBar';
 import './RoadTrip.css';

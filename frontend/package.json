@@ -32,13 +32,16 @@
     "enzyme": "^3.11.0",
     "eslint": "^7.25.0",
     "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "jest-enzyme": "^7.1.2",
     "jest-mock-axios": "^4.3.0",
+    "prettier": "^2.2.1",
     "react-test-renderer": "^17.0.2"
   },
   "scripts": {
@@ -48,13 +51,15 @@
     "eject": "react-scripts eject",
     "cypress:open": "cypress open",
     "lint": "eslint ./",
-    "lint-fix": "eslint --fix --ext .js,.jsx ."
+    "lint-fix": "eslint --fix --ext .js,.jsx .",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest",
-      "plugin:cypress/recommended"
+      "plugin:cypress/recommended",
+      "plugin:prettier/recommended"
     ]
   },
   "browserslist": {

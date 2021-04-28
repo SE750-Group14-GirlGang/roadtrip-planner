@@ -7,18 +7,10 @@ export default function Item({ name, checked, onChange }) {
   const classes = useStyles();
 
   return (
-    <div
-      className={`${styles.item} ${
-        checked ? styles.checked : styles.unchecked
-      }`}
-    >
+    <div className={`${styles.item} ${checked ? styles.checked : styles.unchecked}`}>
       <FormControlLabel
-        className={
-                    checked ? classes.labelChecked : classes.labelUnchecked
-                }
-        control={
-          <CustomCheckbox checked={checked} onChange={onChange} />
-                }
+        className={checked ? classes.labelChecked : classes.labelUnchecked}
+        control={<CustomCheckbox checked={checked} onChange={onChange} />}
         label={name}
       />
     </div>

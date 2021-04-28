@@ -34,12 +34,7 @@ export default function SideBar() {
         <MenuIcon />
       </IconButton>
 
-      <Drawer
-        anchor="left"
-        variant="persistent"
-        open={sideBarOpen}
-        className={classes.root}
-      >
+      <Drawer anchor="left" variant="persistent" open={sideBarOpen} className={classes.root}>
         <IconButton
           aria-label="close drawer"
           onClick={() => handleSideBarToggle()}
@@ -50,38 +45,23 @@ export default function SideBar() {
         </IconButton>
 
         <div className={styles.navSideBar}>
-          <NavLink
-            to={`${url}/map`}
-            activeClassName={styles.activeLink}
-          >
+          <NavLink to={`${url}/map`} activeClassName={styles.activeLink}>
             Map
           </NavLink>
 
-          <NavLink
-            to={`${url}/itinerary`}
-            activeClassName={styles.activeLink}
-          >
+          <NavLink to={`${url}/itinerary`} activeClassName={styles.activeLink}>
             Itinerary
           </NavLink>
 
-          <NavLink
-            to={`${url}/emergency-details`}
-            activeClassName={styles.activeLink}
-          >
+          <NavLink to={`${url}/emergency-details`} activeClassName={styles.activeLink}>
             Emergency Details
           </NavLink>
 
-          <NavLink
-            to={`${url}/packing-list`}
-            activeClassName={styles.activeLink}
-          >
+          <NavLink to={`${url}/packing-list`} activeClassName={styles.activeLink}>
             Packing List
           </NavLink>
 
-          <NavLink
-            to={`${url}/spotify-playlist`}
-            activeClassName={styles.activeLink}
-          >
+          <NavLink to={`${url}/spotify-playlist`} activeClassName={styles.activeLink}>
             Spotify Playlist
           </NavLink>
         </div>

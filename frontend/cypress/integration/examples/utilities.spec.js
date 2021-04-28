@@ -7,22 +7,18 @@ context('Utilities', () => {
 
   it('Cypress._ - call a lodash method', () => {
     // https://on.cypress.io/_
-    cy.request('https://jsonplaceholder.cypress.io/users')
-      .then((response) => {
-        const ids = Cypress._.chain(response.body).map('id').take(3).value();
+    cy.request('https://jsonplaceholder.cypress.io/users').then((response) => {
+      const ids = Cypress._.chain(response.body).map('id').take(3).value();
 
-        expect(ids).to.deep.eq([1, 2, 3]);
-      });
+      expect(ids).to.deep.eq([1, 2, 3]);
+    });
   });
 
   it('Cypress.$ - call a jQuery method', () => {
     // https://on.cypress.io/$
     const $li = Cypress.$('.utility-jquery li:first');
 
-    cy.wrap($li)
-      .should('not.have.class', 'active')
-      .click()
-      .should('have.class', 'active');
+    cy.wrap($li).should('not.have.class', 'active').click().should('have.class', 'active');
   });
 
   it('Cypress.Blob - blob utilities and base64 string conversion', () => {
@@ -30,9 +26,13 @@ context('Utilities', () => {
     cy.get('.utility-blob').then(($div) =>
       // https://github.com/nolanlawson/blob-util#imgSrcToDataURL
       // get the dataUrl string for the javascript-logo
-        Cypress.Blob.imgSrcToDataURL('https://example.cypress.io/assets/img/javascript-logo.png', undefined, 'anonymous')  // eslint-disable-line
+      Cypress.Blob.imgSrcToDataURL(
+        'https://example.cypress.io/assets/img/javascript-logo.png',
+        undefined,
+        'anonymous'
+      ) // eslint-disable-line
         .then((dataUrl) => {
-        // create an <img> element and set its src to the dataUrl
+          // create an <img> element and set its src to the dataUrl
           const img = Cypress.$('<img />', { src: dataUrl });
 
           // need to explicitly return cy here since we are initially returning
@@ -40,9 +40,9 @@ context('Utilities', () => {
           // append the image
           $div.append(img);
 
-          cy.get('.utility-blob img').click()
-            .should('have.attr', 'src', dataUrl);
-        }));
+          cy.get('.utility-blob img').click().should('have.attr', 'src', dataUrl);
+        })
+    );
   });
 
   it('Cypress.minimatch - test out glob patterns against strings', () => {
@@ -100,9 +100,11 @@ context('Utilities', () => {
       // return a promise to cy.then() that
       // is awaited until it resolves
       // @ts-ignore TS7006
-      waitOneSecond().then((str) => { // eslint-disable-line
+      waitOneSecond().then((str) => {
+        // eslint-disable-line
         expect(str).to.eq('foo');
         expect(waited).to.be.true;
-      }));
+      })
+    );
   });
 });

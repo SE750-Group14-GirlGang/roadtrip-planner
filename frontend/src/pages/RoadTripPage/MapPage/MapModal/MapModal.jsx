@@ -14,12 +14,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-export default function MapModal({
-  open,
-  handleClose,
-  setDestination,
-  setDestSelected,
-}) {
+export default function MapModal({ open, handleClose, setDestination, setDestSelected }) {
   // Default location is just New Zealand. If/when user selects a different location
   // this will be overridden
   const initialViewport = {
@@ -46,10 +41,7 @@ export default function MapModal({
     height: 400,
   };
 
-  const handleViewportChange = useCallback(
-    (newViewport) => setViewport(newViewport),
-    [],
-  );
+  const handleViewportChange = useCallback((newViewport) => setViewport(newViewport), []);
 
   // 'Travel' to selected location
   const handleGeocoderViewportChange = useCallback(
@@ -61,7 +53,7 @@ export default function MapModal({
         ...geocoderDefaultOverrides,
       });
     },
-    [handleViewportChange],
+    [handleViewportChange]
   );
 
   // When location selected, save that location's information
@@ -71,7 +63,7 @@ export default function MapModal({
       setDestLongitude(result.result.center[0]);
       setDestLatitude(result.result.center[1]);
     },
-    [setDestLatitude, setDestLongitude, setDestName],
+    [setDestLatitude, setDestLongitude, setDestName]
   );
 
   async function handleSubmit() {
@@ -96,7 +88,7 @@ export default function MapModal({
     const destination = await axios.post(
       '/api/roadtrip/6083614ff19eef2de864003d/map',
       destToPost,
-      config,
+      config
     );
 
     setDestination(destination.data);
@@ -110,15 +102,8 @@ export default function MapModal({
 
   return (
     <div>
-      <Dialog
-        fullWidth
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-      >
-        <DialogTitle id="form-dialog-title">
-          Enter Destination
-        </DialogTitle>
+      <Dialog fullWidth open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Enter Destination</DialogTitle>
         <DialogContent>
           <div
             ref={geocoderContainerRef}

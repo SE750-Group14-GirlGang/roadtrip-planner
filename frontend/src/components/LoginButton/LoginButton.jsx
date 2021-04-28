@@ -5,10 +5,7 @@ import styles from './LoginButton.module.css';
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
   return (
-    <button
-      className={styles.button}
-      onClick={() => loginWithRedirect()}
-    >
+    <button className={styles.button} onClick={() => loginWithRedirect()}>
       Log In
     </button>
   );

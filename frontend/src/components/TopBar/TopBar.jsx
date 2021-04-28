@@ -29,7 +29,9 @@ export default function TopBar() {
         {/* <FlagsProvider features={{ moderate: user.role === "admin" }}> */}
         {/*  <Button>Host Only</Button> */}
         {/* </FlagsProvider> */}
-        <Button><AccountCircleIcon /></Button>
+        <Button>
+          <AccountCircleIcon />
+        </Button>
       </div>
     </div>
   );

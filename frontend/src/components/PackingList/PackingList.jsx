@@ -61,15 +61,12 @@ export default function PackingList() {
             ))
           ) : (
             <div className={styles.emptyText}>
-              The organiser has not added any items to the packing
-              list!
+              The organiser has not added any items to the packing list!
             </div>
           )}
         </div>
         <div className={styles.cardFooter}>
-          {userIsOrganiser && (
-            <Button className={classes.button}>+ Add Item</Button>
-          )}
+          {userIsOrganiser && <Button className={classes.button}>+ Add Item</Button>}
         </div>
       </div>
     </div>
