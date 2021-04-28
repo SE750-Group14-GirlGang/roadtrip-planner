@@ -10,7 +10,7 @@ const mapSchema = new Schema(
       name: String,
     },
   },
-  { collection: 'maps' },
+  { collection: 'maps' }
 );
 
 export const Map = mongoose.model('Map', mapSchema);

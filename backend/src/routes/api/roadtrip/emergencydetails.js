@@ -18,7 +18,8 @@ router.post('/:id/emergencydetails', async (req, res) => {
   const { id: roadTripId } = req.params;
 
   const newEmergencyDetails = await emergencydetails.createEmergencyDetails(roadTripId, req.body);
-  res.status(constants.HTTP_CREATED)
+  res
+    .status(constants.HTTP_CREATED)
     .header('Location', `/api/roadtrip/${roadTripId}/emergencydetails`)
     .json(newEmergencyDetails);
 });

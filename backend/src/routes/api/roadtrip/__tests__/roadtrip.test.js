@@ -4,20 +4,24 @@ import express from 'express';
 import axios from 'axios';
 import router from '../../../index';
 
-let mongod; let app; let
-  server;
-let roadTrip1; let roadTrip2; let roadTrip3; let
-  roadTrip4;
+let mongod;
+let app;
+let server;
+let roadTrip1;
+let roadTrip2;
+let roadTrip3;
+let roadTrip4;
 const userId = '608360966dcb41278446d3da';
 
 jest.mock('../../../../auth/checkJwt', () =>
-// mock user id
+  // mock user id
   jest.fn((req, res, next) => {
     req.user = {
       sub: 'prefix|608360966dcb41278446d3da',
     };
     next();
-  }));
+  })
+);
 
 beforeAll(async (done) => {
   mongod = new MongoMemoryServer();

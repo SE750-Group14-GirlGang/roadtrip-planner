@@ -18,9 +18,7 @@ router.post('/:id/spotify', async (req, res) => {
   const { id: roadTripId } = req.params;
 
   const newSpotify = await spotifys.createSpotify(roadTripId, req.body);
-  res.status(constants.HTTP_CREATED)
-    .header('Location', `/api/roadtrip/${roadTripId}/spotify`)
-    .json(newSpotify);
+  res.status(constants.HTTP_CREATED).header('Location', `/api/roadtrip/${roadTripId}/spotify`).json(newSpotify);
 });
 
 export default router;

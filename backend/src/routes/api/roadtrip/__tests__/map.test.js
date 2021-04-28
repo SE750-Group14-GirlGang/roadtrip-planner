@@ -4,15 +4,18 @@ import express from 'express';
 import axios from 'axios';
 import router from '../../../index';
 
-let mongod; let app; let
-  server;
+let mongod;
+let app;
+let server;
 
-let roadTrip; let
-  map;
+let roadTrip;
+let map;
 
-jest.mock('../../../../auth/checkJwt', () => jest.fn((req, res, next) => {
-  next();
-}));
+jest.mock('../../../../auth/checkJwt', () =>
+  jest.fn((req, res, next) => {
+    next();
+  })
+);
 
 beforeAll(async (done) => {
   mongod = new MongoMemoryServer();

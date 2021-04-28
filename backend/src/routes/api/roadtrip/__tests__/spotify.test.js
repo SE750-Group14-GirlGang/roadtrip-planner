@@ -4,15 +4,18 @@ import express from 'express';
 import axios from 'axios';
 import router from '../../../index';
 
-let mongod; let app; let
-  server;
+let mongod;
+let app;
+let server;
 
-let roadTrip; let
-  spotify;
+let roadTrip;
+let spotify;
 
-jest.mock('../../../../auth/checkJwt', () => jest.fn((req, res, next) => {
-  next();
-}));
+jest.mock('../../../../auth/checkJwt', () =>
+  jest.fn((req, res, next) => {
+    next();
+  })
+);
 
 beforeAll(async (done) => {
   mongod = new MongoMemoryServer();
@@ -61,5 +64,7 @@ it('gets spotify for a roadtrip from the server', async () => {
 
   expect(spotifyRes).toBeTruthy();
 
-  expect(spotifyRes.playListLink).toBe('https://open.spotify.com/playlist/1uiJXPKTFDnlgvlJzhksSE?si=pyx5hNQjRWuXtAyaqsvbIQ');
+  expect(spotifyRes.playListLink).toBe(
+    'https://open.spotify.com/playlist/1uiJXPKTFDnlgvlJzhksSE?si=pyx5hNQjRWuXtAyaqsvbIQ'
+  );
 });

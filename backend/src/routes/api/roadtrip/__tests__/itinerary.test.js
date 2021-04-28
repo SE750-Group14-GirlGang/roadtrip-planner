@@ -4,15 +4,18 @@ import express from 'express';
 import axios from 'axios';
 import router from '../../../index';
 
-let mongod; let app; let
-  server;
+let mongod;
+let app;
+let server;
 
-let roadTrip; let
-  itinerary;
+let roadTrip;
+let itinerary;
 
-jest.mock('../../../../auth/checkJwt', () => jest.fn((req, res, next) => {
-  next();
-}));
+jest.mock('../../../../auth/checkJwt', () =>
+  jest.fn((req, res, next) => {
+    next();
+  })
+);
 
 beforeAll(async (done) => {
   mongod = new MongoMemoryServer();
@@ -33,12 +36,14 @@ beforeEach(async () => {
 
   itinerary = {
     dates: [april_21_2021],
-    itineraryDays: [{
-      day: april_21_2021,
-      time: 'Morning',
-      location: 'Cathedral Cove',
-      notes: 'Bring your togs!',
-    }],
+    itineraryDays: [
+      {
+        day: april_21_2021,
+        time: 'Morning',
+        location: 'Cathedral Cove',
+        notes: 'Bring your togs!',
+      },
+    ],
   };
   await itinerariesColl.insertOne(itinerary);
 

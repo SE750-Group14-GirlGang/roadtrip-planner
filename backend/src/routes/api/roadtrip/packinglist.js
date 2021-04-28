@@ -18,9 +18,7 @@ router.post('/:id/packinglist', async (req, res) => {
   const { id: roadTripId } = req.params;
 
   const newPackingList = await packinglists.createPackingList(roadTripId, req.body);
-  res.status(constants.HTTP_CREATED)
-    .header('Location', `/api/roadtrip/${roadTripId}/packinglist`)
-    .json(newPackingList);
+  res.status(constants.HTTP_CREATED).header('Location', `/api/roadtrip/${roadTripId}/packinglist`).json(newPackingList);
 });
 
 export default router;

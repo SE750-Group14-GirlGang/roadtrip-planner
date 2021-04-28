@@ -4,15 +4,19 @@ import express from 'express';
 import axios from 'axios';
 import router from '../../../index';
 
-let mongod; let app; let
-  server;
+let mongod;
+let app;
+let server;
 
-let roadTrip; let packedItems1; let
-  packedItems2;
+let roadTrip;
+let packedItems1;
+let packedItems2;
 
-jest.mock('../../../../auth/checkJwt', () => jest.fn((req, res, next) => {
-  next();
-}));
+jest.mock('../../../../auth/checkJwt', () =>
+  jest.fn((req, res, next) => {
+    next();
+  })
+);
 
 beforeAll(async (done) => {
   mongod = new MongoMemoryServer();
@@ -30,25 +34,16 @@ beforeEach(async () => {
   const packedItemsColl = await mongoose.connection.db.createCollection('packeditems');
 
   packedItems1 = {
-    items: [
-      'togs',
-      'clothes',
-      'sleeping bag',
-    ],
+    items: ['togs', 'clothes', 'sleeping bag'],
   };
   packedItems2 = {
-    items: [
-      'alcohol',
-    ],
+    items: ['alcohol'],
   };
   await packedItemsColl.insertMany([packedItems1, packedItems2]);
 
   roadTrip = {
     name: 'My Road Trip',
-    packedItems: [
-      packedItems1._id,
-      packedItems2._id,
-    ],
+    packedItems: [packedItems1._id, packedItems2._id],
   };
   await roadTripsColl.insertOne(roadTrip);
 });

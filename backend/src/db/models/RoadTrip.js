@@ -23,7 +23,7 @@ const roadTripSchema = new Schema(
     },
     spotify: { type: Schema.Types.ObjectId, ref: 'Spotify' },
   },
-  { collection: 'roadtrips' },
+  { collection: 'roadtrips' }
 );
 
 export const RoadTrip = mongoose.model('RoadTrip', roadTripSchema);

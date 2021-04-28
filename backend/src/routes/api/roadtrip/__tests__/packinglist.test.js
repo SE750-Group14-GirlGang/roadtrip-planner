@@ -4,15 +4,18 @@ import express from 'express';
 import axios from 'axios';
 import router from '../../../index';
 
-let mongod; let app; let
-  server;
+let mongod;
+let app;
+let server;
 
-let roadTrip; let
-  packingList;
+let roadTrip;
+let packingList;
 
-jest.mock('../../../../auth/checkJwt', () => jest.fn((req, res, next) => {
-  next();
-}));
+jest.mock('../../../../auth/checkJwt', () =>
+  jest.fn((req, res, next) => {
+    next();
+  })
+);
 
 beforeAll(async (done) => {
   mongod = new MongoMemoryServer();
@@ -30,14 +33,7 @@ beforeEach(async () => {
   const packingListsColl = await mongoose.connection.db.createCollection('packinglists');
 
   packingList = {
-    items: [
-      'togs',
-      'sleeping mat',
-      'sleeping bag',
-      'pillow',
-      'clothes',
-      'alcohol',
-    ],
+    items: ['togs', 'sleeping mat', 'sleeping bag', 'pillow', 'clothes', 'alcohol'],
   };
   await packingListsColl.insertOne(packingList);
 

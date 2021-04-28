@@ -33,9 +33,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   const userId = formatUserId(req.user.sub);
   const newRoadTrip = await roadtrips.createRoadTrip(req.body, userId);
-  res.status(constants.HTTP_CREATED)
-    .header('Location', `/api/roadtrip/${newRoadTrip._id}`)
-    .json(newRoadTrip);
+  res.status(constants.HTTP_CREATED).header('Location', `/api/roadtrip/${newRoadTrip._id}`).json(newRoadTrip);
 });
 
 // id validation check
@@ -44,8 +42,7 @@ router.use('/:id', async (req, res, next) => {
   if (mongoose.isValidObjectId(id)) {
     next();
   } else {
-    res.status(constants.HTTP_BAD_REQUEST)
-      .contentType('text/plain').send('Invalid ID');
+    res.status(constants.HTTP_BAD_REQUEST).contentType('text/plain').send('Invalid ID');
   }
 });
 
