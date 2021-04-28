@@ -1,8 +1,8 @@
-import { RoadTrip } from '../models/RoadTrip';
-import {addRoadTripsOrganising} from '../controllers/users'
+import { RoadTrip } from "../models/RoadTrip";
+import { addRoadTripsOrganising } from "../controllers/users";
 
-export async function getRoadTrip(id) {
-    return await RoadTrip.findById(id);
+export async function getRoadTrip(roadTripId) {
+    return await RoadTrip.findById(roadTripId);
 }
 
 export async function createRoadTrip(roadTrip, organiserId) {
@@ -14,3 +14,7 @@ export async function createRoadTrip(roadTrip, organiserId) {
     return dbRoadTrip;
 }
 
+export async function isUserOrganiser(roadTripId, userId) {
+    const dbRoadTrip = await getRoadTrip(roadTripId);
+    return new String(dbRoadTrip.organiser).valueOf() === new String(userId).valueOf();
+}
