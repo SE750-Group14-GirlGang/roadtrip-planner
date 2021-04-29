@@ -12,6 +12,7 @@ const DEFAULT_TEXTFIELD_VALUE = 'untitled road trip';
 
 export default function CreateTripModal({ open, handleClose, refetchRoadTrips }) {
   const [name, setName] = useState(DEFAULT_TEXTFIELD_VALUE);
+  const [error, setError] = useState(false);
 
   const post = usePost();
 
@@ -20,13 +21,18 @@ export default function CreateTripModal({ open, handleClose, refetchRoadTrips })
   };
 
   const handleSubmit = async () => {
+    setError(false);
     const roadTripToPost = {
       name,
     };
-    await post(`/api/roadtrip`, roadTripToPost);
-    refetchRoadTrips();
-    setName(DEFAULT_TEXTFIELD_VALUE);
-    handleClose();
+    const { error } = await post(`/api/roadtrip`, roadTripToPost);
+    if (error) {
+      setError(true);
+    } else {
+      refetchRoadTrips();
+      setName(DEFAULT_TEXTFIELD_VALUE);
+      handleClose();
+    }
   };
 
   return (
@@ -34,7 +40,15 @@ export default function CreateTripModal({ open, handleClose, refetchRoadTrips })
       <Dialog fullWidth open={open} onClose={handleClose}>
         <DialogTitle>Create new trip</DialogTitle>
         <DialogContent>
-          <TextField fullWidth autoFocus label="Enter name" defaultValue={name} onChange={handleChange} />
+          <TextField
+            fullWidth
+            error={error}
+            helperText={error ? 'Error creating trip. Try again.' : ''}
+            autoFocus
+            label="Enter name"
+            defaultValue={name}
+            onChange={handleChange}
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
