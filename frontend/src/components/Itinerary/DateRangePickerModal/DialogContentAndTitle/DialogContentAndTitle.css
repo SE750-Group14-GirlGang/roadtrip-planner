@@ -1,0 +1,35 @@
+.CalendarDay__selected_span {
+    background: #fbb6b6;
+    color: white;
+    border: none;
+}
+
+.CalendarDay__selected_span:hover {
+    background: #f99191;
+    border: none;
+    color: #fff;
+}
+
+.CalendarDay__selected {
+    background: #f76c6c;
+    color: white;
+    border: none;
+}
+
+.CalendarDay__selected:active,
+.CalendarDay__selected:hover {
+    background: #f76c6c;
+    border: none;
+    color: #fff;
+    border: 1px double #f76c6c;
+}
+
+.CalendarDay__hovered_span:hover,
+.CalendarDay__hovered_span {
+    background: #f76c6c;
+    border: none;
+}
+
+.DateInput_input__focused {
+    border-bottom: 2px solid #f76c6c;
+}
