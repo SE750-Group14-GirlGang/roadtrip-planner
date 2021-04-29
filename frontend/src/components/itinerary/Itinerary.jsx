@@ -16,8 +16,14 @@ export default function Itinerary({ itineraryData }) {
   const addDates = async (startDate, endDate) => {
     const URL = `/api/roadtrip/${id}/itinerary`;
 
+    const dates = getDaysInbetween(startDate, endDate);
+
+    // create an array of days which contains a date and an empty itinerary
+    const days = [];
+    dates.forEach((date) => days.push({ date, itinerary: [] }));
+
     const body = {
-      dates: getDaysInbetween(startDate, endDate),
+      days,
     };
 
     // POST request to set the itinerary with dates

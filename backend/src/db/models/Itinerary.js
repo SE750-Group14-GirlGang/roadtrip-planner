@@ -4,13 +4,16 @@ const { Schema } = mongoose;
 
 const itinerarySchema = new Schema(
   {
-    dates: [Date],
-    itineraryDays: [
+    days: [
       {
-        day: Date,
-        time: String,
-        location: String,
-        notes: String,
+        date: Date,
+        itinerary: [
+          {
+            time: String,
+            location: String,
+            notes: String,
+          },
+        ],
       },
     ],
   },
