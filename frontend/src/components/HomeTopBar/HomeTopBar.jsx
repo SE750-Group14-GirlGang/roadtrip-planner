@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./HomeTopBar.module.css";
-import { Button, Typography } from "@material-ui/core";
+import { Button, withStyles } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 // import * as PropTypes from "prop-types";
 
@@ -16,22 +16,45 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 //   children: PropTypes.node
 // };
 
+const CustomButton = withStyles({
+  root: {
+    backgroundColor: "#24305e",
+    border: "none",
+    "&:hover": {
+      backgroundColor: "#374785",
+    },
+  },
+  label: {
+    color: "white",
+  },
+})(Button);
+
+const IconButton = withStyles({
+  root: {
+    "&:hover": {
+      color: "#374785",
+    },
+  },
+  label: {
+    color: "#24305e",
+  },
+})(Button);
+
 export default function HomeTopBar() {
   return (
     <div className={styles.topBar}>
-      <Typography variant="h2" className={styles.title}>
-        Roadie
-      </Typography>
+      <p className={styles.title}>Roadie</p>
       <div className={styles.navItems}>
-        <Button>Join Existing Trip</Button>
-        <Button>Create New Trip</Button>
+        <CustomButton>Join Existing Trip</CustomButton>
+        <div className={styles.buttonPadding} />
+        <CustomButton>Create New Trip</CustomButton>
         {/*TODO Add person to group only if HOST and in group, not dashboard*/}
         {/*<FlagsProvider features={{ moderate: user.role === "admin" }}>*/}
         {/*  <Button>Host Only</Button>*/}
         {/*</FlagsProvider>*/}
-        <Button>
+        <IconButton>
           <AccountCircleIcon />
-        </Button>
+        </IconButton>
       </div>
     </div>
   );
