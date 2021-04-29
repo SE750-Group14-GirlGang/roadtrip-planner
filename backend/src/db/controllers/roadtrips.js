@@ -1,5 +1,5 @@
 import { RoadTrip } from '../models/RoadTrip';
-import * as users from '../controllers/users';
+import * as users from './users';
 
 export async function getRoadTrip(id) {
   return await RoadTrip.findById(id);
@@ -9,7 +9,7 @@ export async function createRoadTrip(roadTrip, organiserId) {
   roadTrip.organiser = organiserId;
   const dbRoadTrip = new RoadTrip(roadTrip);
   await dbRoadTrip.save();
-  //creates bidirectional relationship between User and Roadtrip
+  // creates bidirectional relationship between User and Roadtrip
   await users.addRoadTripOrganising(organiserId, dbRoadTrip._id);
   return dbRoadTrip;
 }
@@ -21,7 +21,7 @@ export async function isUserOrganiser(roadTripId, userId) {
 
 export async function getAttendees(roadTripId) {
   const dbRoadTrip = await getRoadTrip(roadTripId);
-  await RoadTrip.populate(dbRoadTrip, "attendees");
+  await RoadTrip.populate(dbRoadTrip, 'attendees');
   return dbRoadTrip.attendees;
 }
 

@@ -15,11 +15,11 @@ router.get('/:id/attendees', async (req, res) => {
 // append a user to the list of attendees of a roadtrip
 // the user's email is provided
 router.patch('/:id/attendees', async (req, res) => {
-    const { id: roadTripId } = req.params;
+  const { id: roadTripId } = req.params;
 
-    const user = await users.getUserByEmail(req.body.userEmail);
-    const updatedRoadtrip = await roadtrips.addAttendee(roadTripId, user._id);
-    res.json(updatedRoadtrip);
+  const user = await users.getUserByEmail(req.body.userEmail);
+  const updatedRoadtrip = await roadtrips.addAttendee(roadTripId, user._id);
+  res.json(updatedRoadtrip);
 });
 
 export default router;
