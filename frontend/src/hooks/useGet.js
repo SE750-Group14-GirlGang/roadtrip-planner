@@ -36,7 +36,7 @@ export default function useGet(url, config = {}) {
       setLoading(false);
     }
     performGet();
-  }, [refetch]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [refetch]);
 
   return { response, error, loading, refetch: handleRefetch };
 }

@@ -11,6 +11,7 @@ import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import usePost from '../../../../hooks/usePost';
 
 const dotenv = require('dotenv');
+
 dotenv.config();
 
 export default function MapModal({ open, handleClose, setDestination, setDestSelected }) {
