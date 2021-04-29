@@ -1,15 +1,48 @@
 import { React, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Button, withStyles } from '@material-ui/core';
+import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
 import DateRangePickerModal from './DateRangePickerModal/DateRangePickerModal';
 import styles from './Itinerary.module.css';
+import useGet from '../../hooks/useGet';
+import getDaysInbetween from '../../utils/dates/getDaysInbetween';
 
 export default function Itinerary() {
-  // // TODO: roadTripId will be passed in
+  const { id } = useParams();
+  const { getAccessTokenSilently } = useAuth0();
+  const URL = `/api/roadtrip/${id}/itinerary`;
 
   const [modalOpen, setModalOpen] = useState(false);
 
-  // TODO: use getRequest()
-  const [itinerary, setItinerary] = useState(null);
+  // get itinenary data
+  const { response, loading } = useGet(URL);
+  const [itinerary, setItinerary] = useState(response?.data);
+  let hasDates = false;
+
+  if (itinerary?.dates) {
+    hasDates = true;
+  }
+
+  const addDates = async (startDate, endDate) => {
+    const accessToken = await getAccessTokenSilently();
+
+    // set token in Authorization header
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+
+    const body = {
+      dates: getDaysInbetween(startDate, endDate),
+    };
+
+    // POST request to set the itinerary with dates
+    const response = await axios.post(URL, body, config);
+
+    setItinerary(response.data);
+  };
 
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -34,7 +67,7 @@ export default function Itinerary() {
 
   return (
     <div>
-      {itinerary ? (
+      {hasDates ? (
         <div>An actual itinerary with dates</div>
       ) : (
         <div>
@@ -43,7 +76,7 @@ export default function Itinerary() {
           </p>
           <br />
           <AddDatesButton onClick={handleOpenModal}>Add Dates</AddDatesButton>
-          <DateRangePickerModal open={modalOpen} handleClose={handleCloseModal} setItinerary={setItinerary} />
+          <DateRangePickerModal open={modalOpen} handleClose={handleCloseModal} addDates={addDates} />
         </div>
       )}
     </div>
