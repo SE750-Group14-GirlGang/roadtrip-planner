@@ -1,15 +1,20 @@
 import mongoose from 'mongoose';
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
-const itinerarySchema = new Schema({
+const itinerarySchema = new Schema(
+  {
     dates: [Date],
-    itineraryDays: [{
+    itineraryDays: [
+      {
         day: Date,
         time: String,
         location: String,
-        notes: String
-    }]
-}, { collection: 'itineraries' });
+        notes: String,
+      },
+    ],
+  },
+  { collection: 'itineraries' }
+);
 
 export const Itinerary = mongoose.model('Itinerary', itinerarySchema);
