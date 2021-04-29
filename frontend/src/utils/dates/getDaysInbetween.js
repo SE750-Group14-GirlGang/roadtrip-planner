@@ -1,11 +1,8 @@
 export default function getDaysInbetween(start, end) {
-    let startDate = new Date(start);
-    for (
-        var arr = [];
-        startDate <= end;
-        startDate.setDate(startDate.getDate() + 1)
-    ) {
-        arr.push(new Date(startDate));
-    }
-    return arr;
+  const startDate = new Date(start);
+  let arr;
+  for (arr = []; startDate <= end; startDate.setDate(startDate.getDate() + 1)) {
+    arr.push(new Date(startDate));
+  }
+  return arr;
 }
