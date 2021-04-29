@@ -5,24 +5,15 @@ import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import DateRangePickerModal from './DateRangePickerModal/DateRangePickerModal';
 import styles from './Itinerary.module.css';
-import useGet from '../../hooks/useGet';
 import getDaysInbetween from '../../utils/dates/getDaysInbetween';
 
-export default function Itinerary() {
+export default function Itinerary({ itineraryData }) {
   const { id } = useParams();
   const { getAccessTokenSilently } = useAuth0();
   const URL = `/api/roadtrip/${id}/itinerary`;
 
   const [modalOpen, setModalOpen] = useState(false);
-
-  // get itinenary data
-  const { response, loading } = useGet(URL);
-  const [itinerary, setItinerary] = useState(response?.data);
-  let hasDates = false;
-
-  if (itinerary?.dates) {
-    hasDates = true;
-  }
+  const [itinerary, setItinerary] = useState(itineraryData);
 
   const addDates = async (startDate, endDate) => {
     const accessToken = await getAccessTokenSilently();
@@ -41,7 +32,7 @@ export default function Itinerary() {
     // POST request to set the itinerary with dates
     const response = await axios.post(URL, body, config);
 
-    setItinerary(response.data);
+    // setItinerary(response.data);
   };
 
   const handleOpenModal = () => {
@@ -67,7 +58,7 @@ export default function Itinerary() {
 
   return (
     <div>
-      {hasDates ? (
+      {itinerary ? (
         <div>An actual itinerary with dates</div>
       ) : (
         <div>
