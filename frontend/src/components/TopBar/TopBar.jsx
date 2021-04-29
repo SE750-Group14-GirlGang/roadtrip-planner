@@ -5,7 +5,7 @@ import styles from './TopBar.module.css';
 
 import CreateTripModal from './CreateTripModal/CreateTripModal';
 
-export default function TopBar() {
+export default function TopBar({ refetchRoadTrips }) {
   const [createTripModalOpen, setCreateTripModalOpen] = useState(false);
 
   const handleOpenCreateTripModal = () => {
@@ -27,7 +27,11 @@ export default function TopBar() {
         <Button>
           <AccountCircleIcon />
         </Button>
-        <CreateTripModal open={createTripModalOpen} handleClose={handleCloseCreateTripModal} />
+        <CreateTripModal
+          open={createTripModalOpen}
+          handleClose={handleCloseCreateTripModal}
+          refetchRoadTrips={refetchRoadTrips}
+        />
       </div>
     </div>
   );
