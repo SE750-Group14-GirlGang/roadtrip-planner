@@ -1,6 +1,6 @@
 import { CircularProgress, withStyles } from '@material-ui/core';
 
-export const Spinner = withStyles(() => ({
+const Spinner = withStyles(() => ({
   colorPrimary: {
     color: '#f76c6c',
   },
