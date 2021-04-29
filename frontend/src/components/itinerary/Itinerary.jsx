@@ -1,38 +1,29 @@
 import { React, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, withStyles } from '@material-ui/core';
-import { useAuth0 } from '@auth0/auth0-react';
-import axios from 'axios';
 import DateRangePickerModal from './DateRangePickerModal/DateRangePickerModal';
 import styles from './Itinerary.module.css';
 import getDaysInbetween from '../../utils/dates/getDaysInbetween';
+import usePost from '../../hooks/usePost';
 
 export default function Itinerary({ itineraryData }) {
   const { id } = useParams();
-  const { getAccessTokenSilently } = useAuth0();
-  const URL = `/api/roadtrip/${id}/itinerary`;
+  const post = usePost();
 
   const [modalOpen, setModalOpen] = useState(false);
   const [itinerary, setItinerary] = useState(itineraryData);
 
   const addDates = async (startDate, endDate) => {
-    const accessToken = await getAccessTokenSilently();
-
-    // set token in Authorization header
-    const config = {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    };
+    const URL = `/api/roadtrip/${id}/itinerary`;
 
     const body = {
       dates: getDaysInbetween(startDate, endDate),
     };
 
     // POST request to set the itinerary with dates
-    const response = await axios.post(URL, body, config);
+    const { response } = await post(URL, body);
 
-    // setItinerary(response.data);
+    setItinerary(response?.data);
   };
 
   const handleOpenModal = () => {

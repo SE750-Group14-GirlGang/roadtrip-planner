@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React } from 'react';
 import { useParams } from 'react-router-dom';
 import Itinerary from '../Itinerary';
 import Spinner from '../../commons/Spinner/Spinner';
@@ -10,5 +10,6 @@ export default function ItineraryWrapper() {
   // get itinenary data
   const { response, loading } = useGet(URL);
 
+  // show spinner while data is being fetched
   return <div>{loading || !response ? <Spinner /> : <Itinerary itineraryData={response.data} />}</div>;
 }
