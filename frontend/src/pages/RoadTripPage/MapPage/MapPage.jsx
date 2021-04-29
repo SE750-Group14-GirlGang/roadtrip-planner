@@ -1,25 +1,12 @@
 import { React, useState } from 'react';
 import ReactMapGL from 'react-map-gl';
-import { Button, withStyles } from '@material-ui/core';
 import MapModal from './MapModal/MapModal';
 import styles from './MapPage.module.css';
+import AddButton from '../../../components/commons/buttons/AddButton/AddButton';
 
 const dotenv = require('dotenv');
 
 dotenv.config();
-
-const DestinationButton = withStyles({
-  root: {
-    backgroundColor: '#24305e',
-    border: 'none',
-    '&:hover': {
-      backgroundColor: '#374785',
-    },
-  },
-  label: {
-    color: 'white',
-  },
-})(Button);
 
 export default function MapPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -80,7 +67,7 @@ export default function MapPage() {
         <div>
           <p className={styles.emptyMapDescription}>The organiser has not entered a destination yet!</p>
           <br />
-          {isOrganiser && <DestinationButton onClick={handleOpenModal}>Add Destination</DestinationButton>}
+          {isOrganiser && <AddButton onClick={handleOpenModal}>Add Destination</AddButton>}
           <MapModal
             open={modalOpen}
             handleClose={handleCloseModal}
