@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styles from './TopBar.module.css';
 import { Button, Typography } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import styles from './TopBar.module.css';
 
 import CreateTripModal from './CreateTripModal/CreateTripModal';
 
