@@ -1,13 +1,15 @@
-import { React, useState } from 'react';
+import { React, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, withStyles } from '@material-ui/core';
 import DateRangePickerModal from './DateRangePickerModal/DateRangePickerModal';
 import styles from './Itinerary.module.css';
 import getDaysInbetween from '../../utils/dates/getDaysInbetween';
 import usePost from '../../hooks/usePost';
+import { OrganiserContext } from '../../contexts/OrganiserContextProvider';
 
 export default function Itinerary({ itineraryData }) {
   const { id } = useParams();
+  const { isUserOrganiser } = useContext(OrganiserContext);
   const post = usePost();
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -63,8 +65,12 @@ export default function Itinerary({ itineraryData }) {
             The organiser has not entered dates for the road trip yet!
           </p>
           <br />
-          <AddDatesButton onClick={handleOpenModal}>Add Dates</AddDatesButton>
-          <DateRangePickerModal open={modalOpen} handleClose={handleCloseModal} addDates={addDates} />
+          {isUserOrganiser && (
+            <>
+              <AddDatesButton onClick={handleOpenModal}>Add Dates</AddDatesButton>
+              <DateRangePickerModal open={modalOpen} handleClose={handleCloseModal} addDates={addDates} />
+            </>
+          )}
         </div>
       )}
     </div>
