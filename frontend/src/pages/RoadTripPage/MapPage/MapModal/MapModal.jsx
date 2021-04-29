@@ -6,12 +6,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import ReactMapGL from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
-import axios from 'axios';
-import { useAuth0 } from '@auth0/auth0-react';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
-const dotenv = require('dotenv');
+import usePost from '../../../../hooks/usePost';
 
+const dotenv = require('dotenv');
 dotenv.config();
 
 export default function MapModal({ open, handleClose, setDestination, setDestSelected }) {
@@ -31,9 +30,10 @@ export default function MapModal({ open, handleClose, setDestination, setDestSel
   const [destLongitude, setDestLongitude] = useState(170.83285);
 
   const mapAccessToken = process.env.REACT_APP_MAPBOX_TOKEN;
-  const { getAccessTokenSilently } = useAuth0();
   const mapRef = useRef();
   const geocoderContainerRef = useRef();
+
+  const post = usePost();
 
   // Size of map inside the modal - unable to split into separate CSS file
   const mapStyle = {
@@ -67,16 +67,6 @@ export default function MapModal({ open, handleClose, setDestination, setDestSel
   );
 
   async function handleSubmit() {
-    // POST request to set the destination
-    const accessToken = await getAccessTokenSilently();
-
-    // set token in Authorization header
-    const config = {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    };
-
     const destToPost = {
       primaryDestination: {
         long: destLongitude,
@@ -85,9 +75,9 @@ export default function MapModal({ open, handleClose, setDestination, setDestSel
       },
     };
 
-    const destination = await axios.post('/api/roadtrip/6083614ff19eef2de864003d/map', destToPost, config);
+    const { response } = await post('/api/roadtrip/6083614ff19eef2de864003d/map', destToPost);
 
-    setDestination(destination.data);
+    setDestination(response?.data);
 
     // Close the modal
     handleClose();

@@ -1,34 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 
-export default function usePost(url, body = {}, config = {}) {
-  const [response, setResponse] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+export default function usePost() {
   const { getAccessTokenSilently } = useAuth0();
 
-  useEffect(() => {
-    async function performPost() {
-      const accessToken = await getAccessTokenSilently();
-      // set token in Authorization header
-      config.headers = {
-        Authorization: `Bearer ${accessToken}`,
-      };
+  const post = useCallback(async (url, body = {}, config = {}) => {
+    const accessToken = await getAccessTokenSilently();
+    // set token in Authorization header
+    config.headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
 
-      setLoading(true);
-      try {
-        const axiosResponse = await axios.post(url, body, config);
-        setResponse(axiosResponse);
-        setError(null);
-      } catch (error) {
-        setError(error);
-        setResponse(null);
-      }
-      setLoading(false);
+    try {
+      const axiosResponse = await axios.post(url, body, config);
+      return { response: axiosResponse, error: null };
+    } catch (error) {
+      return { response: null, error };
     }
-    performPost();
-  }, []);
+  });
 
-  return { response, error, loading };
+  return post;
 }
