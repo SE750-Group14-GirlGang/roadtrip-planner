@@ -1,14 +1,14 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
-    button: {
-        color: "white",
-        textTransform: "none",
-        backgroundColor: "#24305e",
-        "&:hover": {
-            backgroundColor: "#374785",
-        },
+  button: {
+    color: 'white',
+    textTransform: 'none',
+    backgroundColor: '#24305e',
+    '&:hover': {
+      backgroundColor: '#374785',
     },
+  },
 }));
 
-export { useStyles };
+export default useStyles;

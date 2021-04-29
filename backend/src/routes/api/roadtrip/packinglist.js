@@ -7,20 +7,18 @@ const router = express.Router();
 
 // get packing list for the specified roadtrip
 router.get('/:id/packinglist', async (req, res) => {
-    const { id: roadTripId } = req.params;
+  const { id: roadTripId } = req.params;
 
-    const packingList = await packinglists.getPackingList(roadTripId);
-    res.json(packingList);
+  const packingList = await packinglists.getPackingList(roadTripId);
+  res.json(packingList);
 });
 
 // save the packing list object for the specified roadtrip
 router.post('/:id/packinglist', async (req, res) => {
-    const { id: roadTripId } = req.params;
+  const { id: roadTripId } = req.params;
 
-    const newPackingList = await packinglists.createPackingList(roadTripId, req.body);
-    res.status(constants.HTTP_CREATED)
-    .header('Location', `/api/roadtrip/${roadTripId}/packinglist`)
-    .json(newPackingList);
+  const newPackingList = await packinglists.createPackingList(roadTripId, req.body);
+  res.status(constants.HTTP_CREATED).header('Location', `/api/roadtrip/${roadTripId}/packinglist`).json(newPackingList);
 });
 
 export default router;

@@ -1,32 +1,30 @@
 import { User } from '../models/User';
 
-
 export async function createUser(user) {
-    const dbUser = new User(user);
-    await dbUser.save();
+  const dbUser = new User(user);
+  await dbUser.save();
 
-    return dbUser;
+  return dbUser;
 }
 
 export async function getUserByEmail(email) {
-    return await User.findOne({ "email": email})
+  return await User.findOne({ email });
 }
 
 export async function getRoadTripsAttending(userId) {
-    const dbUser = await User.findById(userId);
-    await User.populate(dbUser, 'roadTripsAttending');
-    return dbUser.roadTripsAttending;
+  const dbUser = await User.findById(userId);
+  await User.populate(dbUser, 'roadTripsAttending');
+  return dbUser.roadTripsAttending;
 }
 
 export async function getRoadTripsOrganising(userId) {
-    const dbUser = await User.findById(userId);
-    await User.populate(dbUser, 'roadTripsOrganising');
-    return dbUser.roadTripsOrganising;
+  const dbUser = await User.findById(userId);
+  await User.populate(dbUser, 'roadTripsOrganising');
+  return dbUser.roadTripsOrganising;
 }
 
 export async function addRoadTripsOrganising(userId, roadTripId) {
-    const dbUser = await User.findById(userId);
-    dbUser.roadTripsOrganising.push(roadTripId);
-    await dbUser.save();
+  const dbUser = await User.findById(userId);
+  dbUser.roadTripsOrganising.push(roadTripId);
+  await dbUser.save();
 }
-
