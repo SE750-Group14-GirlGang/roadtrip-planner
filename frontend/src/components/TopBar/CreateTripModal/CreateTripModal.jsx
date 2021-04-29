@@ -8,8 +8,10 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import usePost from '../../../hooks/usePost';
 
+const DEFAULT_TEXTFIELD_VALUE = 'untitled road trip';
+
 export default function CreateTripModal({ open, handleClose, refetchRoadTrips }) {
-  const [name, setName] = useState('untitled road trip');
+  const [name, setName] = useState(DEFAULT_TEXTFIELD_VALUE);
 
   const post = usePost();
 
@@ -23,7 +25,7 @@ export default function CreateTripModal({ open, handleClose, refetchRoadTrips })
     };
     await post(`/api/roadtrip`, roadTripToPost);
     refetchRoadTrips();
-    setName('untitled road trip');
+    setName(DEFAULT_TEXTFIELD_VALUE);
     handleClose();
   };
 
