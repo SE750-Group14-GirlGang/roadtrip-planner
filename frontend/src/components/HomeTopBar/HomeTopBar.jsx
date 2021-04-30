@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "./HomeTopBar.module.css";
-import { Button, withStyles } from "@material-ui/core";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import React from 'react';
+import { Button, AppBar, Toolbar, withStyles, makeStyles } from '@material-ui/core';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import styles from './HomeTopBar.module.css';
 // import * as PropTypes from "prop-types";
 
 // TODO Flags for host
@@ -18,44 +18,50 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const CustomButton = withStyles({
   root: {
-    backgroundColor: "#24305e",
-    border: "none",
-    "&:hover": {
-      backgroundColor: "#374785",
+    backgroundColor: '#24305e',
+    border: 'none',
+    '&:hover': {
+      backgroundColor: '#374785',
     },
   },
   label: {
-    color: "white",
+    color: 'white',
   },
 })(Button);
 
 const IconButton = withStyles({
-  root: {
-    "&:hover": {
-      color: "#374785",
-    },
-  },
   label: {
-    color: "#24305e",
+    color: '#24305e',
+    '&:hover': {
+      color: '#374785',
+    },
   },
 })(Button);
 
+const useStyles = makeStyles(() => ({
+  grow: {
+    flexGrow: 1,
+  },
+}));
+
+const CustomTopBar = withStyles({
+  root: {
+    backgroundColor: 'white',
+  },
+})(AppBar);
+
 export default function HomeTopBar() {
+  const classes = useStyles();
   return (
-    <div className={styles.topBar}>
-      <p className={styles.title}>Roadie</p>
-      <div className={styles.navItems}>
-        <CustomButton>Join Existing Trip</CustomButton>
-        <div className={styles.buttonPadding} />
+    <CustomTopBar position="static">
+      <Toolbar variant="dense">
+        <p className={styles.title}>Roadie</p>
+        <div className={classes.grow} />
         <CustomButton>Create New Trip</CustomButton>
-        {/*TODO Add person to group only if HOST and in group, not dashboard*/}
-        {/*<FlagsProvider features={{ moderate: user.role === "admin" }}>*/}
-        {/*  <Button>Host Only</Button>*/}
-        {/*</FlagsProvider>*/}
         <IconButton>
           <AccountCircleIcon />
         </IconButton>
-      </div>
-    </div>
+      </Toolbar>
+    </CustomTopBar>
   );
 }

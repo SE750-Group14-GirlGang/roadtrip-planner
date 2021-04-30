@@ -1,12 +1,12 @@
-import React from "react";
-import styles from "./DashboardPage.module.css";
-import HomeTopBar from "../../components/HomeTopBar/HomeTopBar";
-import TripsSection from "../../components/dashboard/TripsSection/TripsSection";
+import React from 'react';
+import styles from './DashboardPage.module.css';
+import HomeTopBar from '../../components/HomeTopBar/HomeTopBar';
+import TripsSection from '../../components/dashboard/TripsSection/TripsSection';
 
 import useGet from '../../hooks/useGet';
 
 export default function DashboardPage() {
-  const { response, loading } = useGet("/api/roadtrip");
+  const { response, loading } = useGet('/api/roadtrip');
 
   return (
     <div className={styles.dashboard}>

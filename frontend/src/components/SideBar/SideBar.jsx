@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Drawer, IconButton, makeStyles } from '@material-ui/core';
+import { Drawer, IconButton, makeStyles, withStyles } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -13,6 +13,15 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const BurgerButton = withStyles({
+  label: {
+    color: '#24305e',
+    '&:hover': {
+      color: '#374785',
+    },
+  },
+})(IconButton);
+
 export default function SideBar() {
   const [sideBarOpen, setSideBarOpen] = useState(false);
 
@@ -25,9 +34,9 @@ export default function SideBar() {
 
   return (
     <div>
-      <IconButton aria-label="open drawer" onClick={() => handleSideBarToggle()} edge="start" color="#24305e">
+      <BurgerButton aria-label="open drawer" onClick={() => handleSideBarToggle()} edge="start">
         <MenuIcon />
-      </IconButton>
+      </BurgerButton>
 
       <Drawer anchor="left" variant="persistent" open={sideBarOpen} className={classes.root}>
         <IconButton

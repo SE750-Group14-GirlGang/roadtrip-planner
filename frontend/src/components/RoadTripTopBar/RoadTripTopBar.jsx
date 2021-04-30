@@ -1,7 +1,13 @@
-import React from "react";
-import styles from "./RoadTripTopBar.module.css";
-import { Button, withStyles } from "@material-ui/core";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import React, { useState } from 'react';
+import { Button, AppBar, Toolbar, withStyles, makeStyles } from '@material-ui/core';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import GroupAddRoundedIcon from '@material-ui/icons/GroupAddRounded';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+import { NavLink, useParams } from 'react-router-dom';
+import SideBar from '../SideBar/SideBar';
+import styles from './RoadTripTopBar.module.css';
+import useGet from '../../hooks/useGet';
+import AttendeesModal from './AttendeesModal/AttendeesModal';
 // import * as PropTypes from "prop-types";
 
 // TODO Flags for host
@@ -15,46 +21,61 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 //   features: PropTypes.shape({ moderate: PropTypes.bool }),
 //   children: PropTypes.node
 // };
-const CustomButton = withStyles({
-  root: {
-    backgroundColor: "#24305e",
-    border: "none",
-    "&:hover": {
-      backgroundColor: "#374785",
-    },
+const useStyles = makeStyles(() => ({
+  grow: {
+    flexGrow: 1,
   },
-  label: {
-    color: "white",
-  },
-})(Button);
+}));
 
 const IconButton = withStyles({
-  root: {
-    "&:hover": {
-      color: "#374785",
-    },
-  },
   label: {
-    color: "#24305e",
+    color: '#24305e',
+    '&:hover': {
+      color: '#374785',
+    },
   },
 })(Button);
 
+const CustomTopBar = withStyles({
+  root: {
+    backgroundColor: 'white',
+  },
+})(AppBar);
+
 export default function RoadTripTopBar() {
+  const { id } = useParams();
+  const { response } = useGet(`/api/roadtrip/${id}`);
+  const classes = useStyles();
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
   return (
-    <div className={styles.topBar}>
-      <p className={styles.title}>Roadie</p>
-      <div className={styles.navItems}>
-        <CustomButton>Join Existing Trip</CustomButton>
-        <div className={styles.buttonPadding} />
-        <CustomButton>Create New Trip</CustomButton>
-        {/*TODO Add person to group only if HOST and in group, not dashboard*/}
-        {/*<FlagsProvider features={{ moderate: user.role === "admin" }}>*/}
-        {/*  <Button>Host Only</Button>*/}
-        {/*</FlagsProvider>*/}
+    <CustomTopBar position="static">
+      <Toolbar variant="dense">
+        <SideBar />
+        <p className={styles.title}>{response?.data.name}</p>
+        <div className={classes.grow} />
+        <IconButton>
+          <GroupAddRoundedIcon onClick={handleOpenModal} />
+        </IconButton>
+        <NavLink to="/">
+          <IconButton>
+            <HomeRoundedIcon />
+          </IconButton>
+        </NavLink>
         <IconButton>
           <AccountCircleIcon />
         </IconButton>
-      </div>
-    </div>
+      </Toolbar>
+      <AttendeesModal open={modalOpen} handleClose={handleCloseModal} />
+    </CustomTopBar>
   );
 }

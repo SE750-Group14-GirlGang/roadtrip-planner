@@ -1,32 +1,6 @@
-.topBar {
-  width: 100%;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 0.5%;
-}
-
-.navItems {
-  top: 0;
-  display: inline-block;
-  margin: 1% 5% 0 5%;
-}
-
 .title {
   display: inline-block;
-  padding: 0;
-  font-size: 30px;
-  margin: 1.5% 5% 0 5%;
+  padding-left: 15px;
+  font-size: 25px;
   color: #24305e;
-}
-
-.topBar Button {
-  margin-top: 2%;
-  height: 100%;
-  font-size: 13px;
-}
-
-.buttonPadding {
-  display: inline-block;
-  padding-right: 15px;
 }
