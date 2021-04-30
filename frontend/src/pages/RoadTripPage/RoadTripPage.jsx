@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, useParams } from 'react-router-dom';
+import { Route, useParams, BrowserRouter } from 'react-router-dom';
 import RoadTripTopBar from '../../components/RoadTripTopBar/RoadTripTopBar';
 import './RoadTrip.css';
 import RoadTripPageInner from './RoadTripPageInner';
