@@ -6,6 +6,7 @@ import styles from './Itinerary.module.css';
 import getDaysInbetween from '../../utils/dates/getDaysInbetween';
 import usePost from '../../hooks/usePost';
 import { OrganiserContext } from '../../contexts/OrganiserContextProvider';
+import DailyItinerary from './DailyItinerary/DailyItinerary';
 
 export default function Itinerary({ itineraryData }) {
   const { id } = useParams();
@@ -58,7 +59,7 @@ export default function Itinerary({ itineraryData }) {
   return (
     <div>
       {itinerary ? (
-        <div>An actual itinerary with dates</div>
+        <DailyItinerary itinerary={itinerary} />
       ) : (
         <div>
           <p className={styles.emptyItineraryPageDescription}>
