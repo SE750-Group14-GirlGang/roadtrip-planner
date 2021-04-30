@@ -9,15 +9,8 @@ const AddAttendeeTextField = withStyles({
 })(TextField);
 
 const ActionButton = withStyles({
-  root: {
-    backgroundColor: '#24305e',
-    border: 'none',
-    '&:hover': {
-      backgroundColor: '#374785',
-    },
-  },
   label: {
-    color: 'white',
+    color: '#24305e',
   },
 })(Button);
 

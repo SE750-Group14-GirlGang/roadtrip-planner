@@ -8,19 +8,7 @@ import SideBar from '../SideBar/SideBar';
 import styles from './RoadTripTopBar.module.css';
 import useGet from '../../hooks/useGet';
 import AttendeesModal from './AttendeesModal/AttendeesModal';
-// import * as PropTypes from "prop-types";
 
-// TODO Flags for host
-// class FlagsProvider extends React.Component {
-//   render() {
-//     return null;
-//   }
-// }
-//
-// FlagsProvider.propTypes = {
-//   features: PropTypes.shape({ moderate: PropTypes.bool }),
-//   children: PropTypes.node
-// };
 const useStyles = makeStyles(() => ({
   grow: {
     flexGrow: 1,

@@ -2,19 +2,6 @@ import React from 'react';
 import { Button, AppBar, Toolbar, withStyles, makeStyles } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import styles from './HomeTopBar.module.css';
-// import * as PropTypes from "prop-types";
-
-// TODO Flags for host
-// class FlagsProvider extends React.Component {
-//   render() {
-//     return null;
-//   }
-// }
-//
-// FlagsProvider.propTypes = {
-//   features: PropTypes.shape({ moderate: PropTypes.bool }),
-//   children: PropTypes.node
-// };
 
 const CustomButton = withStyles({
   root: {
