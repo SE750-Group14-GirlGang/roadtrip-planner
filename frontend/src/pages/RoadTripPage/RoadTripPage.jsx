@@ -1,47 +1,23 @@
 import React from 'react';
-import { Switch, Route, Redirect, useRouteMatch, useParams } from 'react-router-dom';
+import { Route, useParams } from 'react-router-dom';
 import RoadTripTopBar from '../../components/RoadTripTopBar/RoadTripTopBar';
 import './RoadTrip.css';
-import MapPageWrapper from './MapPageWrapper/MapPageWrapper';
-import ItineraryPage from './ItineraryPage/ItineraryPage';
-import EmergencyDetailsPage from './EmergencyDetailsPage/EmergencyDetailsPage';
-import PackingListPage from './PackingListPage/PackingListPage';
-import SpotifyPlaylistPage from './SpotifyPlaylistPage/SpotifyPlaylistPage';
+import RoadTripPageInner from './RoadTripPageInner';
+
 import { OrganiserContextProvider } from '../../contexts/OrganiserContextProvider';
 
 export default function RoadTripPage() {
-  const { path, url } = useRouteMatch();
   const { id } = useParams();
 
   return (
     <OrganiserContextProvider roadTripId={id}>
       <div className="roadTrip">
         <RoadTripTopBar />
-        <Switch>
-          <Route path={`${path}/map`}>
-            <MapPageWrapper />
+        <BrowserRouter>
+          <Route path="/road-trip/:id">
+            <RoadTripPageInner />
           </Route>
-
-          <Route path={`${path}/itinerary`}>
-            <ItineraryPage />
-          </Route>
-
-          <Route path={`${path}/emergency-details`}>
-            <EmergencyDetailsPage />
-          </Route>
-
-          <Route path={`${path}/packing-list`}>
-            <PackingListPage />
-          </Route>
-
-          <Route path={`${path}/spotify-playlist`}>
-            <SpotifyPlaylistPage />
-          </Route>
-
-          <Route path={`${path}/`}>
-            <Redirect to={`${url}/map`} />
-          </Route>
-        </Switch>
+        </BrowserRouter>
       </div>
     </OrganiserContextProvider>
   );
