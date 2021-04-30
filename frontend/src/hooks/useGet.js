@@ -6,7 +6,14 @@ export default function useGet(url, config = {}) {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const [refetch, setRefetch] = useState(false);
+
   const { getAccessTokenSilently } = useAuth0();
+
+  const handleRefetch = () => {
+    setRefetch(!refetch);
+  };
 
   useEffect(() => {
     async function performGet() {
@@ -29,7 +36,7 @@ export default function useGet(url, config = {}) {
       setLoading(false);
     }
     performGet();
-  }, []);
+  }, [refetch]);
 
-  return { response, error, loading };
+  return { response, error, loading, refetch: handleRefetch };
 }

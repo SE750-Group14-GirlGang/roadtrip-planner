@@ -17,13 +17,19 @@ export async function getRoadTripsAttending(userId) {
   return dbUser.roadTripsAttending;
 }
 
+export async function addRoadTripAttending(userId, roadTripId) {
+  const dbUser = await User.findById(userId);
+  dbUser.roadTripsAttending.push(roadTripId);
+  await dbUser.save();
+}
+
 export async function getRoadTripsOrganising(userId) {
   const dbUser = await User.findById(userId);
   await User.populate(dbUser, 'roadTripsOrganising');
   return dbUser.roadTripsOrganising;
 }
 
-export async function addRoadTripsOrganising(userId, roadTripId) {
+export async function addRoadTripOrganising(userId, roadTripId) {
   const dbUser = await User.findById(userId);
   dbUser.roadTripsOrganising.push(roadTripId);
   await dbUser.save();
