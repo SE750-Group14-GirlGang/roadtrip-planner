@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Dialog, DialogActions, List, ListItem } from '@material-ui/core';
 import {
   AddAttendeeTextField,
@@ -8,9 +8,10 @@ import {
   ColouredDialogTitle,
   CustomDialogContent,
 } from './AttendeesModal.Styles';
+import { OrganiserContext } from '../../../contexts/OrganiserContextProvider';
 
 export default function AttendeesModal({ open, handleClose }) {
-  const isOrganiser = true;
+  const { isUserOrganiser } = useContext(OrganiserContext);
 
   function generate(element) {
     return [0, 1, 2, 3].map((value) =>
@@ -35,16 +36,18 @@ export default function AttendeesModal({ open, handleClose }) {
           </List>
         </CustomDialogContent>
         <DialogActions>
-          {isOrganiser && (
-            <AddAttendeeTextField
-              size="small"
-              variant="outlined"
-              fullWidth
-              margin="dense"
-              placeholder="Enter attendee email"
-            />
+          {isUserOrganiser && (
+            <>
+              <AddAttendeeTextField
+                size="small"
+                variant="outlined"
+                fullWidth
+                margin="dense"
+                placeholder="Enter attendee email"
+              />
+              <ActionButton onClick={handleClose}>Add</ActionButton>
+            </>
           )}
-          {isOrganiser && <ActionButton onClick={handleClose}>Add</ActionButton>}
           <ActionButton onClick={handleClose}>Cancel</ActionButton>
         </DialogActions>
       </Dialog>
