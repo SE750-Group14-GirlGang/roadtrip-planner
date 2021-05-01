@@ -1,7 +1,7 @@
 import { React, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, withStyles } from '@material-ui/core';
 import DateRangePickerModal from './DateRangePickerModal/DateRangePickerModal';
+import AddButton from '../commons/buttons/AddButton/AddButton';
 import styles from './Itinerary.module.css';
 import getDaysInbetween from '../../utils/dates/getDaysInbetween';
 import usePost from '../../hooks/usePost';
@@ -42,19 +42,6 @@ export default function Itinerary({ itineraryData }) {
     setModalOpen(false);
   };
 
-  const AddDatesButton = withStyles({
-    root: {
-      backgroundColor: '#24305e',
-      border: 'none',
-      '&:hover': {
-        backgroundColor: '#374785',
-      },
-    },
-    label: {
-      color: 'white',
-    },
-  })(Button);
-
   return (
     <div>
       {itinerary ? (
@@ -67,7 +54,7 @@ export default function Itinerary({ itineraryData }) {
           <br />
           {isUserOrganiser && (
             <>
-              <AddDatesButton onClick={handleOpenModal}>Add Dates</AddDatesButton>
+              <AddButton onClick={handleOpenModal}>Add Dates</AddButton>
               <DateRangePickerModal open={modalOpen} handleClose={handleCloseModal} addDates={addDates} />
             </>
           )}
