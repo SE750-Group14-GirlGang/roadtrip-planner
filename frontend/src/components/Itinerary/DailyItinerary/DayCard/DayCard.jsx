@@ -1,13 +1,20 @@
-import React from 'react';
+import { React, useState, useContext } from 'react';
 import moment from 'moment';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import IconButton from '@material-ui/core/IconButton';
 import styles from './DayCard.module.css';
 import EventCard from './EventCard/EventCard';
+import AddButton from '../../../commons/buttons/AddButton/AddButton';
+import AddEventModal from './AddEventModal/AddEventModal';
+import { OrganiserContext } from '../../../../contexts/OrganiserContextProvider';
 
-export default function DayCard({ day, handleNext, hasNextDay, handlePrev, hasPrevDay }) {
+export default function DayCard({ day, handleNext, hasNextDay, handlePrev, hasPrevDay, addEvent }) {
+  const [addEventModalOpen, setAddEventModalOpen] = useState(false);
+
   const { date, events } = day;
+
+  const { isUserOrganiser } = useContext(OrganiserContext);
 
   // format day (e.g Monday 11th May)
   const formattedDate = moment(date).format('dddd Do MMMM');
@@ -16,6 +23,14 @@ export default function DayCard({ day, handleNext, hasNextDay, handlePrev, hasPr
   events.sort(function (a, b) {
     return a.time.localeCompare(b.time);
   });
+
+  const handleOpenAddEventModal = () => {
+    setAddEventModalOpen(true);
+  };
+
+  const handleCloseAddEventModal = () => {
+    setAddEventModalOpen(false);
+  };
 
   return (
     <div className={styles.container}>
@@ -34,6 +49,14 @@ export default function DayCard({ day, handleNext, hasNextDay, handlePrev, hasPr
             events.map((event) => <EventCard event={event} />)
           ) : (
             <p className={styles.noEventDescription}> There is nothing planned today</p>
+          )}
+        </div>
+        <div className={styles.cardFooter}>
+          {isUserOrganiser && (
+            <>
+              <AddButton onClick={handleOpenAddEventModal}>Add</AddButton>
+              <AddEventModal open={addEventModalOpen} handleClose={handleCloseAddEventModal} addEvent={addEvent} />
+            </>
           )}
         </div>
       </div>

@@ -31,6 +31,12 @@
   color: #24305e;
 }
 
+.cardFooter {
+  padding: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .date {
   margin: 10px;
 }

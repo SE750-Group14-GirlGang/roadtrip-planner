@@ -4,16 +4,13 @@ import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import DayCard from './DayCard/DayCard';
-import AddButton from '../../commons/buttons/AddButton/AddButton';
-import AddEventModal from './AddEventModal/AddEventModal';
 
-export default function DailyItinerary({ itinerary, isUserOrganiser }) {
+export default function DailyItinerary({ itinerary }) {
   const { getAccessTokenSilently } = useAuth0();
   const { id } = useParams();
 
   const { days } = itinerary;
 
-  const [addEventModalOpen, setAddEventModalOpen] = useState(false);
   const [error, setError] = useState(false);
 
   // set the date shown to the first date of the trip
@@ -32,14 +29,6 @@ export default function DailyItinerary({ itinerary, isUserOrganiser }) {
     const prevDayIndex = dayIndex - 1;
     setDayIndex(prevDayIndex);
   }
-
-  const handleOpenAddEventModal = () => {
-    setAddEventModalOpen(true);
-  };
-
-  const handleCloseAddEventModal = () => {
-    setAddEventModalOpen(false);
-  };
 
   const addEvent = async (event) => {
     const URL = `/api/roadtrip/${id}/itinerary`;
@@ -72,13 +61,8 @@ export default function DailyItinerary({ itinerary, isUserOrganiser }) {
         hasNextDay={hasNextDay}
         handlePrev={prevDayHandler}
         hasPrevDay={hasPrevDay}
+        addEvent={addEvent}
       />
-      {isUserOrganiser && (
-        <>
-          <AddButton onClick={handleOpenAddEventModal}>Add</AddButton>
-          <AddEventModal open={addEventModalOpen} handleClose={handleCloseAddEventModal} addEvent={addEvent} />
-        </>
-      )}
     </>
   );
 }
