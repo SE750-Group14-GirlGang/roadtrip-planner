@@ -25,7 +25,7 @@ const styles = {
   },
   large: {
     '& svg': {
-      fontSize: 32,
+      fontSize: 34,
       color: '#24305e',
       '&:hover': {
         color: '#374785',

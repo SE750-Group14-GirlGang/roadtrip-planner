@@ -4,7 +4,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import styles from './SideBar.module.css';
-import ResizableIconButton from '../commons/ResizableIconButton/ResizableIconButton';
+import ResizableIconButton from '../commons/buttons/ResizableIconButton/ResizableIconButton';
 
 const useStyles = makeStyles(() => ({
   root: {

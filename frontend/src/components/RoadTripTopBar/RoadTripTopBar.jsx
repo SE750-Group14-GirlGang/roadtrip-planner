@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { AppBar, Toolbar, withStyles, makeStyles } from '@material-ui/core';
+import { Toolbar } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
 import GroupAddRoundedIcon from '@material-ui/icons/GroupAddRounded';
@@ -10,20 +10,8 @@ import styles from './RoadTripTopBar.module.css';
 import useGet from '../../hooks/useGet';
 import AttendeesModal from './AttendeesModal/AttendeesModal';
 import { OrganiserContext } from '../../contexts/OrganiserContextProvider';
-import ResizableIconButton from '../commons/ResizableIconButton/ResizableIconButton';
-
-const useStyles = makeStyles(() => ({
-  grow: {
-    flexGrow: 1,
-  },
-}));
-
-const CustomTopBar = withStyles({
-  root: {
-    boxShadow: 'none',
-    backgroundColor: 'white',
-  },
-})(AppBar);
+import ResizableIconButton from '../commons/buttons/ResizableIconButton/ResizableIconButton';
+import { CustomTopBar, useStyles } from './RoadTripTopBar.styles';
 
 export default function RoadTripTopBar() {
   const { id } = useParams();
