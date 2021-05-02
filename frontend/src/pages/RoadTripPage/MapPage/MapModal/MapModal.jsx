@@ -1,5 +1,4 @@
 import React, { useState, useRef, useCallback } from 'react';
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -8,6 +7,7 @@ import ReactMapGL from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import usePost from '../../../../hooks/usePost';
+import ActionButton from './MapModal.styles';
 
 const dotenv = require('dotenv');
 
@@ -116,12 +116,12 @@ export default function MapModal({ open, handleClose, setDestination }) {
           </ReactMapGL>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <ActionButton onClick={handleClose} color="primary">
             Cancel
-          </Button>
-          <Button onClick={handleSubmit} color="primary">
+          </ActionButton>
+          <ActionButton onClick={handleSubmit} color="primary">
             Submit
-          </Button>
+          </ActionButton>
         </DialogActions>
       </Dialog>
     </div>
