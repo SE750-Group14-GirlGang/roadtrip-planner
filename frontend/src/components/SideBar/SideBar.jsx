@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Drawer, IconButton, makeStyles, withStyles } from '@material-ui/core';
+import { Drawer, makeStyles } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import styles from './SideBar.module.css';
+import ResizableIconButton from '../commons/ResizableIconButton/ResizableIconButton';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -12,15 +13,6 @@ const useStyles = makeStyles(() => ({
     },
   },
 }));
-
-const BurgerButton = withStyles({
-  label: {
-    color: '#24305e',
-    '&:hover': {
-      color: '#374785',
-    },
-  },
-})(IconButton);
 
 export default function SideBar() {
   const [sideBarOpen, setSideBarOpen] = useState(false);
@@ -34,19 +26,19 @@ export default function SideBar() {
 
   return (
     <div>
-      <BurgerButton aria-label="open drawer" onClick={() => handleSideBarToggle()} edge="start">
+      <ResizableIconButton size="large" aria-label="open drawer" onClick={() => handleSideBarToggle()} edge="start">
         <MenuIcon />
-      </BurgerButton>
+      </ResizableIconButton>
 
       <Drawer anchor="left" variant="persistent" open={sideBarOpen} className={classes.root}>
-        <IconButton
+        <ResizableIconButton
           aria-label="close drawer"
           onClick={() => handleSideBarToggle()}
           className={styles.iconButtonSideBar}
         >
           <div className={styles.filler} />
           <ArrowBackIosIcon />
-        </IconButton>
+        </ResizableIconButton>
 
         <div className={styles.navSideBar}>
           <NavLink to={`${url}/map`} activeClassName={styles.activeLink}>

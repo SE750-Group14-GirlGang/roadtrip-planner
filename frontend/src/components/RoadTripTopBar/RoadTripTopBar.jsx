@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Button, AppBar, Toolbar, withStyles, makeStyles } from '@material-ui/core';
+import { AppBar, Toolbar, withStyles, makeStyles } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
 import GroupAddRoundedIcon from '@material-ui/icons/GroupAddRounded';
@@ -10,6 +10,7 @@ import styles from './RoadTripTopBar.module.css';
 import useGet from '../../hooks/useGet';
 import AttendeesModal from './AttendeesModal/AttendeesModal';
 import { OrganiserContext } from '../../contexts/OrganiserContextProvider';
+import ResizableIconButton from '../commons/ResizableIconButton/ResizableIconButton';
 
 const useStyles = makeStyles(() => ({
   grow: {
@@ -17,17 +18,9 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const IconButton = withStyles({
-  label: {
-    color: '#24305e',
-    '&:hover': {
-      color: '#374785',
-    },
-  },
-})(Button);
-
 const CustomTopBar = withStyles({
   root: {
+    boxShadow: 'none',
     backgroundColor: 'white',
   },
 })(AppBar);
@@ -54,21 +47,21 @@ export default function RoadTripTopBar() {
         <SideBar />
         <p className={styles.title}>{response?.data.name}</p>
         <div className={classes.grow} />
-        <IconButton>
+        <ResizableIconButton size="large">
           {isUserOrganiser ? (
             <GroupAddRoundedIcon onClick={handleOpenModal} />
           ) : (
             <GroupRoundedIcon onClick={handleOpenModal} />
           )}
-        </IconButton>
+        </ResizableIconButton>
         <NavLink to="/">
-          <IconButton>
+          <ResizableIconButton size="large">
             <HomeRoundedIcon />
-          </IconButton>
+          </ResizableIconButton>
         </NavLink>
-        <IconButton>
+        <ResizableIconButton size="large">
           <AccountCircleIcon />
-        </IconButton>
+        </ResizableIconButton>
       </Toolbar>
       <AttendeesModal open={modalOpen} handleClose={handleCloseModal} />
     </CustomTopBar>
