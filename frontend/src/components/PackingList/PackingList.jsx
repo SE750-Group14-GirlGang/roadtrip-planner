@@ -30,7 +30,7 @@ export default function PackingList({ startingPackingList, startingPackedItems }
     setSubmitItemError(false);
   };
 
-  const handleChange = (item) => {
+  const handleChange = async (item) => {
     let newPackedItems = [...packedItems];
     if (packedItems.includes(item)) {
       newPackedItems = newPackedItems.filter((e) => e !== item); // unchecking the item
@@ -38,7 +38,7 @@ export default function PackingList({ startingPackingList, startingPackedItems }
       newPackedItems.push(item); // checking the item
     }
     setPackedItems(newPackedItems);
-    // TODO either put here or put on unmount to save network requests
+    await put(`/api/roadtrip/${id}/packeditems/user`, { items: newPackedItems });
   };
 
   const handleSubmitItem = async (item) => {
