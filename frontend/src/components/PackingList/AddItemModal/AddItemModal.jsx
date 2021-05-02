@@ -6,18 +6,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 
-export default function AddItemModal({ open, onClose }) {
-  const [name, setName] = useState('');
-  const [error, setError] = useState(false);
+export default function AddItemModal({ open, onClose, onSubmit, error }) {
+  const [item, setItem] = useState('');
 
   const handleChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleSubmit = async () => {
-    console.log('submitting item with name', name);
-    onClose();
-    setName('');
+    setItem(event.target.value);
   };
 
   return (
@@ -30,8 +23,9 @@ export default function AddItemModal({ open, onClose }) {
             error={error}
             helperText={error ? 'Error adding item. Try again' : ''}
             autoFocus
+            onFocus={(event) => event.target.select()}
             label="Enter item"
-            defaultValue={name}
+            defaultValue={item}
             onChange={handleChange}
           />
         </DialogContent>
@@ -39,7 +33,7 @@ export default function AddItemModal({ open, onClose }) {
           <Button onClick={onClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleSubmit} color="primary" disabled={!name}>
+          <Button onClick={() => onSubmit(item)} color="primary" disabled={!item}>
             Submit
           </Button>
         </DialogActions>

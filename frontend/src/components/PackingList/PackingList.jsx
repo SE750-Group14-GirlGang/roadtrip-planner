@@ -6,13 +6,20 @@ import AddButton from '../commons/buttons/AddButton/AddButton';
 import Item from './Item/Item';
 import AddItemModal from './AddItemModal/AddItemModal';
 
+import usePut from '../../hooks/usePut';
+
 const userIsOrganiser = true;
 
-export default function PackingList({ packingList, packedItems }) {
+export default function PackingList({ startingPackingList, startingPackedItems }) {
   const { id } = useParams();
 
-  const [userPackedItems, setUserPackedItems] = useState(packedItems);
+  const put = usePut();
+
+  const [packingList, setPackingList] = useState(startingPackingList);
+  const [packedItems, setPackedItems] = useState(startingPackedItems);
+
   const [addItemModalOpen, setAddItemModalOpen] = useState(false);
+  const [submitItemError, setSubmitItemError] = useState(false);
 
   const handleOpenAddItemModal = () => {
     setAddItemModalOpen(true);
@@ -20,16 +27,29 @@ export default function PackingList({ packingList, packedItems }) {
 
   const handleCloseAddItemModal = () => {
     setAddItemModalOpen(false);
+    setSubmitItemError(false);
   };
 
   const handleChange = (item) => {
-    let newUserPackedItems = [...userPackedItems];
-    if (userPackedItems.includes(item)) {
-      newUserPackedItems = newUserPackedItems.filter((e) => e !== item); // unchecking the item
+    let newPackedItems = [...packedItems];
+    if (packedItems.includes(item)) {
+      newPackedItems = newPackedItems.filter((e) => e !== item); // unchecking the item
     } else {
-      newUserPackedItems.push(item); // checking the item
+      newPackedItems.push(item); // checking the item
     }
-    setUserPackedItems(newUserPackedItems);
+    setPackedItems(newPackedItems);
+    // TODO either put here or put on unmount to save network requests
+  };
+
+  const handleSubmitItem = async (item) => {
+    const newPackingList = [...packingList, item];
+    const { error } = await put(`/api/roadtrip/${id}/packinglist`, { items: newPackingList });
+    if (error) {
+      setSubmitItemError(true);
+    } else {
+      handleCloseAddItemModal();
+      setPackingList(newPackingList);
+    }
   };
 
   return (
@@ -39,7 +59,7 @@ export default function PackingList({ packingList, packedItems }) {
           <div className={styles.cardContent}>
             {packingList.map((item, index) => (
               <div key={index}>
-                <Item name={item} checked={userPackedItems.includes(item)} onChange={() => handleChange(item)} />
+                <Item name={item} checked={packedItems.includes(item)} onChange={() => handleChange(item)} />
               </div>
             ))}
           </div>
@@ -50,7 +70,12 @@ export default function PackingList({ packingList, packedItems }) {
           {userIsOrganiser && <AddButton onClick={handleOpenAddItemModal}>Add Item</AddButton>}
         </div>
       </div>
-      <AddItemModal open={addItemModalOpen} onClose={handleCloseAddItemModal} />
+      <AddItemModal
+        open={addItemModalOpen}
+        onClose={handleCloseAddItemModal}
+        onSubmit={handleSubmitItem}
+        error={submitItemError}
+      />
     </>
   );
 }
