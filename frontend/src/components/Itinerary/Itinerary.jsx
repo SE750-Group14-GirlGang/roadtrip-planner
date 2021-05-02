@@ -46,7 +46,7 @@ export default function Itinerary({ itineraryData }) {
   return (
     <div>
       {itinerary ? (
-        <DailyItinerary itinerary={itinerary} />
+        <DailyItinerary itinerary={itinerary} isUserOrganiser={isUserOrganiser} />
       ) : (
         <div>
           <p className={styles.emptyItineraryPageDescription}>
