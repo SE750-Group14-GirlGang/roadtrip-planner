@@ -8,24 +8,12 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-export default function MapPage() {
+export default function MapPage({ mapData }) {
   const [modalOpen, setModalOpen] = useState(false);
-  const [destSelected, setDestSelected] = useState(false);
+  const [destination, setDestination] = useState(mapData);
 
   // TODO: implement check to see if user is organiser or attendee
   const isOrganiser = true;
-
-  const initialDestination = {
-    primaryDestination: {
-      long: 170.83285,
-      lat: -41.01633,
-      name: 'New Zealand',
-    },
-  };
-
-  // TODO: remove eslint disable when implementing full map page
-  // eslint-disable-next-line
-  const [destination, setDestination] = useState(initialDestination);
 
   // TODO: get zoom level
   const initialViewport = {
@@ -57,7 +45,7 @@ export default function MapPage() {
   return (
     <div className={styles.mapPage}>
       <p className={styles.mapPageTitle}>Destination</p>
-      {destSelected ? (
+      {destination ? (
         <ReactMapGL
           {...viewport}
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
@@ -68,12 +56,7 @@ export default function MapPage() {
           <p className={styles.emptyMapDescription}>The organiser has not entered a destination yet!</p>
           <br />
           {isOrganiser && <AddButton onClick={handleOpenModal}>Add Destination</AddButton>}
-          <MapModal
-            open={modalOpen}
-            handleClose={handleCloseModal}
-            setDestination={setDestination}
-            setDestSelected={setDestSelected}
-          />
+          <MapModal open={modalOpen} handleClose={handleCloseModal} setDestination={setDestination} />
         </div>
       )}
     </div>

@@ -7,14 +7,13 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import ReactMapGL from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
-
 import usePost from '../../../../hooks/usePost';
 
 const dotenv = require('dotenv');
 
 dotenv.config();
 
-export default function MapModal({ open, handleClose, setDestination, setDestSelected }) {
+export default function MapModal({ open, handleClose, setDestination }) {
   // Default location is just New Zealand. If/when user selects a different location
   // this will be overridden
   const initialViewport = {
@@ -82,9 +81,6 @@ export default function MapModal({ open, handleClose, setDestination, setDestSel
 
     // Close the modal
     handleClose();
-
-    // TODO: Uncomment the following line when implementing the actual map page.
-    // setDestSelected(true);
   }
 
   return (
