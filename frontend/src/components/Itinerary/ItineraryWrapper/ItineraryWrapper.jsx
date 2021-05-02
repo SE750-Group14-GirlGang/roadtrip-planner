@@ -11,5 +11,5 @@ export default function ItineraryWrapper() {
   const { response, loading } = useGet(URL);
 
   // show spinner while data is being fetched
-  return <div>{loading || !response ? <Spinner /> : <Itinerary itineraryData={response.data} />}</div>;
+  return <>{loading || !response ? <Spinner /> : <Itinerary itineraryData={response.data} />}</>;
 }

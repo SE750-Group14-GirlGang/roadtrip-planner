@@ -9,7 +9,7 @@ import TextField from '@material-ui/core/TextField';
 export default function AddEventModal({ open, handleClose, addEvent }) {
   const [description, setDescription] = useState(null);
   const [location, setLocation] = useState(null);
-  const [time, setTime] = useState(null);
+  const [time, setTime] = useState('12:30');
   const [notes, setNotes] = useState('');
 
   const handleSubmit = async () => {
@@ -43,7 +43,7 @@ export default function AddEventModal({ open, handleClose, addEvent }) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleSubmit} color="primary" disabled={!(description && location)}>
+          <Button onClick={handleSubmit} color="primary" disabled={!(description && location && time)}>
             Submit
           </Button>
         </DialogActions>

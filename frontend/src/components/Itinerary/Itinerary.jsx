@@ -44,7 +44,7 @@ export default function Itinerary({ itineraryData }) {
   };
 
   return (
-    <div>
+    <>
       {itinerary ? (
         <DailyItinerary itinerary={itinerary} isUserOrganiser={isUserOrganiser} />
       ) : (
@@ -61,6 +61,6 @@ export default function Itinerary({ itineraryData }) {
           )}
         </div>
       )}
-    </div>
+    </>
   );
 }
