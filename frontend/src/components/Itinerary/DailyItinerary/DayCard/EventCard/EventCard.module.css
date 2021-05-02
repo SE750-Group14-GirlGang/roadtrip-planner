@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.card {
+  width: 85%;
+  min-width: 300px;
+  margin: 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 8px;
+  display: flex;
+  flex-flow: column;
+}
+
+.cardContent {
+  padding: 20px;
+  flex: 1;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: 20% 40% 40%;
+  color: #24305e;
+}
+
+.description {
+  margin: 10px;
+  font-size: 20px;
+}
+
+.time {
+  margin-right: 20%;
+  font-size: 16px;
+  text-decoration-line: underline;
+  text-decoration-color: #f76c6c;
+}
+
+.locationTimeContainer {
+  margin-left: 20%;
+  justify-content: center;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.locationTimeContainer > p {
+  margin: 5px 0;
+}
