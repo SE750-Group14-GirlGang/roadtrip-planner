@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './PackingList.module.css';
 
 import AddButton from '../commons/buttons/AddButton/AddButton';
 import Item from './Item/Item';
 import AddItemModal from './AddItemModal/AddItemModal';
+import { OrganiserContext } from '../../contexts/OrganiserContextProvider';
 
 import usePut from '../../hooks/usePut';
 
-const userIsOrganiser = true;
-
 export default function PackingList({ startingPackingList, startingPackedItems }) {
+  const { isUserOrganiser } = useContext(OrganiserContext);
   const { id } = useParams();
 
   const put = usePut();
@@ -67,7 +67,7 @@ export default function PackingList({ startingPackingList, startingPackedItems }
           <div className={styles.emptyText}>The organiser has not added any items to the packing list yet!</div>
         )}
         <div className={styles.buttonContainer}>
-          {userIsOrganiser && <AddButton onClick={handleOpenAddItemModal}>Add Item</AddButton>}
+          {isUserOrganiser && <AddButton onClick={handleOpenAddItemModal}>Add Item</AddButton>}
         </div>
       </div>
       <AddItemModal
