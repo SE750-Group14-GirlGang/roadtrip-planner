@@ -7,11 +7,12 @@ const itinerarySchema = new Schema(
     days: [
       {
         date: Date,
-        itinerary: [
+        events: [
           {
             time: String,
             location: String,
             notes: String,
+            description: String,
           },
         ],
       },

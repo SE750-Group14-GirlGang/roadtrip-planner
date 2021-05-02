@@ -19,3 +19,14 @@ export async function createItinerary(roadTripId, itinerary) {
 
   return dbItinerary;
 }
+
+export async function addEvent(roadTripId, dayId, event) {
+  const dbItinerary = await getItinerary(roadTripId);
+
+  // add event to day using objectId of day
+  const day = dbItinerary.days.find((day) => day._id.toString() === dayId);
+  day.events.push(event);
+  await dbItinerary.save();
+
+  return dbItinerary;
+}
