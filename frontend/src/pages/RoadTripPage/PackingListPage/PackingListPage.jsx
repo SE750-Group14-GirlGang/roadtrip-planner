@@ -11,9 +11,7 @@ export default function PackingListPage() {
   const { id } = useParams();
 
   const { response: packingListResponse, loading: packingListLoading } = useGet(`/api/roadtrip/${id}/packinglist`);
-  const { response: packedItemsResponse, loading: packedItemsLoading } = useGet(
-    `./api/roadtrip/${id}/packeditems/user`
-  );
+  const { response: packedItemsResponse, loading: packedItemsLoading } = useGet(`/api/roadtrip/${id}/packeditems/user`);
 
   const isLoading = packingListLoading || packedItemsLoading;
 
