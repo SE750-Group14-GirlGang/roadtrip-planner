@@ -13,12 +13,24 @@ router.get('/:id/packinglist', async (req, res) => {
   res.json(packingList);
 });
 
-// save the packing list object for the specified roadtrip
-router.post('/:id/packinglist', async (req, res) => {
+// update the packing list object for the specified road trip
+// creates a new packing list object if one does not already exist
+router.put('/:id/packinglist', async (req, res) => {
   const { id: roadTripId } = req.params;
+  const currentPackingList = await packinglists.getPackingList(roadTripId);
 
-  const newPackingList = await packinglists.createPackingList(roadTripId, req.body);
-  res.status(constants.HTTP_CREATED).header('Location', `/api/roadtrip/${roadTripId}/packinglist`).json(newPackingList);
+  if (currentPackingList) {
+    // packinglist has already been created, update it
+    const updatedPackingList = await packinglists.updatePackingList(currentPackingList, req.body);
+    res.json(updatedPackingList);
+  } else {
+    // packing list has not been made before
+    const newPackingList = await packinglists.createPackingList(roadTripId, req.body);
+    res
+      .status(constants.HTTP_CREATED)
+      .header('Location', `/api/roadtrip/${roadTripId}/packinglist`)
+      .json(newPackingList);
+  }
 });
 
 export default router;
