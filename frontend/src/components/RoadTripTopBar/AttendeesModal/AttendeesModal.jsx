@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import { Dialog, DialogActions, List, ListItem } from '@material-ui/core';
 import {
   AddAttendeeTextField,
@@ -8,32 +9,33 @@ import {
   ColouredDialogTitle,
   CustomDialogContent,
 } from './AttendeesModal.Styles';
+import Spinner from '../../commons/Spinner/Spinner';
+import useGet from '../../../hooks/useGet';
 import { OrganiserContext } from '../../../contexts/OrganiserContextProvider';
 
 export default function AttendeesModal({ open, handleClose }) {
+  const { id } = useParams();
+  const { response, loading } = useGet(`/api/roadtrip/${id}/attendees`);
   const { isUserOrganiser } = useContext(OrganiserContext);
-
-  function generate(element) {
-    return [0, 1, 2, 3].map((value) =>
-      React.cloneElement(element, {
-        key: value,
-      })
-    );
-  }
 
   return (
     <div>
       <Dialog fullWidth open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <ColouredDialogTitle>List of Attendees</ColouredDialogTitle>
         <CustomDialogContent>
-          <List>
-            {generate(
-              <ListItem>
-                <ColouredAccountIcon />
-                <ColouredListItemText primary="Attendee email here" />
-              </ListItem>
-            )}
-          </List>
+          {loading && <Spinner />}
+          {response && response.data && (
+            <List>
+              {response.data.map((attendee) => (
+                <div key={attendee._id}>
+                  <ListItem>
+                    <ColouredAccountIcon />
+                    <ColouredListItemText primary={attendee.email} />
+                  </ListItem>
+                </div>
+              ))}
+            </List>
+          )}
         </CustomDialogContent>
         <DialogActions>
           {isUserOrganiser && (
