@@ -36,4 +36,6 @@
 .mapDescriptionText {
   font-size: 24px;
   word-wrap: normal;
+  padding-top: 5px;
+  margin: 25px;
 }

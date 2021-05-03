@@ -27,7 +27,7 @@ export default function MapPage({ mapData }) {
   useEffect(() => {
     setViewport({
       width: '65vw',
-      height: '80vh',
+      height: '90vh',
       latitude: mapDestination ? mapDestination.lat : 0,
       longitude: mapDestination ? mapDestination.long : 0,
       zoom: 15,
@@ -44,7 +44,6 @@ export default function MapPage({ mapData }) {
 
   return (
     <div className={styles.mapPage}>
-      <p className={styles.mapPageTitle}>Destination</p>
       {mapDestination ? (
         <div className={styles.mapContainer}>
           <div className={styles.mapBox}>
@@ -56,11 +55,13 @@ export default function MapPage({ mapData }) {
             />
           </div>
           <div className={styles.mapDescription}>
+            <p className={styles.mapPageTitle}>Destination</p>
             <p className={styles.mapDescriptionText}>{destName}</p>
           </div>
         </div>
       ) : (
         <div>
+          <p className={styles.mapPageTitle}>Destination</p>
           <p className={styles.emptyMapDescription}>The organiser has not entered a destination yet!</p>
           <br />
           {isUserOrganiser && <AddButton onClick={handleOpenModal}>Add Destination</AddButton>}
