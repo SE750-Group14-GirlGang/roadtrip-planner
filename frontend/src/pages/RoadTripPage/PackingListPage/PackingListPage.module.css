@@ -1,0 +1,12 @@
+.packingListPage {
+  justify-content: center;
+  align-items: center;
+}
+
+.packingListPage p {
+  color: #24305e;
+}
+
+.title {
+  font-size: 30px;
+}
