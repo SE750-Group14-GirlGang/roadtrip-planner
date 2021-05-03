@@ -5,6 +5,7 @@ import {
   AddAttendeeTextField,
   ActionButton,
   ColouredAccountIcon,
+  ColouredStarIcon,
   ColouredListItemText,
   ColouredDialogTitle,
   CustomDialogContent,
@@ -12,20 +13,36 @@ import {
 import Spinner from '../../commons/Spinner/Spinner';
 import useGet from '../../../hooks/useGet';
 import { OrganiserContext } from '../../../contexts/OrganiserContextProvider';
+import styles from './AttendeesModal.module.css';
 
 export default function AttendeesModal({ open, handleClose }) {
   const { id } = useParams();
   const { response, loading } = useGet(`/api/roadtrip/${id}/attendees`);
-  const { isUserOrganiser } = useContext(OrganiserContext);
+  const { isUserOrganiser, organiser } = useContext(OrganiserContext);
+
+  const showSpinner = loading || !organiser;
 
   return (
     <div>
       <Dialog fullWidth open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <ColouredDialogTitle>List of Attendees</ColouredDialogTitle>
         <CustomDialogContent>
-          {loading && <Spinner />}
-          {response && response.data && (
+          {showSpinner && (
+            <div className={styles.spinner}>
+              <Spinner />
+            </div>
+          )}
+          {!showSpinner && (
             <List>
+              <div key={organiser._id}>
+                <ListItem>
+                  <ColouredAccountIcon />
+                  <div className={styles.organiser}>
+                    <ColouredListItemText primary={organiser.email} />
+                    <ColouredStarIcon />
+                  </div>
+                </ListItem>
+              </div>
               {response.data.map((attendee) => (
                 <div key={attendee._id}>
                   <ListItem>

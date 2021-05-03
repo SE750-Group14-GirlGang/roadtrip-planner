@@ -25,6 +25,12 @@ export async function getAttendees(roadTripId) {
   return dbRoadTrip.attendees;
 }
 
+export async function getOrganiser(roadTripId) {
+  const dbRoadTrip = await getRoadTrip(roadTripId);
+  await RoadTrip.populate(dbRoadTrip, 'organiser');
+  return dbRoadTrip.organiser;
+}
+
 export async function addAttendee(roadTripId, userId) {
   const dbRoadTrip = await getRoadTrip(roadTripId);
   if (dbRoadTrip.attendees.every((e) => new String(e).valueOf() !== new String(userId).valueOf())) {
