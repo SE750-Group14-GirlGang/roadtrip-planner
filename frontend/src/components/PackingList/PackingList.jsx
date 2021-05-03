@@ -1,67 +1,81 @@
-import React, { useState } from 'react';
-import { Button } from '@material-ui/core';
+import React, { useState, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import styles from './PackingList.module.css';
-import useStyles from './PackingList.styles';
 
+import AddButton from '../commons/buttons/AddButton/AddButton';
 import Item from './Item/Item';
+import AddItemModal from './AddItemModal/AddItemModal';
+import { OrganiserContext } from '../../contexts/OrganiserContextProvider';
 
-const userIsOrganiser = true;
+import usePut from '../../hooks/usePut';
 
-export default function PackingList() {
-  const classes = useStyles();
-  // TODO: implement full packing list functionality with link to backend
-  // const packingListItems = [
-  //     "sleeping bag",
-  //     "sleeping mat",
-  //     "rain jacket",
-  //     "pillow",
-  //     "alcohol",
-  //     "clothing",
-  //     "cutlery",
-  //     "towel",
-  //     "togs",
-  //     "phone charger",
-  //     "ear plugs",
-  //     "hoons",
-  //     "bowl",
-  // ];
-  const packingListItems = [];
-  const [userPackedItems, setUserPackedItems] = useState(['sleeping bag', 'hoons', 'alcohol', 'ear plugs']);
+export default function PackingList({ startingPackingList, startingPackedItems }) {
+  const { isUserOrganiser } = useContext(OrganiserContext);
+  const { id } = useParams();
 
-  const handleChange = (item) => {
-    let newUserPackedItems = [...userPackedItems];
-    if (userPackedItems.includes(item)) {
-      newUserPackedItems = newUserPackedItems.filter((e) => e !== item); // unchecking the item
+  const put = usePut();
+
+  const [packingList, setPackingList] = useState(startingPackingList);
+  const [packedItems, setPackedItems] = useState(startingPackedItems);
+
+  const [addItemModalOpen, setAddItemModalOpen] = useState(false);
+  const [submitItemError, setSubmitItemError] = useState(false);
+
+  const handleOpenAddItemModal = () => {
+    setAddItemModalOpen(true);
+  };
+
+  const handleCloseAddItemModal = () => {
+    setAddItemModalOpen(false);
+    setSubmitItemError(false);
+  };
+
+  const handleChange = async (item) => {
+    let newPackedItems = [...packedItems];
+    if (packedItems.includes(item)) {
+      newPackedItems = newPackedItems.filter((e) => e !== item); // unchecking the item
     } else {
-      newUserPackedItems.push(item); // checking the item
+      newPackedItems.push(item); // checking the item
     }
-    setUserPackedItems(newUserPackedItems);
+    setPackedItems(newPackedItems);
+    await put(`/api/roadtrip/${id}/packeditems/user`, { items: newPackedItems });
+  };
+
+  const handleSubmitItem = async (item) => {
+    const newPackingList = [...packingList, item];
+    const { error } = await put(`/api/roadtrip/${id}/packinglist`, { items: newPackingList });
+    if (error) {
+      setSubmitItemError(true);
+    } else {
+      handleCloseAddItemModal();
+      setPackingList(newPackingList);
+    }
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.card}>
-        <div className={styles.cardHeader}>Packing List</div>
-        <div className={styles.cardContent}>
-          {packingListItems.length ? (
-            packingListItems.map((item, index) => (
+    <>
+      <div className={styles.container}>
+        {packingList.length ? (
+          <div className={styles.cardContent}>
+            {packingList.map((item, index) => (
               <div key={index}>
-                <Item
-                  name={item}
-                  checked={userPackedItems.includes(item)}
-                  // TODO: if time - convert this list to a map for speed
-                  onChange={() => handleChange(item)}
-                />
+                <Item name={item} checked={packedItems.includes(item)} onChange={() => handleChange(item)} />
               </div>
-            ))
-          ) : (
-            <div className={styles.emptyText}> The organiser has not added any items to the packing list!</div>
-          )}
-        </div>
-        <div className={styles.cardFooter}>
-          {userIsOrganiser && <Button className={classes.button}>+ Add Item</Button>}
+            ))}
+          </div>
+        ) : (
+          <div className={styles.emptyText}>The organiser has not added any items to the packing list yet!</div>
+        )}
+        <div className={styles.buttonContainer}>
+          {isUserOrganiser && <AddButton onClick={handleOpenAddItemModal}>Add Item</AddButton>}
         </div>
       </div>
-    </div>
+      <AddItemModal
+        open={addItemModalOpen}
+        onClose={handleCloseAddItemModal}
+        onSubmit={handleSubmitItem}
+        error={submitItemError}
+      />
+    </>
   );
 }

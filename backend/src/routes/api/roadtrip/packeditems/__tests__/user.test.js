@@ -2,7 +2,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import express from 'express';
 import axios from 'axios';
-import router from '../../../index';
+import router from '../../../../index';
 
 let mongod;
 let app;
@@ -12,8 +12,15 @@ let roadTrip;
 let packedItems1;
 let packedItems2;
 
-jest.mock('../../../../auth/checkJwt', () =>
+const userId1 = '608360966dcb41278446d3da';
+const userId2 = '679554266dcb41278446d3da';
+
+jest.mock('../../../../../auth/checkJwt', () =>
+  // mock user id
   jest.fn((req, res, next) => {
+    req.user = {
+      sub: `prefix|${userId1}`,
+    };
     next();
   })
 );
@@ -34,9 +41,11 @@ beforeEach(async () => {
   const packedItemsColl = await mongoose.connection.db.createCollection('packeditems');
 
   packedItems1 = {
+    user: userId1,
     items: ['togs', 'clothes', 'sleeping bag'],
   };
   packedItems2 = {
+    user: userId2,
     items: ['alcohol'],
   };
   await packedItemsColl.insertMany([packedItems1, packedItems2]);
@@ -63,17 +72,13 @@ afterAll((done) => {
 });
 
 it('gets packed items for a roadtrip from the server', async () => {
-  const response = await axios.get(`http://localhost:3000/api/roadtrip/${roadTrip._id}/packeditems`);
+  const response = await axios.get(`http://localhost:3000/api/roadtrip/${roadTrip._id}/packeditems/user`);
   const packedItemsRes = response.data;
 
   expect(packedItemsRes).toBeTruthy();
-  expect(packedItemsRes.length).toBe(2);
 
-  expect(packedItemsRes[0].items.length).toBe(3);
-  expect(packedItemsRes[0].items[0]).toBe('togs');
-  expect(packedItemsRes[0].items[1]).toBe('clothes');
-  expect(packedItemsRes[0].items[2]).toBe('sleeping bag');
-
-  expect(packedItemsRes[1].items.length).toBe(1);
-  expect(packedItemsRes[1].items[0]).toBe('alcohol');
+  expect(packedItemsRes.items.length).toBe(3);
+  expect(packedItemsRes.items[0]).toBe('togs');
+  expect(packedItemsRes.items[1]).toBe('clothes');
+  expect(packedItemsRes.items[2]).toBe('sleeping bag');
 });
