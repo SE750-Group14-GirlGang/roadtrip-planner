@@ -11,7 +11,7 @@ import emergencydetails from './emergencydetails';
 import isUserOrganiser from './isUserOrganiser';
 import itinerary from './itinerary';
 import map from './map';
-import packeditems from './packeditems';
+import packeditems from './packeditems/user';
 import packinglist from './packinglist';
 import spotify from './spotify';
 

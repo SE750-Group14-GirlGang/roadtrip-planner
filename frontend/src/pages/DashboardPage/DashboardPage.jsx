@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './DashboardPage.module.css';
-import TopBar from '../../components/TopBar/TopBar';
+import HomeTopBar from '../../components/HomeTopBar/HomeTopBar';
 import TripsSection from '../../components/dashboard/TripsSection/TripsSection';
 
 import useGet from '../../hooks/useGet';
@@ -10,7 +10,7 @@ export default function DashboardPage() {
 
   return (
     <div className={styles.dashboard}>
-      <TopBar />
+      <HomeTopBar />
       <TripsSection
         title="Trips I'm Organising"
         trips={response?.data?.roadTripsOrganising}
