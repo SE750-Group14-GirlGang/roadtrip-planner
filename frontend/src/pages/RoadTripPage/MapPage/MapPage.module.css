@@ -14,3 +14,26 @@
 .emptyMapDescription {
   font-style: italic;
 }
+
+.mapContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.mapDescription {
+  order: 0;
+  flex-grow: 1;
+}
+
+.mapBox {
+  order: 1;
+  flex-grow: 1;
+}
+
+.mapDescriptionText {
+  font-size: 24px;
+  word-wrap: normal;
+}

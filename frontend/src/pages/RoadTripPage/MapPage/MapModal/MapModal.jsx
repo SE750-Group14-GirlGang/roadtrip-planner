@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -13,9 +14,8 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-export default function MapModal({ open, handleClose, setDestination }) {
-  // Default location is just New Zealand. If/when user selects a different location
-  // this will be overridden
+export default function MapModal({ open, handleClose, destName, setDestName, setMapDestination }) {
+  // Default location is just New Zealand. If/when user selects a different location this will be overridden
   const initialViewport = {
     width: '100vw',
     height: '100vh',
@@ -25,15 +25,14 @@ export default function MapModal({ open, handleClose, setDestination }) {
   };
 
   const [viewport, setViewport] = useState(initialViewport);
-  const [destName, setDestName] = useState('New Zealand');
   const [destLatitude, setDestLatitude] = useState(-41.01633);
   const [destLongitude, setDestLongitude] = useState(170.83285);
 
   const mapAccessToken = process.env.REACT_APP_MAPBOX_TOKEN;
   const mapRef = useRef();
   const geocoderContainerRef = useRef();
-
   const post = usePost();
+  const { id } = useParams();
 
   // Size of map inside the modal - unable to split into separate CSS file
   const mapStyle = {
@@ -66,7 +65,7 @@ export default function MapModal({ open, handleClose, setDestination }) {
     [setDestLatitude, setDestLongitude, setDestName]
   );
 
-  async function handleSubmit() {
+  function handleSubmit() {
     const destToPost = {
       primaryDestination: {
         long: destLongitude,
@@ -75,12 +74,11 @@ export default function MapModal({ open, handleClose, setDestination }) {
       },
     };
 
-    const { response } = await post('/api/roadtrip/6083614ff19eef2de864003d/map', destToPost);
+    // Post the selected destination
+    post(`/api/roadtrip/${id}/map`, destToPost).then(() => handleClose());
 
-    setDestination(response?.data);
-
-    // Close the modal
-    handleClose();
+    setMapDestination(destToPost.primaryDestination);
+    setDestName(destName);
   }
 
   return (

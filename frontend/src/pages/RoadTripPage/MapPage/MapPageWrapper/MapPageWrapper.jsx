@@ -6,8 +6,7 @@ import useGet from '../../../../hooks/useGet';
 
 export default function MapPageWrapper() {
   const { id } = useParams();
-  const URL = `/api/roadtrip/${id}/itinerary`;
-  // get itinenary data
+  const URL = `/api/roadtrip/${id}/map`;
   const { response, loading } = useGet(URL);
 
   // show spinner while data is being fetched
