@@ -44,6 +44,7 @@ export default function CreateTripModal({ open, handleClose, refetchRoadTrips })
             error={error}
             helperText={error ? 'Error creating trip. Try again.' : ''}
             autoFocus
+            onFocus={(event) => event.target.select()}
             label="Enter name"
             defaultValue={name}
             onChange={handleChange}
