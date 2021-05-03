@@ -6,6 +6,7 @@ import { SingleDatePicker } from 'react-dates';
 import moment from 'moment';
 import DayCard from './DayCard/DayCard';
 import styles from './DailyItinerary.module.css';
+import './SingleDatePicker.css';
 
 export default function DailyItinerary({ itinerary }) {
   const { getAccessTokenSilently } = useAuth0();
@@ -26,12 +27,12 @@ export default function DailyItinerary({ itinerary }) {
   const startDay = days[0].date;
   const endDay = days[numDays - 1].date;
 
-  async function nextDayHandler() {
+  function nextDayHandler() {
     const nextDayIndex = dayIndex + 1;
     setDayIndex(nextDayIndex);
   }
 
-  async function prevDayHandler() {
+  function prevDayHandler() {
     const prevDayIndex = dayIndex - 1;
     setDayIndex(prevDayIndex);
   }
@@ -79,17 +80,19 @@ export default function DailyItinerary({ itinerary }) {
         hasPrevDay={hasPrevDay}
         addEvent={addEvent}
       />
-      <SingleDatePicker
-        date={moment(days[dayIndex].date)} // momentPropTypes.momentObj or null
-        onDateChange={calanderDayChangeHandler} // PropTypes.func.isRequired
-        focused={calanderFocused} // PropTypes.bool
-        onFocusChange={({ focused }) => setCalanderFocused(true)} // PropTypes.func.isRequired
-        id="calander_single_date_picker"
-        numberOfMonths={1}
-        isOutsideRange={isOutsideRange}
-        displayFormat={() => 'DD/MM/YYYY'}
-        readOnly={false}
-      />
+      <div className={styles.DatePickerContainer}>
+        <SingleDatePicker
+          date={moment(days[dayIndex].date)}
+          onDateChange={calanderDayChangeHandler}
+          focused={calanderFocused}
+          onFocusChange={({ focused }) => setCalanderFocused(true)}
+          id="calander_single_date_picker"
+          numberOfMonths={1}
+          isOutsideRange={isOutsideRange}
+          displayFormat={() => 'DD/MM/YYYY'}
+          readOnly // disable changing of dateInput
+        />
+      </div>
     </div>
   );
 }
