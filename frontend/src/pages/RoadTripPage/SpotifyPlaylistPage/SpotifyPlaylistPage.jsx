@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import CreatePlaylist from '../../../components/playlist/CreatePlaylist/CreatePlaylist';
+import Playlist from '../../../components/playlist/Playlist/Playlist';
 
 const request = require('request'); // "Request" library
 
@@ -34,6 +35,7 @@ export default function SpotifyPlaylistPage() {
   const [accessToken, setAccessToken] = useState('');
   const [refreshToken, setRefreshToken] = useState('');
   const [spotifyUserId, setSpotifyUserId] = useState('');
+  const [playlist, setPlaylist] = useState(null);
 
   function getTokensAndUser(auth_code) {
     // Then we can get the access and refresh tokens
@@ -93,18 +95,22 @@ export default function SpotifyPlaylistPage() {
         // Get the authorization code
         return <Button onClick={authorizeSpotify}>Authorize Spotify</Button>;
       }
+
       getTokensAndUser(auth_code);
     }
-
-    // We can allow the host to create a playlist using the tokens
-    return <CreatePlaylist spotifyId={spotifyUserId} accessToken={accessToken} refreshToken={refreshToken} />;
   }
 
   if (playlistId) {
-    // If we have a playlist it can be shown to all users
-    // Get playlist and allow user to add songs
-    return <div>Show Playlist to All</div>;
+    // If we have a playlist get it from an axios call
   }
 
-  return <div>Loading...</div>; // TODO remove. Not sure what to return when loading state. Takes a while.
+  return (
+    <div>
+      {playlistId == null && isHost && (
+        <CreatePlaylist spotifyId={spotifyUserId} accessToken={accessToken} refreshToken={refreshToken} />
+      )}
+
+      {playlistId && <p>Playlist made!</p>}
+    </div>
+  );
 }
