@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import CreatePlaylist from '../../../components/playlist/CreatePlaylist/CreatePlaylist';
@@ -104,13 +104,29 @@ export default function SpotifyPlaylistPage() {
     // If we have a playlist get it from an axios call
   }
 
+  // TODO Dummy data
+  const playlistContent = {
+    name: `Courtney's Playlist`,
+    description: 'This is my playlist description.',
+    tracks: [
+      {
+        name: 'Track 1',
+        artist: 'Artist 1',
+      },
+      {
+        name: 'Track 2',
+        artist: 'Artist 2',
+      },
+    ],
+  };
+
   return (
     <div>
       {playlistId == null && isHost && (
         <CreatePlaylist spotifyId={spotifyUserId} accessToken={accessToken} refreshToken={refreshToken} />
       )}
 
-      {playlistId && <p>Playlist made!</p>}
+      {playlistId && playlistContent && <Playlist content={playlistContent} />}
     </div>
   );
 }

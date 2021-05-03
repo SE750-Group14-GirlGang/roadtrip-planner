@@ -1,0 +1,16 @@
+.playlist {
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+.tracks {
+    width: 100%;
+}
+
+.headerRow {
+    background-color: #f76c6c;
+}
+
+.tableRow:hover {
+    background-color: #a8d0e6;
+}
