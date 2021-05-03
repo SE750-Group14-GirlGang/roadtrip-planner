@@ -19,7 +19,7 @@ export default function MapPage({ mapData }) {
 
   const [viewport, setViewport] = useState({
     width: '65vw',
-    height: '80vh',
+    height: '90vh',
     latitude: mapDestination ? mapDestination.lat : 0,
     longitude: mapDestination ? mapDestination.long : 0,
     zoom: 15,
