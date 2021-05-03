@@ -1,9 +1,10 @@
 import { React, useState, useContext, useEffect } from 'react';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, { Marker } from 'react-map-gl';
 import MapModal from './MapModal/MapModal';
 import styles from './MapPage.module.css';
 import AddButton from '../../../components/commons/buttons/AddButton/AddButton';
 import { OrganiserContext } from '../../../contexts/OrganiserContextProvider';
+import MapMarker from './MapPage.styles';
 
 const dotenv = require('dotenv');
 
@@ -50,9 +51,14 @@ export default function MapPage({ mapData }) {
             <ReactMapGL
               {...viewport}
               className={styles.mapContainer}
+              onViewportChange={setViewport}
               mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
               mapStyle="mapbox://styles/mapbox/streets-v11"
-            />
+            >
+              <Marker latitude={mapDestination.lat} longitude={mapDestination.long} offsetLeft={-22} offsetTop={-12}>
+                <MapMarker />
+              </Marker>
+            </ReactMapGL>
           </div>
           <div className={styles.mapDescription}>
             <p className={styles.mapPageTitle}>Destination</p>
