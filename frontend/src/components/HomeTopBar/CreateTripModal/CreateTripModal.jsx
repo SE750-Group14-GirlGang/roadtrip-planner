@@ -48,6 +48,7 @@ export default function CreateTripModal({ open, handleClose, refetchRoadTrips })
             label="Enter name"
             defaultValue={name}
             onChange={handleChange}
+            inputProps={{ maxLength: 50 }}
           />
         </DialogContent>
         <DialogActions>
