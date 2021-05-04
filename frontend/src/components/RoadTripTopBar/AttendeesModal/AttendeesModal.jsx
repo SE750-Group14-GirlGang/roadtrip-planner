@@ -91,6 +91,8 @@ export default function AttendeesModal({ open, closeModal }) {
                 onChange={handleChange}
                 error={error}
                 label={error ? 'User not found' : ''}
+                autoFocus
+                onFocus={(event) => event.target.select()}
               />
               <ActionButton onClick={handleSubmit}>Add</ActionButton>
             </>
