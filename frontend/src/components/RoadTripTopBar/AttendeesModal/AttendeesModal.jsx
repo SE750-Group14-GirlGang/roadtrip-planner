@@ -67,14 +67,15 @@ export default function AttendeesModal({ open, closeModal }) {
                   </div>
                 </ListItem>
               </div>
-              {response.data.map((attendee) => (
-                <div key={attendee._id}>
-                  <ListItem>
-                    <ColouredAccountIcon />
-                    <ColouredListItemText primary={attendee.email} />
-                  </ListItem>
-                </div>
-              ))}
+              {response &&
+                response.data.map((attendee) => (
+                  <div key={attendee._id}>
+                    <ListItem>
+                      <ColouredAccountIcon />
+                      <ColouredListItemText primary={attendee.email} />
+                    </ListItem>
+                  </div>
+                ))}
             </List>
           )}
         </CustomDialogContent>
