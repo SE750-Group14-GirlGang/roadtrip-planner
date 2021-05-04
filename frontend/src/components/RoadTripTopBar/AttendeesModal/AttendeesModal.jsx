@@ -26,7 +26,6 @@ export default function AttendeesModal({ open, closeModal }) {
   const [error, setError] = useState(false);
 
   const handleChange = (event) => {
-    console.log(event.target.value);
     setEmail(event.target.value);
   };
 
