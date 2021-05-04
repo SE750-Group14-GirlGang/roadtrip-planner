@@ -20,5 +20,6 @@ module.exports = {
     'no-return-await': 0,
     'implicit-arrow-linebreak': 0,
     'no-new-wrappers': 0,
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
   },
 };

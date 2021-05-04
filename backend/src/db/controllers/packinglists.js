@@ -19,3 +19,10 @@ export async function createPackingList(roadTripId, packingList) {
 
   return dbPackingList;
 }
+
+export async function updatePackingList(originalPackingList, newPackingList) {
+  originalPackingList.items = newPackingList.items;
+  await originalPackingList.save();
+
+  return originalPackingList;
+}

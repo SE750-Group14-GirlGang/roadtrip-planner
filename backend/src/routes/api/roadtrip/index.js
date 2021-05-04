@@ -11,7 +11,8 @@ import emergencydetails from './emergencydetails';
 import isUserOrganiser from './isUserOrganiser';
 import itinerary from './itinerary';
 import map from './map';
-import packeditems from './packeditems';
+import organiser from './organiser';
+import packeditems from './packeditems/user';
 import packinglist from './packinglist';
 import spotify from './spotify';
 
@@ -55,6 +56,7 @@ router.use('/', emergencydetails);
 router.use('/', isUserOrganiser);
 router.use('/', itinerary);
 router.use('/', map);
+router.use('/', organiser);
 router.use('/', packeditems);
 router.use('/', packinglist);
 router.use('/', spotify);
