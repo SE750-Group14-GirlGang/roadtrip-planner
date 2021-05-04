@@ -9,7 +9,7 @@ import {
   ColouredListItemText,
   ColouredDialogTitle,
   CustomDialogContent,
-} from './AttendeesModal.Styles';
+} from './AttendeesModal.styles';
 import Spinner from '../../commons/Spinner/Spinner';
 import useGet from '../../../hooks/useGet';
 import usePatch from '../../../hooks/usePatch';
