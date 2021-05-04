@@ -7,8 +7,8 @@ export default function GroupsSection({ title, trips, loading, disable }) {
   return (
     <div className={styles.section}>
       <h1>{title}</h1>
-      {loading && <Spinner />}
       {trips && <TripsList trips={trips} disable={disable} />}
+      {loading && <Spinner />}
     </div>
   );
 }
