@@ -52,11 +52,11 @@ export default function CreateTripModal({ open, handleClose, refetchRoadTrips })
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
           <Button onClick={handleSubmit} color="primary" disabled={!name}>
             Submit
+          </Button>
+          <Button onClick={handleClose} color="primary">
+            Cancel
           </Button>
         </DialogActions>
       </Dialog>
