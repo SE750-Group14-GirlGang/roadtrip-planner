@@ -1,7 +1,8 @@
 import express from 'express';
 
-import * as constants from '../../constants';
-import * as itineraries from '../../../db/controllers/itineraries';
+import * as constants from '../../../constants';
+import * as itineraries from '../../../../db/controllers/itineraries';
+import days from './days/events';
 
 const router = express.Router();
 
@@ -21,11 +22,6 @@ router.post('/:id/itinerary', async (req, res) => {
   res.status(constants.HTTP_CREATED).header('Location', `/api/roadtrip/${roadTripId}/itinerary`).json(newItinerary);
 });
 
-router.patch('/:id/itinerary', async (req, res) => {
-  const { id: roadTripId } = req.params;
-
-  const updatedItinerary = await itineraries.addEvent(roadTripId, req.body.dayId, req.body.event);
-  res.json(updatedItinerary);
-});
+router.use('/', days);
 
 export default router;
