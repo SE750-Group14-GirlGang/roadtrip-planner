@@ -30,11 +30,11 @@ export default function AddItemModal({ open, onClose, onSubmit, error }) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary">
-            Cancel
-          </Button>
           <Button onClick={() => onSubmit(item)} color="primary" disabled={!item}>
             Submit
+          </Button>
+          <Button onClick={onClose} color="primary">
+            Cancel
           </Button>
         </DialogActions>
       </Dialog>

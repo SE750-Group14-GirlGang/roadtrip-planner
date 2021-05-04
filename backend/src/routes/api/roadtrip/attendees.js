@@ -1,5 +1,6 @@
 import express from 'express';
 
+import * as constants from '../../constants';
 import * as users from '../../../db/controllers/users';
 import * as roadtrips from '../../../db/controllers/roadtrips';
 
@@ -16,10 +17,13 @@ router.get('/:id/attendees', async (req, res) => {
 // the user's email is provided
 router.patch('/:id/attendees', async (req, res) => {
   const { id: roadTripId } = req.params;
-
   const user = await users.getUserByEmail(req.body.userEmail);
-  const updatedRoadtrip = await roadtrips.addAttendee(roadTripId, user._id);
-  res.json(updatedRoadtrip);
+  if (user) {
+    const updatedRoadtrip = await roadtrips.addAttendee(roadTripId, user._id);
+    res.json(updatedRoadtrip);
+  } else {
+    res.sendStatus(constants.HTTP_NOT_FOUND);
+  }
 });
 
 export default router;
