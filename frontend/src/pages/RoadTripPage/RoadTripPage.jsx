@@ -1,14 +1,12 @@
 import React from 'react';
 import { Switch, Route, Redirect, useRouteMatch, useParams } from 'react-router-dom';
-import TopBar from '../../components/TopBar/TopBar';
-import SideBar from '../../components/SideBar/SideBar';
+import RoadTripTopBar from '../../components/RoadTripTopBar/RoadTripTopBar';
 import './RoadTrip.css';
 import MapPage from './MapPage/MapPage';
 import ItineraryPage from './ItineraryPage/ItineraryPage';
 import EmergencyDetailsPage from './EmergencyDetailsPage/EmergencyDetailsPage';
 import PackingListPage from './PackingListPage/PackingListPage';
 import SpotifyPlaylistPage from './SpotifyPlaylistPage/SpotifyPlaylistPage';
-
 import { OrganiserContextProvider } from '../../contexts/OrganiserContextProvider';
 
 export default function RoadTripPage() {
@@ -18,7 +16,7 @@ export default function RoadTripPage() {
   return (
     <OrganiserContextProvider roadTripId={id}>
       <div className="roadTrip">
-        <TopBar />
+        <RoadTripTopBar />
         <Switch>
           <Route path={`${path}/map`}>
             <MapPage />
@@ -44,7 +42,6 @@ export default function RoadTripPage() {
             <Redirect to={`${url}/map`} />
           </Route>
         </Switch>
-        <SideBar />
       </div>
     </OrganiserContextProvider>
   );

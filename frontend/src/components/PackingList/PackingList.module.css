@@ -1,40 +1,26 @@
 .container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-.card {
-    width: 75%;
-    min-width: 300px;
-    margin: 50px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    display: flex;
-    flex-flow: column;
-}
-
-.cardHeader {
-    padding: 10px;
-    font-size: 25px;
-    color: #24305e;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
 }
 
 .cardContent {
-    padding: 20px;
-    flex: 1;
-    overflow: auto;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
+  width: 75%;
+  min-width: 300px;
+  overflow: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }
 
-.cardFooter {
-    padding: 10px;
-    display: flex;
-    justify-content: flex-end;
+.buttonContainer {
+  margin-top: 37.6px;
+  display: flex;
+  justify-content: center;
 }
 
 .emptyText {
-    font-style: italic;
-    color: #24305e;
+  font-style: italic;
+  color: #24305e;
 }
