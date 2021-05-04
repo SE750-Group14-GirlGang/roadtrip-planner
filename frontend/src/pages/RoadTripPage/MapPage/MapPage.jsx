@@ -64,6 +64,7 @@ export default function MapPage({ mapData }) {
             <p className={styles.mapPageTitle}>Destination</p>
             <p className={styles.mapDescriptionText}>{destName}</p>
           </div>
+          <div className={styles.mapBorder} />
         </div>
       ) : (
         <div>
