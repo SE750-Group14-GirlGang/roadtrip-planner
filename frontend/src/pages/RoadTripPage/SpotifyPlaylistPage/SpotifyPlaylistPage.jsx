@@ -32,9 +32,5 @@ export default function SpotifyPlaylistPage() {
     return <p>Embed spotify</p>;
   }
 
-  if (!playlistId && access_token) {
-    return <CreatePlaylist setPlaylistId={setPlaylistId} />;
-  }
-
-  return null;
+  return <div>{!playlistId && access_token && <CreatePlaylist setPlaylistId={setPlaylistId} />}</div>;
 }

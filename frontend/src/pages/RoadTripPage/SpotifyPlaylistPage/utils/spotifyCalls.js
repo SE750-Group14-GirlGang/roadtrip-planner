@@ -16,15 +16,12 @@ async function setUserId() {
   });
 }
 
-export async function createPlaylist(name, description) {
+export async function createPlaylist(name, description, setPlaylistId) {
   const accessToken = localStorage.getItem('access_token');
   const spotify_user_id = localStorage.getItem('spotify_user_id');
 
   const spotify = new SpotifyWebApi();
   spotify.setAccessToken(accessToken);
-
-  console.log(spotify_user_id === undefined ? 'true undefined' : 'false defined');
-  console.log(spotify_user_id);
 
   if (!spotify_user_id) {
     await setUserId();
@@ -37,7 +34,7 @@ export async function createPlaylist(name, description) {
       public: false,
       collaborative: true,
     })
-    .then((r) => console.log(r));
+    .then((r) => setPlaylistId(r.id));
 }
 
 export default { createPlaylist };

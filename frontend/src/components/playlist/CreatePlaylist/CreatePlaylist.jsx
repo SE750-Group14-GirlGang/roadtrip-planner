@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import styles from './CreatePlaylist.module.css';
 import { createPlaylist } from '../../../pages/RoadTripPage/SpotifyPlaylistPage/utils/spotifyCalls';
 
-export default function CreatePlaylist() {
+export default function CreatePlaylist({ setPlaylistId }) {
   const [values, setValues] = React.useState({
     name: null,
     description: null,
@@ -40,7 +40,10 @@ export default function CreatePlaylist() {
           />
         </div>
       </form>
-      <Button className={styles.createButton} onClick={() => createPlaylist(values.name, values.description)}>
+      <Button
+        className={styles.createButton}
+        onClick={() => createPlaylist(values.name, values.description, setPlaylistId)}
+      >
         Create
       </Button>
     </div>
