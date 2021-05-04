@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import CreatePlaylist from '../../../components/playlist/CreatePlaylist/CreatePlaylist';
@@ -36,6 +36,60 @@ export default function SpotifyPlaylistPage() {
   const [refreshToken, setRefreshToken] = useState('');
   const [spotifyUserId, setSpotifyUserId] = useState('');
   const [playlist, setPlaylist] = useState(null);
+
+  function getPlaylist() {
+    console.log(`getting playlist! ${accessToken}`);
+    console.log(`playlist id! ${playlistId}`);
+
+    axios({
+      url: `https://api.spotify.com/v1/playlists/${playlistId}`,
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    }).then((response) => {
+      console.log('get playlist: ', response);
+
+      // Build the playlist state
+      const tracks = [];
+      response.data.tracks.items.forEach((item) => {
+        const { track } = item.track;
+        const artist_array = [];
+        track.artists.forEach((artist) => {
+          artist_array.push(artist.name);
+        });
+
+        tracks.push({
+          name: track.name,
+          artist: artist_array,
+        });
+      });
+
+      setPlaylist({
+        name: response.data.name,
+        description: response.data.description,
+        tracks,
+      });
+    });
+  }
+
+  useEffect(() => {
+    console.log(`acc token changed ${accessToken}`);
+    if (accessToken && !playlist && !playlistId && isHost) {
+      return <CreatePlaylist spotifyId={spotifyUserId} accessToken={accessToken} refreshToken={refreshToken} />;
+      // eslint-disable-next-line
+    } else if (accessToken && !playlist && playlistId) {
+      getPlaylist();
+    }
+    return <p>fuck</p>;
+  }, [accessToken]);
+
+  useEffect(() => {
+    console.log('playlist changed!');
+    console.log(playlist);
+  }, [playlist]);
 
   function getTokensAndUser(auth_code) {
     // Then we can get the access and refresh tokens
@@ -86,18 +140,16 @@ export default function SpotifyPlaylistPage() {
     );
   }
 
-  if (playlistId === null && isHost) {
-    if (!accessToken && !refreshToken) {
-      const auth_code = getCode();
+  if (!accessToken && !refreshToken && (!playlist || !playlistId)) {
+    const auth_code = getCode();
 
-      // Get the access and refresh token
-      if (!auth_code) {
-        // Get the authorization code
-        return <Button onClick={authorizeSpotify}>Authorize Spotify</Button>;
-      }
-
-      getTokensAndUser(auth_code);
+    // Get the access and refresh token
+    if (!auth_code) {
+      // Get the authorization code
+      return <Button onClick={authorizeSpotify}>Authorize Spotify</Button>;
     }
+
+    getTokensAndUser(auth_code);
   }
 
   if (playlistId) {
