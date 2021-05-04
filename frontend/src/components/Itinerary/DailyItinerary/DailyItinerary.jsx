@@ -1,20 +1,16 @@
 import { React, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import { useAuth0 } from '@auth0/auth0-react';
 import { SingleDatePicker } from 'react-dates';
 import moment from 'moment';
+import usePatch from '../../../hooks/usePatch';
 import DayCard from './DayCard/DayCard';
 import styles from './DailyItinerary.module.css';
-import './SingleDatePicker.css';
 
-export default function DailyItinerary({ itinerary }) {
-  const { getAccessTokenSilently } = useAuth0();
+export default function DailyItinerary({ itinerary, setItinerary }) {
+  const patch = usePatch();
   const { id } = useParams();
 
   const { days } = itinerary;
-
-  const [error, setError] = useState(false);
 
   // set the date shown to the first date of the trip
   const [dayIndex, setDayIndex] = useState(0);
@@ -44,26 +40,14 @@ export default function DailyItinerary({ itinerary }) {
   }
 
   const addEvent = async (event) => {
-    const URL = `/api/roadtrip/${id}/itinerary`;
-
-    console.log(event);
-
-    // POST request to set the destination
-    const accessToken = await getAccessTokenSilently();
-
-    // set token in Authorization header
-    const config = {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    };
-
+    const dayId = days[dayIndex]._id;
+    const URL = `/api/roadtrip/${id}/itinerary/days/${dayId}/events`;
     const body = {
-      dayId: days[dayIndex]._id,
       event,
     };
 
-    const itinerary = await axios.patch(URL, body, config);
+    const { response } = await patch(URL, body);
+    setItinerary(response?.data);
   };
 
   function isOutsideRange(day) {
