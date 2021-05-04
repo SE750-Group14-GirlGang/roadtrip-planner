@@ -37,4 +37,43 @@ export async function createPlaylist(name, description, setPlaylistId) {
     .then((r) => setPlaylistId(r.id));
 }
 
+const handlePlaylistData = (response) => {
+  const playlist = {
+    name: null,
+    description: null,
+    tracks: [],
+  };
+
+  playlist.name = response.name;
+  playlist.description = response.description;
+
+  // Handle tracks
+  response.tracks.items.forEach((item) => {
+    const { track } = item;
+
+    const artistList = [];
+    track.artists.forEach((artist) => {
+      artistList.push(artist.name);
+    });
+
+    const value = {
+      name: track.name,
+      artists: artistList,
+    };
+
+    playlist.tracks.push(value);
+  });
+
+  return playlist;
+};
+
+export function getPlaylist(id, setPlaylist) {
+  const accessToken = localStorage.getItem('access_token');
+
+  const spotify = new SpotifyWebApi();
+  spotify.setAccessToken(accessToken);
+
+  spotify.getPlaylist(id, {}).then((r) => setPlaylist(handlePlaylistData(r)));
+}
+
 export default { createPlaylist };

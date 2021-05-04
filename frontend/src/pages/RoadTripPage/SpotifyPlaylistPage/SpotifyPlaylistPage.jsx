@@ -2,10 +2,18 @@ import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import { getCode, fetchAccessToken, requestAuthorization } from './utils/authorize';
 import CreatePlaylist from '../../../components/playlist/CreatePlaylist/CreatePlaylist';
+import Playlist from '../../../components/playlist/Playlist/Playlist';
+import { getPlaylist } from './utils/spotifyCalls';
 
+// TODO handle when access token expires
 export default function SpotifyPlaylistPage() {
   const isHost = true; // TODO Determine from backend
   const [playlistId, setPlaylistId] = useState(null); // TODO Get from backend
+  const [playlist, setPlaylist] = useState({
+    name: null,
+    description: null,
+    tracks: [],
+  });
 
   // If no playlist has been set up, and the user is not a host
   if (!playlistId && !isHost) {
@@ -28,9 +36,14 @@ export default function SpotifyPlaylistPage() {
   }
 
   access_token = localStorage.getItem('access_token');
-  if (playlistId && access_token) {
-    return <p>Embed spotify</p>;
+  if (playlistId && access_token && !playlist.name) {
+    getPlaylist(playlistId, setPlaylist);
   }
 
-  return <div>{!playlistId && access_token && <CreatePlaylist setPlaylistId={setPlaylistId} />}</div>;
+  return (
+    <div>
+      {playlist.name && playlistId && <Playlist content={playlist} />}
+      {!playlistId && access_token && <CreatePlaylist setPlaylistId={setPlaylistId} />}
+    </div>
+  );
 }

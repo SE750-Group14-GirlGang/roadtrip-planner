@@ -12,7 +12,7 @@ export default function Playlist({ content }) {
           <TableHead>
             <TableRow className={styles.headerRow}>
               <TableCell>Name</TableCell>
-              <TableCell>Artist</TableCell>
+              <TableCell align="right">Artist</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -21,7 +21,7 @@ export default function Playlist({ content }) {
                 <TableCell component="th" scope="row">
                   {track.name}
                 </TableCell>
-                <TableCell align="right">{track.artist}</TableCell>
+                <TableCell align="right">{track.artists.toString()}</TableCell>
               </TableRow>
             ))}
           </TableBody>
