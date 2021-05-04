@@ -2,7 +2,7 @@ import React from 'react';
 import { TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import styles from './CreatePlaylist.module.css';
-import { createPlaylist } from '../../../pages/RoadTripPage/SpotifyPlaylistPage/utils/spotifyCalls';
+import { createPlaylist } from '../../../pages/RoadTripPage/SpotifyPlaylistPage/utils/spotifyApiCalls';
 
 export default function CreatePlaylist({ setPlaylistId }) {
   const [values, setValues] = React.useState({

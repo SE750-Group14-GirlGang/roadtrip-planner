@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import { getCode, fetchAccessToken, requestAuthorization } from './utils/authorize';
 import CreatePlaylist from '../../../components/playlist/CreatePlaylist/CreatePlaylist';
 import Playlist from '../../../components/playlist/Playlist/Playlist';
-import { getPlaylist } from './utils/spotifyCalls';
+import { getPlaylist } from './utils/spotifyApiCalls';
 
 // TODO handle when access token expires
 export default function SpotifyPlaylistPage() {
