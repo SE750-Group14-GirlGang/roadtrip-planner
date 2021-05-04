@@ -8,7 +8,6 @@ export async function createUser(user) {
 }
 
 export async function getUserByEmail(email) {
-  // server timing out when an email that doesn't exist is sent
   return await User.findOne({ email });
 }
 

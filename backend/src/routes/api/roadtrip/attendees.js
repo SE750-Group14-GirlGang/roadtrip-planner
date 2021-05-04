@@ -17,13 +17,12 @@ router.get('/:id/attendees', async (req, res) => {
 // the user's email is provided
 router.patch('/:id/attendees', async (req, res) => {
   const { id: roadTripId } = req.params;
-
-  try {
-    const user = await users.getUserByEmail(req.body.userEmail);
+  const user = await users.getUserByEmail(req.body.userEmail);
+  if (user) {
     const updatedRoadtrip = await roadtrips.addAttendee(roadTripId, user._id);
     res.json(updatedRoadtrip);
-  } catch (error) {
-    res.status(constants.HTTP_NOT_FOUND);
+  } else {
+    res.sendStatus(constants.HTTP_NOT_FOUND);
   }
 });
 
