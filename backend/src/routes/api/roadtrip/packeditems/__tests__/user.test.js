@@ -71,7 +71,7 @@ afterAll((done) => {
   });
 });
 
-it('gets packed items for a roadtrip from the server', async () => {
+it('gets packed items for a roadtrip for the current user from the server', async () => {
   const response = await axios.get(`http://localhost:3000/api/roadtrip/${roadTrip._id}/packeditems/user`);
   const packedItemsRes = response.data;
 

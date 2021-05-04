@@ -2,7 +2,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import express from 'express';
 import axios from 'axios';
-import router from '../../../index';
+import router from '../../../../index';
 
 let mongod;
 let app;
@@ -39,8 +39,6 @@ beforeEach(async () => {
       phoneNumber: '1111111',
       relation: 'Father',
     },
-    allergies: ['nuts'],
-    medicalConditions: ['hemophilia'],
   };
   await emergencyDetailsColl.insertOne(emergencyDetails);
 
