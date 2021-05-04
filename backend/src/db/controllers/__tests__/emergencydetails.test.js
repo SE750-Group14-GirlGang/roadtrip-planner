@@ -2,7 +2,6 @@ import * as emergencydetails from '../emergencydetails';
 import * as roadtrips from '../roadtrips';
 import * as EmergencyDetailsAll from '../../models/EmergencyDetails';
 import { EmergencyDetails } from '../../models/EmergencyDetails';
-import { RoadTrip } from '../../models/RoadTrip';
 
 jest.mock('../../models/EmergencyDetails');
 jest.mock('../../models/RoadTrip');
@@ -42,7 +41,7 @@ describe('createEmergencyDetails', () => {
       return {
         _id: 123,
         name: emergencyDetails.name,
-        save: () => {},
+        save: jest.fn(),
       };
     });
 
