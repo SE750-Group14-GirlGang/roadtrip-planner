@@ -15,3 +15,7 @@
 .tableRow:hover {
     background-color: #f76c6c;
 }
+
+.emptyPlaylist {
+    text-align: center;
+}
