@@ -10,10 +10,12 @@
 .headerRow {
     font-weight: bold;
     background-color: #a8d0e6;
+    cursor: default;
 }
 
 .tableRow:hover {
     background-color: #f76c6c;
+    cursor: default;
 }
 
 .emptyPlaylist {
