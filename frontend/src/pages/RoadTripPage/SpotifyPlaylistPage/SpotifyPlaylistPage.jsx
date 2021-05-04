@@ -29,12 +29,12 @@ const getCode = () => {
 };
 
 export default function SpotifyPlaylistPage() {
-  const playlistId = null; // TODO Get from backend
+  const playlistId = '070Bs0e7yP4dvUbE9eKDuf'; // TODO Get from backend
   const isHost = true; // TODO Determine from backend
 
-  const [accessToken, setAccessToken] = useState('');
-  const [refreshToken, setRefreshToken] = useState('');
-  const [spotifyUserId, setSpotifyUserId] = useState('');
+  const [accessToken, setAccessToken] = useState(null);
+  const [refreshToken, setRefreshToken] = useState(null);
+  const [spotifyUserId, setSpotifyUserId] = useState(null);
   const [playlist, setPlaylist] = useState(null);
 
   function getPlaylist() {
@@ -76,19 +76,18 @@ export default function SpotifyPlaylistPage() {
   }
 
   useEffect(() => {
-    console.log(`acc token changed ${accessToken}`);
+    console.log(`acc token changed ${accessToken || '- empty'}`);
     if (accessToken && !playlist && !playlistId && isHost) {
       return <CreatePlaylist spotifyId={spotifyUserId} accessToken={accessToken} refreshToken={refreshToken} />;
       // eslint-disable-next-line
     } else if (accessToken && !playlist && playlistId) {
       getPlaylist();
     }
-    return <p>fuck</p>;
+    return <p>empty</p>;
   }, [accessToken]);
 
   useEffect(() => {
-    console.log('playlist changed!');
-    console.log(playlist);
+    console.log('playlist changed!', playlist);
   }, [playlist]);
 
   function getTokensAndUser(auth_code) {
