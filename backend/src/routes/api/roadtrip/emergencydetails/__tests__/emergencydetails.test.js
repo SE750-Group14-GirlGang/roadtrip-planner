@@ -9,9 +9,10 @@ let app;
 let server;
 
 let roadTrip;
-let emergencyDetails;
+let emergencyDetails1;
+let emergencyDetails2;
 
-jest.mock('../../../../auth/checkJwt', () =>
+jest.mock('../../../../../auth/checkJwt', () =>
   jest.fn((req, res, next) => {
     next();
   })
@@ -32,7 +33,8 @@ beforeEach(async () => {
   const roadTripsColl = await mongoose.connection.db.createCollection('roadtrips');
   const emergencyDetailsColl = await mongoose.connection.db.createCollection('emergencydetails');
 
-  emergencyDetails = {
+  emergencyDetails1 = {
+    name: 'Charlie',
     phoneNumber: '0000000',
     emergencyContact: {
       name: 'Peter',
@@ -40,11 +42,22 @@ beforeEach(async () => {
       relation: 'Father',
     },
   };
-  await emergencyDetailsColl.insertOne(emergencyDetails);
+
+  emergencyDetails2 = {
+    name: 'Daniel',
+    phoneNumber: '1234567',
+    emergencyContact: {
+      name: 'Susan',
+      phoneNumber: '7654321',
+      relation: 'Mother',
+    },
+  };
+  await emergencyDetailsColl.insertOne(emergencyDetails1);
+  await emergencyDetailsColl.insertOne(emergencyDetails2);
 
   roadTrip = {
     name: 'My Road Trip',
-    emergencyDetails: [emergencyDetails._id],
+    emergencyDetails: [emergencyDetails1._id, emergencyDetails2._id],
   };
   await roadTripsColl.insertOne(roadTrip);
 });
@@ -63,13 +76,18 @@ afterAll((done) => {
   });
 });
 
-it('gets emergency details for a roadtrip from the server', async () => {
+it('gets all emergency details for a roadtrip from the server', async () => {
   const response = await axios.get(`http://localhost:3000/api/roadtrip/${roadTrip._id}/emergencydetails`);
   const emergencyDetailsRes = response.data;
 
   expect(emergencyDetailsRes).toBeTruthy();
-  expect(emergencyDetailsRes.length).toBe(1);
+  expect(emergencyDetailsRes.length).toBe(2);
 
+  expect(emergencyDetailsRes[0].name).toBe('Charlie');
   expect(emergencyDetailsRes[0].phoneNumber).toBe('0000000');
   expect(emergencyDetailsRes[0].emergencyContact.name).toBe('Peter');
+
+  expect(emergencyDetailsRes[1].name).toBe('Daniel');
+  expect(emergencyDetailsRes[1].phoneNumber).toBe('1234567');
+  expect(emergencyDetailsRes[1].emergencyContact.name).toBe('Susan');
 });
