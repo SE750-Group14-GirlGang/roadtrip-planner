@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import { getCode, fetchAccessToken, requestAuthorization, refreshAccessToken } from './utils/authorize';
 import CreatePlaylist from '../../../components/playlist/CreatePlaylist/CreatePlaylist';
 import Playlist from '../../../components/playlist/Playlist/Playlist';
 import { getPlaylist } from './utils/spotifyApiCalls';
+import { OrganiserContext } from '../../../contexts/OrganiserContextProvider';
 
 // TODO handle when access token expires
 export default function SpotifyPlaylistPage() {
-  const isHost = true; // TODO Determine from backend
+  const { isUserOrganiser } = useContext(OrganiserContext);
   const [playlistId, setPlaylistId] = useState(null); // TODO Get from backend
   const [playlist, setPlaylist] = useState({
     name: null,
@@ -16,7 +17,7 @@ export default function SpotifyPlaylistPage() {
   });
 
   // If no playlist has been set up, and the user is not a host
-  if (!playlistId && !isHost) {
+  if (!playlistId && !isUserOrganiser) {
     return (
       <div>
         <h1>Playlist</h1>
@@ -48,7 +49,12 @@ export default function SpotifyPlaylistPage() {
   return (
     <div>
       {playlist.name && playlistId && (
-        <Playlist playlistId={playlistId} content={playlist} isHost={isHost} setPlaylist={setPlaylist} />
+        <Playlist
+          playlistId={playlistId}
+          content={playlist}
+          isUserOrganiser={isUserOrganiser}
+          setPlaylist={setPlaylist}
+        />
       )}
       {!playlistId && access_token && <CreatePlaylist setPlaylistId={setPlaylistId} />}
     </div>

@@ -21,7 +21,7 @@ import {
   searchTrack,
 } from '../../../pages/RoadTripPage/SpotifyPlaylistPage/utils/spotifyApiCalls';
 
-export default function Playlist({ playlistId, content, isHost, setPlaylist }) {
+export default function Playlist({ playlistId, content, isUserOrganiser, setPlaylist }) {
   return (
     <div className={styles.playlist}>
       <h1>{content.name}</h1>
@@ -56,7 +56,7 @@ export default function Playlist({ playlistId, content, isHost, setPlaylist }) {
           </TableBody>
         </Table>
       </TableContainer>
-      {isHost && <SearchTracks playlistId={playlistId} setPlaylist={setPlaylist} />}
+      {isUserOrganiser && <SearchTracks playlistId={playlistId} setPlaylist={setPlaylist} />}
     </div>
   );
 }
