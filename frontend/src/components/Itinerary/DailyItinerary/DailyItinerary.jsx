@@ -69,7 +69,7 @@ export default function DailyItinerary({ itinerary, setItinerary }) {
           date={moment(days[dayIndex].date)}
           onDateChange={calanderDayChangeHandler}
           focused={calanderFocused}
-          onFocusChange={({ focused }) => setCalanderFocused(true)}
+          onFocusChange={() => setCalanderFocused(true)}
           id="calander_single_date_picker"
           numberOfMonths={1}
           isOutsideRange={isOutsideRange}
