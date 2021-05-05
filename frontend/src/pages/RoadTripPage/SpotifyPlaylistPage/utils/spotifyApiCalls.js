@@ -84,3 +84,39 @@ export function followPlaylist(id) {
 
   spotify.followPlaylist(id).then(() => alert('Playlist followed!'));
 }
+
+export function searchTrack(value, setTracks) {
+  const accessToken = localStorage.getItem('access_token');
+
+  const spotify = new SpotifyWebApi();
+  spotify.setAccessToken(accessToken);
+
+  spotify.searchTracks(value, { limit: 5 }).then((response) => {
+    const searchedTracks = [];
+    response.tracks.items.forEach((item, key) => {
+      const artistList = [];
+      item.artists.forEach((artist) => {
+        artistList.push(artist.name);
+      });
+
+      const value = {
+        key,
+        uri: item.uri,
+        name: item.name,
+        artists: artistList,
+      };
+      searchedTracks.push(value);
+    });
+
+    setTracks(searchedTracks);
+  });
+}
+
+export function addSong(playlistId, track, setPlaylist) {
+  const accessToken = localStorage.getItem('access_token');
+
+  const spotify = new SpotifyWebApi();
+  spotify.setAccessToken(accessToken);
+
+  spotify.addTracksToPlaylist(playlistId, [track.uri]).then(() => getPlaylist(playlistId, setPlaylist));
+}
