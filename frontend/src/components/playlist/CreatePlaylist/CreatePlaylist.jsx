@@ -4,6 +4,14 @@ import Button from '@material-ui/core/Button';
 import styles from './CreatePlaylist.module.css';
 import { createPlaylist } from '../../../pages/RoadTripPage/SpotifyPlaylistPage/utils/spotifyApiCalls';
 
+function handleCreate(name, description, setPlaylistId) {
+  if (!name) {
+    alert('You must submit a name for your playlist.');
+  } else {
+    createPlaylist(name, description, setPlaylistId);
+  }
+}
+
 export default function CreatePlaylist({ setPlaylistId }) {
   const [values, setValues] = React.useState({
     name: null,
@@ -42,7 +50,7 @@ export default function CreatePlaylist({ setPlaylistId }) {
       </form>
       <Button
         className={styles.createButton}
-        onClick={() => createPlaylist(values.name, values.description, setPlaylistId)}
+        onClick={() => handleCreate(values.name, values.description, setPlaylistId)}
       >
         Create
       </Button>
