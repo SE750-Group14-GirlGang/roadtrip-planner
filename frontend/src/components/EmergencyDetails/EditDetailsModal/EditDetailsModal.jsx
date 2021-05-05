@@ -14,7 +14,7 @@ export default function EditDetailsModal({ userEmergencyDetails, open, onClose, 
   const [emergencyContactRelation, setEmergencyContactRelation] = useState(
     userEmergencyDetails?.emergencyContact.relation || ''
   );
-  const [emergencyContactPhoneNumber, setEmergenctContactPhoneNumber] = useState(
+  const [emergencyContactPhoneNumber, setEmergencyContactPhoneNumber] = useState(
     userEmergencyDetails?.emergencyContact.phoneNumber || ''
   );
 
@@ -31,7 +31,7 @@ export default function EditDetailsModal({ userEmergencyDetails, open, onClose, 
     setEmergencyContactRelation(event.target.value);
   };
   const handleEmergencyContactPhoneNumberChange = (event) => {
-    setEmergenctContactPhoneNumber(event.target.value);
+    setEmergencyContactPhoneNumber(event.target.value);
   };
 
   return (
