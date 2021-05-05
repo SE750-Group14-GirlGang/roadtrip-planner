@@ -1,5 +1,8 @@
 .itineraryContainer {
   display: flex;
-  padding-right: 200px;
   margin: 50px;
+}
+
+.DatePickerContainer {
+  padding-right: 200px; /*account for actual calander */
 }
