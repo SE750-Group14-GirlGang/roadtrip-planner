@@ -12,7 +12,9 @@ export default function EventCard({ event }) {
       <div className={styles.card}>
         <div className={styles.cardContent}>
           <p className={styles.time}>{formattedTime}</p>
-          <p className={styles.description}>{event.description}</p>
+          <div className={styles.descriptionContainer}>
+            <p className={styles.description}>{event.description}</p>
+          </div>
           <div className={styles.locationTimeContainer}>
             <p> Location: {event.location}</p>
             <p> Notes: {event.notes}</p>

@@ -20,7 +20,7 @@ export default function DayCard({ day, handleNext, hasNextDay, handlePrev, hasPr
   const formattedDate = moment(date).format('dddd Do MMMM');
 
   // sort events in a day by time
-  events.sort(function (a, b) {
+  events.sort((a, b) => {
     return a.time.localeCompare(b.time);
   });
 

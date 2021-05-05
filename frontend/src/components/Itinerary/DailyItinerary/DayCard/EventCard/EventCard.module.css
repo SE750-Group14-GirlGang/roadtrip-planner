@@ -15,28 +15,32 @@
 }
 
 .cardContent {
-  padding: 20px;
+  margin: 20px 20px 3px;
+  padding-bottom: 10px;
   flex: 1;
   overflow: auto;
   display: grid;
-  grid-template-columns: 20% 40% 40%;
+  grid-template-columns: minmax(70px, 20%) auto minmax(70px, 40%);
   color: #24305e;
+  text-align: left;
+}
+
+.descriptionContainer {
+  margin: 12px;
+  overflow: hidden;
 }
 
 .description {
-  margin: 10px;
   font-size: 20px;
+  text-overflow: ellipsis;
+  margin: 0;
 }
 
 .time {
-  margin-right: 20%;
   font-size: 16px;
-  text-decoration-line: underline;
-  text-decoration-color: #f76c6c;
 }
 
 .locationTimeContainer {
-  margin-left: 20%;
   justify-content: center;
   display: flex;
   align-items: flex-start;

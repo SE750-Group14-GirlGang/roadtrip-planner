@@ -5,9 +5,8 @@
 }
 
 .card {
-  width: 60%;
+  width: 70%;
   min-width: 350px;
-  /* margin: 50px; */
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   flex-flow: column;
@@ -44,4 +43,22 @@
 .noEventDescription {
   font-style: italic;
   font-size: 20px;
+}
+
+.card ::-webkit-scrollbar {
+  height: 8px;
+}
+
+.card ::-webkit-scrollbar-track {
+  background: none;
+}
+
+.card ::-webkit-scrollbar-thumb {
+  background: rgb(207, 206, 206);
+  border-radius: 4px;
+}
+
+/*Handle on hover */
+.card ::-webkit-scrollbar-thumb:hover {
+  background: #24305e;
 }
