@@ -47,7 +47,7 @@ export default function SpotifyPlaylistPage() {
 
   return (
     <div>
-      {playlist.name && playlistId && <Playlist content={playlist} />}
+      {playlist.name && playlistId && <Playlist playlistId={playlistId} content={playlist} />}
       {!playlistId && access_token && <CreatePlaylist setPlaylistId={setPlaylistId} />}
     </div>
   );

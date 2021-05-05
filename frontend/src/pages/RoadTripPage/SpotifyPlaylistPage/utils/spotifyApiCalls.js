@@ -75,3 +75,12 @@ export function getPlaylist(id, setPlaylist) {
 
   spotify.getPlaylist(id, {}).then((r) => setPlaylist(handlePlaylistData(r)));
 }
+
+export function followPlaylist(id) {
+  const accessToken = localStorage.getItem('access_token');
+
+  const spotify = new SpotifyWebApi();
+  spotify.setAccessToken(accessToken);
+
+  spotify.followPlaylist(id).then(() => alert('Playlist followed!'));
+}

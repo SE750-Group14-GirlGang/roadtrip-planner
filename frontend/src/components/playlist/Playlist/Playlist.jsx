@@ -1,11 +1,14 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 import styles from './Playlist.module.css';
+import { followPlaylist } from '../../../pages/RoadTripPage/SpotifyPlaylistPage/utils/spotifyApiCalls';
 
-export default function Playlist({ content }) {
+export default function Playlist({ playlistId, content }) {
   return (
     <div className={styles.playlist}>
       <h1>{content.name}</h1>
       <p>{content.description}</p>
+      <Button onClick={() => followPlaylist(playlistId)}>Follow</Button>
 
       <TableContainer className={styles.tracks}>
         <Table aria-label="simple table">
