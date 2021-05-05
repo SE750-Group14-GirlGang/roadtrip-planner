@@ -43,7 +43,7 @@ export default function Playlist({ playlistId, content, isHost, setPlaylist }) {
                   <TableCell component="th" scope="row">
                     {track.name}
                   </TableCell>
-                  <TableCell align="right">{track.artists.toString()}</TableCell>
+                  <TableCell align="right">{track.artists.join(', ')}</TableCell>
                 </TableRow>
               ))
             ) : (
