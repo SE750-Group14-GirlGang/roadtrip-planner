@@ -4,9 +4,6 @@ const client_secret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
 
 const TOKEN = 'https://accounts.spotify.com/api/token';
 
-let access_token = null;
-let refresh_token = null;
-
 export function requestAuthorization() {
   const scopes = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
   window.location.href =
@@ -22,12 +19,7 @@ export const getCode = () => {
   return urlParams.get('code');
 };
 
-export function fetchAccessToken(code, setTokens) {
-  const body = `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURI(
-    redirect_uri
-  )}&client_id=${client_id}&client_secret=${client_secret}`;
-
-  // Get tokens
+function callAuthApi(body) {
   const xhr = new XMLHttpRequest();
   xhr.open('POST', TOKEN, true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -38,27 +30,29 @@ export function fetchAccessToken(code, setTokens) {
       const data = JSON.parse(this.responseText);
       console.log(data);
       if (data.access_token !== undefined) {
-        access_token = data.access_token;
-        localStorage.setItem('access_token', access_token);
-        setTokens((prevState) => {
-          return {
-            access_token,
-            refresh_token: prevState.refresh_token,
-          };
-        });
+        localStorage.setItem('access_token', data.access_token);
+        localStorage.setItem('token_retrieved', new Date().getTime());
       }
       if (data.refresh_token !== undefined) {
-        refresh_token = data.refresh_token;
-        localStorage.setItem('refresh_token', refresh_token);
-        setTokens((prevState) => {
-          return {
-            access_token: prevState.access_token,
-            refresh_token,
-          };
-        });
+        localStorage.setItem('refresh_token', data.refresh_token);
       }
     }
   };
+}
+
+export function fetchAccessToken(code) {
+  const body = `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURI(
+    redirect_uri
+  )}&client_id=${client_id}&client_secret=${client_secret}`;
+
+  callAuthApi(body);
+}
+
+export function refreshAccessToken() {
+  const refresh_token = localStorage.getItem('refresh_token');
+  const body = `grant_type=refresh_token&refresh_token=${refresh_token}&client_id=${client_id}`;
+
+  callAuthApi(body);
 }
 
 export default { getCode, fetchAccessToken, requestAuthorization };

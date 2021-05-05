@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
-import { getCode, fetchAccessToken, requestAuthorization } from './utils/authorize';
+import { getCode, fetchAccessToken, requestAuthorization, refreshAccessToken } from './utils/authorize';
 import CreatePlaylist from '../../../components/playlist/CreatePlaylist/CreatePlaylist';
 import Playlist from '../../../components/playlist/Playlist/Playlist';
 import { getPlaylist } from './utils/spotifyApiCalls';
@@ -25,16 +25,17 @@ export default function SpotifyPlaylistPage() {
     );
   }
 
-  const [tokens, setTokens] = useState({
-    access_token: localStorage.getItem('access_token'),
-    refresh_token: localStorage.getItem('refresh_token'),
-  });
-
   const code = getCode();
   if (code && (!tokens.access_token || !tokens.refresh_token)) {
-    fetchAccessToken(code, setTokens);
+    fetchAccessToken(code);
   } else if (!tokens.access_token || !tokens.refresh_token) {
     return <Button onClick={requestAuthorization}>Authorize Spotify</Button>;
+  }
+
+  // Check if access token is valid (they only last 1 hour)
+  const ONE_HOUR = 60 * 60 * 1000;
+  if (new Date().getTime() - localStorage.getItem('token_retrieved') >= ONE_HOUR) {
+    refreshAccessToken();
   }
 
   if (playlistId && tokens.access_token && !playlist.name) {
