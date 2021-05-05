@@ -1,8 +1,15 @@
 .container {
   display: flex;
-  justify-content: center;
+  flex-flow: column;
+  align-items: center;
 }
 
 .table {
   width: 75%;
+}
+
+.buttonContainer {
+  margin-top: 37.6px;
+  display: flex;
+  justify-content: center;
 }
