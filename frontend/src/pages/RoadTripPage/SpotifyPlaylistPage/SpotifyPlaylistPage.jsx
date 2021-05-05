@@ -25,10 +25,13 @@ export default function SpotifyPlaylistPage() {
     );
   }
 
+  const access_token = localStorage.getItem('access_token');
+  const refresh_token = localStorage.getItem('refresh_token');
+
   const code = getCode();
-  if (code && (!tokens.access_token || !tokens.refresh_token)) {
+  if (code && (!access_token || !refresh_token)) {
     fetchAccessToken(code);
-  } else if (!tokens.access_token || !tokens.refresh_token) {
+  } else if (!access_token || !refresh_token) {
     return <Button onClick={requestAuthorization}>Authorize Spotify</Button>;
   }
 
@@ -38,14 +41,14 @@ export default function SpotifyPlaylistPage() {
     refreshAccessToken();
   }
 
-  if (playlistId && tokens.access_token && !playlist.name) {
+  if (playlistId && access_token && !playlist.name) {
     getPlaylist(playlistId, setPlaylist);
   }
 
   return (
     <div>
       {playlist.name && playlistId && <Playlist content={playlist} />}
-      {!playlistId && tokens.access_token && <CreatePlaylist setPlaylistId={setPlaylistId} />}
+      {!playlistId && access_token && <CreatePlaylist setPlaylistId={setPlaylistId} />}
     </div>
   );
 }

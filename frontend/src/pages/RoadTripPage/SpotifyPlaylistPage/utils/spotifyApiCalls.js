@@ -75,5 +75,3 @@ export function getPlaylist(id, setPlaylist) {
 
   spotify.getPlaylist(id, {}).then((r) => setPlaylist(handlePlaylistData(r)));
 }
-
-export default { createPlaylist };
