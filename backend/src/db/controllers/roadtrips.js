@@ -33,10 +33,15 @@ export async function getOrganiser(roadTripId) {
 
 export async function addAttendee(roadTripId, userId) {
   const dbRoadTrip = await getRoadTrip(roadTripId);
-  if (dbRoadTrip.attendees.every((e) => new String(e).valueOf() !== new String(userId).valueOf())) {
+  if (
+    dbRoadTrip.attendees.every((e) => new String(e).valueOf() !== new String(userId).valueOf()) &&
+    new String(dbRoadTrip.organiser).valueOf() != new String(userId).valueOf()
+  ) {
     dbRoadTrip.attendees.push(userId);
     await users.addRoadTripAttending(userId, roadTripId);
+    await dbRoadTrip.save();
+    return dbRoadTrip;
+  } else {
+    return null;
   }
-  await dbRoadTrip.save();
-  return dbRoadTrip;
 }

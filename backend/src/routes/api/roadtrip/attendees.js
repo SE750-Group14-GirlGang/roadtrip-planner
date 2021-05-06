@@ -20,9 +20,13 @@ router.patch('/:id/attendees', async (req, res) => {
   const user = await users.getUserByEmail(req.body.userEmail);
   if (user) {
     const updatedRoadtrip = await roadtrips.addAttendee(roadTripId, user._id);
-    res.json(updatedRoadtrip);
+    if (updatedRoadtrip) {
+      res.json(updatedRoadtrip);
+    } else {
+      res.status(constants.HTTP_BAD_REQUEST).send('This user is already an attendee');
+    }
   } else {
-    res.sendStatus(constants.HTTP_NOT_FOUND);
+    res.status(constants.HTTP_NOT_FOUND).send('User not found');
   }
 });
 
