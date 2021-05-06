@@ -22,11 +22,16 @@ import {
 } from '../../../pages/RoadTripPage/SpotifyPlaylistPage/utils/spotifyApiCalls';
 
 export default function Playlist({ playlistId, content, isUserOrganiser, setPlaylist }) {
+  const OPEN_SPOTIFY_LINK = `https://open.spotify.com/playlist/${playlistId}`;
+
   return (
     <div className={styles.playlist}>
       <h1>{content.name}</h1>
       <p>{content.description}</p>
       <Button onClick={() => followPlaylist(playlistId)}>Follow</Button>
+      <Button href={OPEN_SPOTIFY_LINK} target="_blank">
+        Open Spotify
+      </Button>
 
       <TableContainer className={styles.tracks}>
         <Table aria-label="simple table">
