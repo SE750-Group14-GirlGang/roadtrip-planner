@@ -47,7 +47,7 @@ export default function EmergencyDetails({ allEmergencyDetails, userEmergencyDet
           </TableContainer>
         </div>
         <div className={styles.buttonContainer}>
-          <AddButton onClick={handleOpenEditDetailsModal}>Edit Details</AddButton>
+          <AddButton onClick={handleOpenEditDetailsModal}>Edit Your Details</AddButton>
         </div>
       </div>
       <EditDetailsModal
