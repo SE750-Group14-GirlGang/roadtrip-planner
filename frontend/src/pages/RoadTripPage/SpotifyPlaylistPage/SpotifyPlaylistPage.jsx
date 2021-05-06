@@ -16,6 +16,9 @@ export default function SpotifyPlaylistPage() {
     tracks: [],
   });
 
+  const [accessToken, setAccessToken] = useState(localStorage.getItem('access_token'));
+  const refreshToken = localStorage.getItem('refresh_token');
+
   // If no playlist has been set up, and the user is not a host
   if (!playlistId && !isUserOrganiser) {
     return (
@@ -26,23 +29,20 @@ export default function SpotifyPlaylistPage() {
     );
   }
 
-  const access_token = localStorage.getItem('access_token');
-  const refresh_token = localStorage.getItem('refresh_token');
-
   const code = getCode();
-  if (code && (!access_token || !refresh_token)) {
-    fetchAccessToken(code);
-  } else if (!access_token || !refresh_token) {
+  if (code && (!accessToken || !refreshToken)) {
+    fetchAccessToken(code, setAccessToken);
+  } else if (!accessToken || !refreshToken) {
     return <Button onClick={requestAuthorization}>Authorize Spotify</Button>;
   }
 
   // Check if access token is valid (they only last 1 hour)
   const ONE_HOUR = 60 * 60 * 1000;
-  if (new Date().getTime() - localStorage.getItem('token_retrieved') >= ONE_HOUR) {
-    refreshAccessToken();
+  if (!accessToken && new Date().getTime() - localStorage.getItem('token_retrieved') >= ONE_HOUR) {
+    refreshAccessToken(setAccessToken);
   }
 
-  if (playlistId && access_token && !playlist.name) {
+  if (playlistId && accessToken && !playlist.name) {
     getPlaylist(playlistId, setPlaylist);
   }
 
@@ -56,7 +56,7 @@ export default function SpotifyPlaylistPage() {
           setPlaylist={setPlaylist}
         />
       )}
-      {!playlistId && access_token && <CreatePlaylist setPlaylistId={setPlaylistId} />}
+      {!playlistId && accessToken && <CreatePlaylist setPlaylistId={setPlaylistId} />}
     </div>
   );
 }

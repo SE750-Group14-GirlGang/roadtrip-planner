@@ -19,7 +19,7 @@ export const getCode = () => {
   return urlParams.get('code');
 };
 
-function callAuthApi(body) {
+function callAuthApi(body, setAccessToken) {
   const xhr = new XMLHttpRequest();
   xhr.open('POST', TOKEN, true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -31,6 +31,7 @@ function callAuthApi(body) {
       console.log(data);
       if (data.access_token !== undefined) {
         localStorage.setItem('access_token', data.access_token);
+        setAccessToken(data.access_token);
         localStorage.setItem('token_retrieved', new Date().getTime());
       }
       if (data.refresh_token !== undefined) {
@@ -40,19 +41,19 @@ function callAuthApi(body) {
   };
 }
 
-export function fetchAccessToken(code) {
+export function fetchAccessToken(code, setAccessToken) {
   const body = `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURI(
     redirect_uri
   )}&client_id=${client_id}&client_secret=${client_secret}`;
 
-  callAuthApi(body);
+  callAuthApi(body, setAccessToken);
 }
 
-export function refreshAccessToken() {
+export function refreshAccessToken(setAccessToken) {
   const refresh_token = localStorage.getItem('refresh_token');
   const body = `grant_type=refresh_token&refresh_token=${refresh_token}&client_id=${client_id}`;
 
-  callAuthApi(body);
+  callAuthApi(body, setAccessToken);
 }
 
 export default { getCode, fetchAccessToken, requestAuthorization };
