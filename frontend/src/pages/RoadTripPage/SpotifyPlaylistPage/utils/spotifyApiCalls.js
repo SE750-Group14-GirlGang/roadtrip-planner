@@ -16,7 +16,7 @@ async function setUserId() {
   });
 }
 
-export async function createPlaylist(name, description, setPlaylistId) {
+export async function createPlaylist(name, description, roadTrip, setPlaylistId, post) {
   const accessToken = localStorage.getItem('access_token');
   const spotify_user_id = localStorage.getItem('spotify_user_id');
 
@@ -34,7 +34,10 @@ export async function createPlaylist(name, description, setPlaylistId) {
       public: false,
       collaborative: true,
     })
-    .then((r) => setPlaylistId(r.id));
+    .then(async (r) => {
+      const { response } = await post(`/api/roadtrip/${roadTrip}/spotify`, { playlistId: r.id });
+      setPlaylistId(response?.data?.playlistId);
+    });
 }
 
 const handlePlaylistData = (response) => {

@@ -1,18 +1,23 @@
 import React from 'react';
 import { TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import { useParams } from 'react-router-dom';
 import styles from './CreatePlaylist.module.css';
 import { createPlaylist } from '../../../pages/RoadTripPage/SpotifyPlaylistPage/utils/spotifyApiCalls';
+import usePost from '../../../hooks/usePost';
 
-function handleCreate(name, description, setPlaylistId) {
+function handleCreate(name, description, roadTrip, setPlaylistId, post) {
   if (!name) {
     alert('You must submit a name for your playlist.');
   } else {
-    createPlaylist(name, description, setPlaylistId);
+    createPlaylist(name, description, roadTrip, setPlaylistId, post);
   }
 }
 
 export default function CreatePlaylist({ setPlaylistId }) {
+  const { id } = useParams();
+  const post = usePost();
+
   const [values, setValues] = React.useState({
     name: null,
     description: null,
@@ -50,7 +55,7 @@ export default function CreatePlaylist({ setPlaylistId }) {
       </form>
       <Button
         className={styles.createButton}
-        onClick={() => handleCreate(values.name, values.description, setPlaylistId)}
+        onClick={() => handleCreate(values.name, values.description, id, setPlaylistId, post)}
       >
         Create
       </Button>

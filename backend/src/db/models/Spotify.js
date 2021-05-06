@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const spotifySchema = new Schema(
   {
-    playlistLink: String,
+    playlistId: String,
   },
   { collection: 'spotifys' }
 );
