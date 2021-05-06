@@ -10,25 +10,35 @@ import useGet from '../../../hooks/useGet';
 export default function EmergencyDetailsPage() {
   const { id } = useParams();
 
-  const { response: allEmergencyDetails, loading: allEmergencyDetailsLoading } = useGet(
-    `/api/roadtrip/${id}/emergencydetails`
-  );
-  const { response: userEmergencyDetails, loading: userEmergencyDetailsLoading } = useGet(
-    `/api/roadtrip/${id}/emergencydetails/user`
-  );
+  const {
+    response: allEmergencyDetails,
+    loading: allEmergencyDetailsLoading,
+    refetch: refetchAllEmergencyDetails,
+  } = useGet(`/api/roadtrip/${id}/emergencydetails`);
+  const {
+    response: userEmergencyDetails,
+    loading: userEmergencyDetailsLoading,
+    refetch: refetchUserEmergencyDetails,
+  } = useGet(`/api/roadtrip/${id}/emergencydetails/user`);
+
+  const refetch = () => {
+    refetchUserEmergencyDetails();
+    refetchAllEmergencyDetails();
+  };
 
   const isLoading = allEmergencyDetailsLoading || userEmergencyDetailsLoading;
 
   return (
     <div className={styles.emergencyDetailsPage}>
       <p className={styles.title}>Emergency Details</p>
-      {isLoading && <Spinner />}
       {!isLoading && (
         <EmergencyDetails
           allEmergencyDetails={allEmergencyDetails?.data}
           userEmergencyDetails={userEmergencyDetails?.data}
+          refetchEmergencyDetails={refetch}
         />
       )}
+      {isLoading && <Spinner />}
     </div>
   );
 }

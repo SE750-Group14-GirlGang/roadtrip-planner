@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -6,8 +7,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import styles from './EditDetailsModal.module.css';
+import usePut from '../../../hooks/usePut';
 
-export default function EditDetailsModal({ userEmergencyDetails, open, onClose, onSubmit, error }) {
+export default function EditDetailsModal({ userEmergencyDetails, open, onClose, refetchEmergencyDetails }) {
+  const { id } = useParams();
+  const put = usePut();
+
+  const [error, setError] = useState(false);
   const [name, setName] = useState(userEmergencyDetails?.name || '');
   const [phoneNumber, setPhoneNumber] = useState(userEmergencyDetails?.phoneNumber || '');
   const [emergencyContactName, setEmergencyContactName] = useState(userEmergencyDetails?.emergencyContact.name || '');
@@ -32,6 +38,17 @@ export default function EditDetailsModal({ userEmergencyDetails, open, onClose, 
   };
   const handleEmergencyContactPhoneNumberChange = (event) => {
     setEmergencyContactPhoneNumber(event.target.value);
+  };
+
+  const handleSubmit = async (emergencyDetails) => {
+    setError(false);
+    const { error } = await put(`/api/roadtrip/${id}/emergencydetails/user`, emergencyDetails);
+    if (error) {
+      setError(true);
+    } else {
+      refetchEmergencyDetails();
+      onClose();
+    }
   };
 
   return (
@@ -88,7 +105,7 @@ export default function EditDetailsModal({ userEmergencyDetails, open, onClose, 
         <DialogActions>
           <Button
             onClick={() =>
-              onSubmit({
+              handleSubmit({
                 name,
                 phoneNumber,
                 emergencyContact: {

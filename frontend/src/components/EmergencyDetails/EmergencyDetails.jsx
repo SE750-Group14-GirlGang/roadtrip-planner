@@ -6,9 +6,8 @@ import styles from './EmergencyDetails.module.css';
 import EditDetailsModal from './EditDetailsModal/EditDetailsModal';
 import AddButton from '../commons/buttons/AddButton/AddButton';
 
-export default function EmergencyDetails({ allEmergencyDetails, userEmergencyDetails }) {
+export default function EmergencyDetails({ allEmergencyDetails, userEmergencyDetails, refetchEmergencyDetails }) {
   const [editDetailsModalOpen, setEditDetailsModalOpen] = useState(false);
-  const [addDetailsError, setAddDetailsError] = useState(false);
 
   const handleOpenEditDetailsModal = () => {
     setEditDetailsModalOpen(true);
@@ -16,11 +15,6 @@ export default function EmergencyDetails({ allEmergencyDetails, userEmergencyDet
 
   const handleCloseEditDetailsModal = () => {
     setEditDetailsModalOpen(false);
-    setAddDetailsError(false);
-  };
-
-  const handleSubmit = (emergencyDetails) => {
-    console.log(emergencyDetails);
   };
 
   return (
@@ -61,8 +55,7 @@ export default function EmergencyDetails({ allEmergencyDetails, userEmergencyDet
         userEmergencyDetails={userEmergencyDetails}
         open={editDetailsModalOpen}
         onClose={handleCloseEditDetailsModal}
-        onSubmit={handleSubmit}
-        error={false}
+        refetchEmergencyDetails={refetchEmergencyDetails}
       />
     </>
   );
