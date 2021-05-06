@@ -12,7 +12,6 @@ export default function EmergencyDetails({ allEmergencyDetails, userEmergencyDet
   const handleOpenEditDetailsModal = () => {
     setEditDetailsModalOpen(true);
   };
-
   const handleCloseEditDetailsModal = () => {
     setEditDetailsModalOpen(false);
   };

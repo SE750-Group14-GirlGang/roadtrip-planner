@@ -31,13 +31,11 @@ export default function EmergencyDetailsPage() {
   return (
     <div className={styles.emergencyDetailsPage}>
       <p className={styles.title}>Emergency Details</p>
-      {!isLoading && (
-        <EmergencyDetails
-          allEmergencyDetails={allEmergencyDetails?.data}
-          userEmergencyDetails={userEmergencyDetails?.data}
-          refetchEmergencyDetails={refetch}
-        />
-      )}
+      <EmergencyDetails
+        allEmergencyDetails={allEmergencyDetails?.data}
+        userEmergencyDetails={userEmergencyDetails?.data}
+        refetchEmergencyDetails={refetch}
+      />
       {isLoading && <Spinner />}
     </div>
   );
