@@ -1,4 +1,4 @@
-const redirect_uri = 'http://localhost:3000/road-trip/608a11a9b1a2ffd010b1d738/spotify-playlist/callback';
+const redirect_uri = 'http://localhost:3000/road-trip/spotify-playlist/callback';
 const client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const client_secret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
 
@@ -19,41 +19,43 @@ export const getCode = () => {
   return urlParams.get('code');
 };
 
-function callAuthApi(body, setAccessToken) {
-  const xhr = new XMLHttpRequest();
-  xhr.open('POST', TOKEN, true);
-  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhr.setRequestHeader('Authorization', `Basic ${btoa(`${client_id}:${client_secret}`)}`);
-  xhr.send(body);
-  xhr.onload = function () {
-    if (this.status === 200) {
-      const data = JSON.parse(this.responseText);
-      console.log(data);
-      if (data.access_token !== undefined) {
-        localStorage.setItem('access_token', data.access_token);
-        setAccessToken(data.access_token);
-        localStorage.setItem('token_retrieved', new Date().getTime());
+function callAuthApi(body) {
+  return new Promise(function (resolve) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', TOKEN, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.setRequestHeader('Authorization', `Basic ${btoa(`${client_id}:${client_secret}`)}`);
+    xhr.send(body);
+    xhr.onload = function () {
+      if (this.status === 200) {
+        const data = JSON.parse(this.responseText);
+        console.log(data);
+        if (data.access_token !== undefined) {
+          localStorage.setItem('access_token', data.access_token);
+          localStorage.setItem('token_retrieved', new Date().getTime());
+        }
+        if (data.refresh_token !== undefined) {
+          localStorage.setItem('refresh_token', data.refresh_token);
+        }
+        resolve();
       }
-      if (data.refresh_token !== undefined) {
-        localStorage.setItem('refresh_token', data.refresh_token);
-      }
-    }
-  };
+    };
+  });
 }
 
-export function fetchAccessToken(code, setAccessToken) {
+export async function fetchAccessToken(code) {
   const body = `grant_type=authorization_code&code=${code}&redirect_uri=${encodeURI(
     redirect_uri
   )}&client_id=${client_id}&client_secret=${client_secret}`;
 
-  callAuthApi(body, setAccessToken);
+  await callAuthApi(body);
 }
 
-export function refreshAccessToken(setAccessToken) {
+export async function refreshAccessToken() {
   const refresh_token = localStorage.getItem('refresh_token');
   const body = `grant_type=refresh_token&refresh_token=${refresh_token}&client_id=${client_id}`;
 
-  callAuthApi(body, setAccessToken);
+  await callAuthApi(body);
 }
 
 export default { getCode, fetchAccessToken, requestAuthorization };

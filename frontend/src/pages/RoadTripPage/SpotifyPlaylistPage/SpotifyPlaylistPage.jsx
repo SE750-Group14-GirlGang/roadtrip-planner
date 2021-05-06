@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Button from '@material-ui/core/Button';
-import { getCode, fetchAccessToken, requestAuthorization, refreshAccessToken } from './utils/authorize';
+import { useParams } from 'react-router-dom';
+import { requestAuthorization, refreshAccessToken } from './utils/authorize';
 import CreatePlaylist from '../../../components/playlist/CreatePlaylist/CreatePlaylist';
 import Playlist from '../../../components/playlist/Playlist/Playlist';
 import { getPlaylist } from './utils/spotifyApiCalls';
@@ -8,6 +9,9 @@ import { OrganiserContext } from '../../../contexts/OrganiserContextProvider';
 
 // TODO handle when access token expires
 export default function SpotifyPlaylistPage() {
+  const { id } = useParams();
+  localStorage.setItem('last_road_trip', id);
+
   const { isUserOrganiser } = useContext(OrganiserContext);
   const [playlistId, setPlaylistId] = useState(null); // TODO Get from backend
   const [playlist, setPlaylist] = useState({
@@ -16,7 +20,7 @@ export default function SpotifyPlaylistPage() {
     tracks: [],
   });
 
-  const [accessToken, setAccessToken] = useState(localStorage.getItem('access_token'));
+  const accessToken = localStorage.getItem('access_token');
   const refreshToken = localStorage.getItem('refresh_token');
 
   // If no playlist has been set up, and the user is not a host
@@ -29,17 +33,14 @@ export default function SpotifyPlaylistPage() {
     );
   }
 
-  const code = getCode();
-  if (code && (!accessToken || !refreshToken)) {
-    fetchAccessToken(code, setAccessToken);
-  } else if (!accessToken || !refreshToken) {
+  if (!accessToken || !refreshToken) {
     return <Button onClick={requestAuthorization}>Authorize Spotify</Button>;
   }
 
   // Check if access token is valid (they only last 1 hour)
   const ONE_HOUR = 60 * 60 * 1000;
   if (!accessToken && new Date().getTime() - localStorage.getItem('token_retrieved') >= ONE_HOUR) {
-    refreshAccessToken(setAccessToken);
+    refreshAccessToken();
   }
 
   if (playlistId && accessToken && !playlist.name) {
