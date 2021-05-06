@@ -28,7 +28,7 @@ export default function Playlist({ playlistId, content, isUserOrganiser, setPlay
     <div className={styles.playlist}>
       <h1>{content.name}</h1>
       <p>{content.description}</p>
-      <Button onClick={() => followPlaylist(playlistId)}>Follow</Button>
+      {!isUserOrganiser && <Button onClick={() => followPlaylist(playlistId)}>Follow</Button>}
       <Button href={OPEN_SPOTIFY_LINK} target="_blank">
         Open Spotify
       </Button>
