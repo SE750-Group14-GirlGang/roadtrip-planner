@@ -14,7 +14,7 @@ export default function RoadTripPage() {
       <div className="roadTrip">
         <BrowserRouter>
           <Route path="/road-trip/:id">
-            <RoadTripPageInner homePageHistory={history} />
+            <RoadTripPageInner dashboardPageHistory={history} />
           </Route>
         </BrowserRouter>
       </div>

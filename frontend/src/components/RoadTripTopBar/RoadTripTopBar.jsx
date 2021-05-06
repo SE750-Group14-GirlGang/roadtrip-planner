@@ -13,7 +13,7 @@ import { OrganiserContext } from '../../contexts/OrganiserContextProvider';
 import ResizableIconButton from '../commons/buttons/ResizableIconButton/ResizableIconButton';
 import { CustomTopBar, useStyles } from './RoadTripTopBar.styles';
 
-export default function RoadTripTopBar({ homePageHistory }) {
+export default function RoadTripTopBar({ dashboardPageHistory }) {
   const { id } = useParams();
   const { response } = useGet(`/api/roadtrip/${id}`);
   const { isUserOrganiser } = useContext(OrganiserContext);
@@ -29,8 +29,8 @@ export default function RoadTripTopBar({ homePageHistory }) {
     setModalOpen(false);
   };
 
-  const handleRedirectHome = () => {
-    homePageHistory.push('/');
+  const handleRedirectDashboard = () => {
+    dashboardPageHistory.push('/');
   };
 
   return (
@@ -46,7 +46,7 @@ export default function RoadTripTopBar({ homePageHistory }) {
             <GroupRoundedIcon onClick={handleOpenModal} />
           )}
         </ResizableIconButton>
-        <ResizableIconButton size="large" onClick={handleRedirectHome}>
+        <ResizableIconButton size="large" onClick={handleRedirectDashboard}>
           <HomeRoundedIcon />
         </ResizableIconButton>
         <ResizableIconButton size="large">
