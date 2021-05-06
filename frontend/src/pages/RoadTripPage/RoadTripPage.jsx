@@ -12,7 +12,6 @@ export default function RoadTripPage() {
   return (
     <OrganiserContextProvider roadTripId={id}>
       <div className="roadTrip">
-        <RoadTripTopBar />
         <BrowserRouter>
           <Route path="/road-trip/:id">
             <RoadTripPageInner />

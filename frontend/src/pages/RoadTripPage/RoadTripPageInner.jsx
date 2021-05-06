@@ -1,8 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom';
 
-import SideBar from '../../components/SideBar/SideBar';
-
+import RoadTripTopBar from '../../components/RoadTripTopBar/RoadTripTopBar';
 import MapPage from './MapPage/MapPage';
 import ItineraryPage from './ItineraryPage/ItineraryPage';
 import EmergencyDetailsPage from './EmergencyDetailsPage/EmergencyDetailsPage';
@@ -14,7 +13,7 @@ export default function RoadTripPageInner() {
 
   return (
     <div>
-      <SideBar />
+      <RoadTripTopBar />
       <Switch>
         <Route path={`${path}/map`}>
           <MapPage />
