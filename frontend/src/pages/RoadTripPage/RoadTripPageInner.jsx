@@ -8,12 +8,12 @@ import EmergencyDetailsPage from './EmergencyDetailsPage/EmergencyDetailsPage';
 import PackingListPage from './PackingListPage/PackingListPage';
 import SpotifyPlaylistPage from './SpotifyPlaylistPage/SpotifyPlaylistPage';
 
-export default function RoadTripPageInner() {
+export default function RoadTripPageInner({ homePageHistory }) {
   const { path, url } = useRouteMatch();
 
   return (
     <div>
-      <RoadTripTopBar />
+      <RoadTripTopBar homePageHistory={homePageHistory} />
       <Switch>
         <Route path={`${path}/map`}>
           <MapPage />
