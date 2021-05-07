@@ -1,8 +1,8 @@
 import { React } from 'react';
 import { useParams } from 'react-router-dom';
-import Itinerary from '../Itinerary';
-import Spinner from '../../commons/Spinner/Spinner';
-import useGet from '../../../hooks/useGet';
+import Itinerary from './Itinerary/Itinerary';
+import Spinner from '../commons/Spinner/Spinner';
+import useGet from '../../hooks/useGet';
 
 export default function ItineraryWrapper() {
   const { id } = useParams();

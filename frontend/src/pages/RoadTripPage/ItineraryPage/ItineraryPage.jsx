@@ -1,6 +1,6 @@
 import { React } from 'react';
 import styles from './ItineraryPage.module.css';
-import ItineraryWrapper from '../../../components/Itinerary/ItineraryWrapper/ItineraryWrapper';
+import ItineraryWrapper from '../../../components/ItineraryWrapper/ItineraryWrapper';
 
 export default function ItineraryPage() {
   return (

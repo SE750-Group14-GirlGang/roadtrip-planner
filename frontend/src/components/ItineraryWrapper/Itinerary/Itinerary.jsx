@@ -1,11 +1,11 @@
 import { React, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import DateRangePickerModal from './DateRangePickerModal/DateRangePickerModal';
-import AddButton from '../commons/buttons/AddButton/AddButton';
+import AddButton from '../../commons/buttons/AddButton/AddButton';
 import styles from './Itinerary.module.css';
-import getDaysInbetween from '../../utils/dates/getDaysInbetween';
-import usePost from '../../hooks/usePost';
-import { OrganiserContext } from '../../contexts/OrganiserContextProvider';
+import getDaysInbetween from '../../../utils/dates/getDaysInbetween';
+import usePost from '../../../hooks/usePost';
+import { OrganiserContext } from '../../../contexts/OrganiserContextProvider';
 import DailyItinerary from './DailyItinerary/DailyItinerary';
 
 export default function Itinerary({ itineraryData }) {

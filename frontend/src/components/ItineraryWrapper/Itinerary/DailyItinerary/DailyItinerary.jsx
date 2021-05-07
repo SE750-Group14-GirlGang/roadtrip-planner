@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { SingleDatePicker } from 'react-dates';
 import moment from 'moment';
-import usePatch from '../../../hooks/usePatch';
+import usePatch from '../../../../hooks/usePatch';
 import DayCard from './DayCard/DayCard';
 import styles from './DailyItinerary.module.css';
 

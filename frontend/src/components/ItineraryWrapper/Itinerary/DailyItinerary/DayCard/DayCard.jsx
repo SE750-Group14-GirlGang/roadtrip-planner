@@ -5,9 +5,9 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import IconButton from '@material-ui/core/IconButton';
 import styles from './DayCard.module.css';
 import EventCard from './EventCard/EventCard';
-import AddButton from '../../../commons/buttons/AddButton/AddButton';
+import AddButton from '../../../../commons/buttons/AddButton/AddButton';
 import AddEventModal from './AddEventModal/AddEventModal';
-import { OrganiserContext } from '../../../../contexts/OrganiserContextProvider';
+import { OrganiserContext } from '../../../../../contexts/OrganiserContextProvider';
 
 export default function DayCard({ day, handleNext, hasNextDay, handlePrev, hasPrevDay, addEvent }) {
   const [addEventModalOpen, setAddEventModalOpen] = useState(false);
