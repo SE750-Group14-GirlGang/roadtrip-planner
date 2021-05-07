@@ -11,7 +11,7 @@ import Playlist from '../Playlist/Playlist';
 
 const TOKEN_EXPIRATION = 60 * 60 * 1000;
 
-export default function SpotifyPlaylistPageWrapper({ spotifyPlaylistId }) {
+export default function SpotifyPlaylistWrapper({ spotifyPlaylistId }) {
   const { isUserOrganiser } = useContext(OrganiserContext);
   const [playlistId, setPlaylistId] = useState(spotifyPlaylistId);
   const [playlist, setPlaylist] = useState({
