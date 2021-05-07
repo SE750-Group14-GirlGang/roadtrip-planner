@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import { OrganiserContext } from '../../../contexts/OrganiserContextProvider';
 import {
@@ -9,7 +9,8 @@ import { getPlaylist } from '../../../pages/RoadTripPage/SpotifyPlaylistPage/uti
 import CreatePlaylist from '../CreatePlaylist/CreatePlaylist';
 import Playlist from '../Playlist/Playlist';
 
-// TODO handle when access token expires
+const TOKEN_EXPIRATION = 60 * 60 * 1000;
+
 export default function SpotifyPlaylistPageWrapper({ spotifyPlaylistId }) {
   const { isUserOrganiser } = useContext(OrganiserContext);
   const [playlistId, setPlaylistId] = useState(spotifyPlaylistId);
@@ -21,6 +22,18 @@ export default function SpotifyPlaylistPageWrapper({ spotifyPlaylistId }) {
 
   const accessToken = localStorage.getItem('access_token');
   const refreshToken = localStorage.getItem('refresh_token');
+
+  useEffect(() => {
+    // Check if access token is valid (they only last 1 hour)
+    const DURATION = new Date().getTime() - localStorage.getItem('token_retrieved');
+    if (refreshToken && DURATION >= TOKEN_EXPIRATION) {
+      refreshAccessToken().then(() => {
+        getPlaylist(playlistId, playlist.name, setPlaylist);
+      });
+    } else {
+      getPlaylist(playlistId, playlist.name, setPlaylist);
+    }
+  });
 
   // If no playlist has been set up, and the user is not a host
   if (!playlistId && !isUserOrganiser) {
@@ -34,16 +47,6 @@ export default function SpotifyPlaylistPageWrapper({ spotifyPlaylistId }) {
 
   if (!accessToken || !refreshToken) {
     return <Button onClick={requestAuthorization}>Authorize Spotify</Button>;
-  }
-
-  // Check if access token is valid (they only last 1 hour)
-  const ONE_HOUR = 60 * 60 * 1000;
-  if (!accessToken && new Date().getTime() - localStorage.getItem('token_retrieved') >= ONE_HOUR) {
-    refreshAccessToken();
-  }
-
-  if (playlistId && accessToken && !playlist.name) {
-    getPlaylist(playlistId, setPlaylist);
   }
 
   return (
