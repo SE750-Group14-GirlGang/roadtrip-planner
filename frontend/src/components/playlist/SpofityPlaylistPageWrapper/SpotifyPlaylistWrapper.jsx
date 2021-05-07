@@ -28,10 +28,12 @@ export default function SpotifyPlaylistPageWrapper({ spotifyPlaylistId }) {
     const DURATION = new Date().getTime() - localStorage.getItem('token_retrieved');
     if (refreshToken && DURATION >= TOKEN_EXPIRATION) {
       refreshAccessToken().then(() => {
-        getPlaylist(playlistId, playlist.name, setPlaylist);
+        if (playlistId && localStorage.getItem('access_token') && !playlist.name) {
+          getPlaylist(playlistId, setPlaylist);
+        }
       });
-    } else {
-      getPlaylist(playlistId, playlist.name, setPlaylist);
+    } else if (playlistId && localStorage.getItem('access_token') && !playlist.name) {
+      getPlaylist(playlistId, setPlaylist);
     }
   });
 

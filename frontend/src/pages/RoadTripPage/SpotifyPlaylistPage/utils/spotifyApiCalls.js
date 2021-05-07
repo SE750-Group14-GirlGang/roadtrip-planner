@@ -70,15 +70,13 @@ const handlePlaylistData = (response) => {
   return playlist;
 };
 
-export function getPlaylist(id, name, setPlaylist) {
-  if (id && localStorage.getItem('access_token') && !name) {
-    const accessToken = localStorage.getItem('access_token');
+export function getPlaylist(id, setPlaylist) {
+  const accessToken = localStorage.getItem('access_token');
 
-    const spotify = new SpotifyWebApi();
-    spotify.setAccessToken(accessToken);
+  const spotify = new SpotifyWebApi();
+  spotify.setAccessToken(accessToken);
 
-    spotify.getPlaylist(id, {}).then((r) => setPlaylist(handlePlaylistData(r)));
-  }
+  spotify.getPlaylist(id, {}).then((r) => setPlaylist(handlePlaylistData(r)));
 }
 
 export function followPlaylist(id) {
