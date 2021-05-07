@@ -6,6 +6,7 @@ import SpotifyPlaylistPageWrapper from '../../../components/playlist/SpofityPlay
 
 export default function SpotifyPlaylistPage() {
   const { id } = useParams();
+  localStorage.setItem('last_road_trip', id);
   const { response, loading } = useGet(`/api/roadtrip/${id}/spotify`);
 
   return (
