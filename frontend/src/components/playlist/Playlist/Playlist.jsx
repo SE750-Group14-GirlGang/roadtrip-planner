@@ -43,8 +43,8 @@ export default function Playlist({ playlistId, content, isUserOrganiser, setPlay
           </TableHead>
           <TableBody>
             {content.tracks.length > 0 ? (
-              content.tracks.map((track) => (
-                <TableRow key={track.name} className={styles.tableRow}>
+              content.tracks.map((track, key) => (
+                <TableRow key={key} className={styles.tableRow}>
                   <TableCell component="th" scope="row">
                     {track.name}
                   </TableCell>
