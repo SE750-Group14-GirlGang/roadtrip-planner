@@ -35,13 +35,17 @@ beforeEach(async () => {
   const april_21_2021 = new Date(2021, 3, 21); // months are indexed from 0
 
   itinerary = {
-    dates: [april_21_2021],
-    itineraryDays: [
+    days: [
       {
-        day: april_21_2021,
-        time: 'Morning',
-        location: 'Cathedral Cove',
-        notes: 'Bring your togs!',
+        date: april_21_2021,
+        events: [
+          {
+            time: '12:00',
+            location: 'Cathedral Cove',
+            notes: 'Bring your togs!',
+            description: 'Swimming',
+          },
+        ],
       },
     ],
   };
@@ -74,8 +78,10 @@ it('gets itinerary for a roadtrip from the server', async () => {
 
   expect(itineraryRes).toBeTruthy();
 
-  expect(itineraryRes.dates.length).toBe(1);
-  expect(itineraryRes.itineraryDays[0].time).toBe('Morning');
-  expect(itineraryRes.itineraryDays[0].location).toBe('Cathedral Cove');
-  expect(itineraryRes.itineraryDays[0].notes).toBe('Bring your togs!');
+  expect(itineraryRes.days.length).toBe(1);
+  expect(itineraryRes.days[0].events.length).toBe(1);
+  expect(itineraryRes.days[0].events[0].time).toBe('12:00');
+  expect(itineraryRes.days[0].events[0].location).toBe('Cathedral Cove');
+  expect(itineraryRes.days[0].events[0].notes).toBe('Bring your togs!');
+  expect(itineraryRes.days[0].events[0].description).toBe('Swimming');
 });

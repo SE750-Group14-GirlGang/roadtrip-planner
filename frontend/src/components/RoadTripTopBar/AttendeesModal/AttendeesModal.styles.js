@@ -1,4 +1,5 @@
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import StarIcon from '@material-ui/icons/Star';
 import { Button, DialogTitle, TextField, ListItemText, withStyles, DialogContent } from '@material-ui/core';
 
 const AddAttendeeTextField = withStyles({
@@ -24,6 +25,14 @@ const ColouredAccountIcon = withStyles({
     paddingLeft: '0px',
   },
 })(AccountCircleIcon);
+
+const ColouredStarIcon = withStyles({
+  root: {
+    color: '#f76c6c',
+    paddingRight: '0px',
+    paddingLeft: '15px',
+  },
+})(StarIcon);
 
 const ColouredListItemText = withStyles({
   root: {
@@ -51,6 +60,7 @@ export {
   AddAttendeeTextField,
   ActionButton,
   ColouredAccountIcon,
+  ColouredStarIcon,
   ColouredListItemText,
   ColouredDialogTitle,
   CustomDialogContent,

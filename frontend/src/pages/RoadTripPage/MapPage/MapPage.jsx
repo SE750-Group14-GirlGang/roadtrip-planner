@@ -1,49 +1,39 @@
-import { React, useState } from 'react';
-import ReactMapGL from 'react-map-gl';
+import { React, useState, useContext, useEffect } from 'react';
+import ReactMapGL, { Marker } from 'react-map-gl';
 import MapModal from './MapModal/MapModal';
 import styles from './MapPage.module.css';
 import AddButton from '../../../components/commons/buttons/AddButton/AddButton';
+import { OrganiserContext } from '../../../contexts/OrganiserContextProvider';
+import MapMarker from './MapPage.styles';
 
 const dotenv = require('dotenv');
 
 dotenv.config();
 
-export default function MapPage() {
+export default function MapPage({ mapData }) {
   const [modalOpen, setModalOpen] = useState(false);
-  const [destSelected, setDestSelected] = useState(false);
+  const [destName, setDestName] = useState(mapData?.primaryDestination?.name);
+  const [mapDestination, setMapDestination] = useState(mapData?.primaryDestination);
 
-  // TODO: implement check to see if user is organiser or attendee
-  const isOrganiser = true;
+  const { isUserOrganiser } = useContext(OrganiserContext);
 
-  const initialDestination = {
-    primaryDestination: {
-      long: 170.83285,
-      lat: -41.01633,
-      name: 'New Zealand',
-    },
-  };
+  const [viewport, setViewport] = useState({
+    width: '65vw',
+    height: '90vh',
+    latitude: mapDestination ? mapDestination.lat : 0,
+    longitude: mapDestination ? mapDestination.long : 0,
+    zoom: 15,
+  });
 
-  // TODO: remove eslint disable when implementing full map page
-  // eslint-disable-next-line
-  const [destination, setDestination] = useState(initialDestination);
-
-  // TODO: get zoom level
-  const initialViewport = {
-    width: '100vw',
-    height: '100vh',
-    latitude: -41.01633,
-    longitude: 170.83285,
-    zoom: 4,
-  };
-
-  const [viewport, setViewport] = useState(initialViewport);
-
-  /* TODO: If map destination set up & nav to the page, then call a get request for the roadie
-  destination and load it into the viewport - do when implementing full map page functionality */
-
-  /* TODO: If map destination FRESHLY set up, then load the destination state variable into the
-  viewport and load it into the map with a marker - do when implementing full map page
-   functionality */
+  useEffect(() => {
+    setViewport({
+      width: '65vw',
+      height: '90vh',
+      latitude: mapDestination ? mapDestination.lat : 0,
+      longitude: mapDestination ? mapDestination.long : 0,
+      zoom: 15,
+    });
+  }, [mapDestination]);
 
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -51,28 +41,44 @@ export default function MapPage() {
 
   const handleCloseModal = () => {
     setModalOpen(false);
-    setViewport(viewport);
   };
 
   return (
     <div className={styles.mapPage}>
-      <p className={styles.mapPageTitle}>Destination</p>
-      {destSelected ? (
-        <ReactMapGL
-          {...viewport}
-          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-          mapStyle="mapbox://styles/mapbox/streets-v11"
-        />
+      {mapDestination ? (
+        <div className={styles.mapContainer}>
+          <div className={styles.mapBox}>
+            <ReactMapGL
+              {...viewport}
+              className={styles.mapContainer}
+              onViewportChange={setViewport}
+              mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+              mapStyle="mapbox://styles/mapbox/streets-v11"
+            >
+              <Marker latitude={mapDestination.lat} longitude={mapDestination.long} offsetLeft={-22} offsetTop={-12}>
+                <MapMarker />
+              </Marker>
+            </ReactMapGL>
+          </div>
+          <div className={styles.mapDescription}>
+            <p className={styles.mapPageTitle}>Destination</p>
+            <p className={styles.mapDescriptionText}>{destName}</p>
+          </div>
+          <div className={styles.mapBorder} />
+        </div>
       ) : (
         <div>
+          <p className={styles.mapPageTitle}>Destination</p>
           <p className={styles.emptyMapDescription}>The organiser has not entered a destination yet!</p>
           <br />
-          {isOrganiser && <AddButton onClick={handleOpenModal}>Add Destination</AddButton>}
+          {isUserOrganiser && <AddButton onClick={handleOpenModal}>Add Destination</AddButton>}
           <MapModal
             open={modalOpen}
             handleClose={handleCloseModal}
-            setDestination={setDestination}
-            setDestSelected={setDestSelected}
+            setNewViewport={setViewport}
+            destName={destName}
+            setDestName={setDestName}
+            setMapDestination={setMapDestination}
           />
         </div>
       )}

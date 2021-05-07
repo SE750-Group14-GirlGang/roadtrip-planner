@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect, useRouteMatch, useParams } from 'react-router-dom';
 import RoadTripTopBar from '../../components/RoadTripTopBar/RoadTripTopBar';
 import './RoadTrip.css';
-import MapPage from './MapPage/MapPage';
+import MapPageWrapper from './MapPage/MapPageWrapper/MapPageWrapper';
 import ItineraryPage from './ItineraryPage/ItineraryPage';
 import EmergencyDetailsPage from './EmergencyDetailsPage/EmergencyDetailsPage';
 import PackingListPage from './PackingListPage/PackingListPage';
@@ -19,7 +19,7 @@ export default function RoadTripPage() {
         <RoadTripTopBar />
         <Switch>
           <Route path={`${path}/map`}>
-            <MapPage />
+            <MapPageWrapper />
           </Route>
 
           <Route path={`${path}/itinerary`}>

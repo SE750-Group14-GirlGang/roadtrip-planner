@@ -51,7 +51,7 @@ export default function RoadTripTopBar() {
           <AccountCircleIcon />
         </ResizableIconButton>
       </Toolbar>
-      <AttendeesModal open={modalOpen} handleClose={handleCloseModal} />
+      <AttendeesModal open={modalOpen} closeModal={handleCloseModal} />
     </CustomTopBar>
   );
 }
