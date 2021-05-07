@@ -10,7 +10,11 @@ export default function SpotifyPlaylistPage() {
 
   return (
     <div>
-      {loading || !response ? <Spinner /> : <SpotifyPlaylistPageWrapper spotifyPlaylistId={response.data.playlistId} />}
+      {loading || !response ? (
+        <Spinner />
+      ) : (
+        <SpotifyPlaylistPageWrapper spotifyPlaylistId={response?.data?.playlistId} />
+      )}
     </div>
   );
 }
