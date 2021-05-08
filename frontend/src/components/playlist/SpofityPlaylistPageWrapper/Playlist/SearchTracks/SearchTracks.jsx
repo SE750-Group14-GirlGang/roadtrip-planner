@@ -39,7 +39,7 @@ export default function SearchTracks({ playlistId, setPlaylist }) {
               </ListItemIcon>
               <b className={styles.text}>{track.name}</b>
               <Divider orientation="vertical" flexItem m={20} />
-              <body className={styles.text}>{track.artists.join(', ')}</body>
+              <div className={styles.text}>{track.artists.join(', ')}</div>
             </ListItem>
           ))
         ) : (
