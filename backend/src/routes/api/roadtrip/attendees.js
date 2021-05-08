@@ -17,6 +17,10 @@ router.get('/:id/attendees', async (req, res) => {
 // the user's email is provided
 router.patch('/:id/attendees', async (req, res) => {
   const { id: roadTripId } = req.params;
+  if (!req.body?.userEmail) {
+    res.sendStatus(constants.HTTP_BAD_REQUEST);
+  }
+
   const user = await users.getUserByEmail(req.body.userEmail);
   if (user) {
     const updatedRoadtrip = await roadtrips.addAttendee(roadTripId, user._id);
