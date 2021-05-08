@@ -1,8 +1,13 @@
-import { render, screen } from '@testing-library/react';
+import { shallow } from 'enzyme';
+
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+it('renders a switch components', () => {
+  const wrapper = shallow(<App />);
+  expect(wrapper).toContainExactlyOneMatchingElement('Switch');
+});
+
+it('renders three protected routes', () => {
+  const wrapper = shallow(<App />);
+  expect(wrapper).toContainMatchingElements(3, 'ProtectedRoute');
 });
