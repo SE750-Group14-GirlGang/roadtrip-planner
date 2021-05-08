@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableContainer, TableHead, Paper } from '@material-ui/core';
 import { CustomTableCell, CustomTableRow } from './EmergencyDetails.styles';
 import styles from './EmergencyDetails.module.css';
@@ -8,6 +8,7 @@ import AddButton from '../commons/buttons/AddButton/AddButton';
 
 export default function EmergencyDetails({ allEmergencyDetails, userEmergencyDetails, refetchEmergencyDetails }) {
   const [editDetailsModalOpen, setEditDetailsModalOpen] = useState(false);
+  const [addButtonText, setAddButtonText] = useState('Add Your Details');
 
   const handleOpenEditDetailsModal = () => {
     setEditDetailsModalOpen(true);
@@ -15,6 +16,14 @@ export default function EmergencyDetails({ allEmergencyDetails, userEmergencyDet
   const handleCloseEditDetailsModal = () => {
     setEditDetailsModalOpen(false);
   };
+
+  useEffect(() => {
+    if (userEmergencyDetails) {
+      setAddButtonText('Edit Your Details');
+    } else {
+      setAddButtonText('Add Your Details');
+    }
+  }, [userEmergencyDetails]);
 
   return (
     <>
@@ -47,7 +56,7 @@ export default function EmergencyDetails({ allEmergencyDetails, userEmergencyDet
           </TableContainer>
         </div>
         <div className={styles.buttonContainer}>
-          <AddButton onClick={handleOpenEditDetailsModal}>Edit Your Details</AddButton>
+          <AddButton onClick={handleOpenEditDetailsModal}>{addButtonText}</AddButton>
         </div>
       </div>
       <EditDetailsModal
