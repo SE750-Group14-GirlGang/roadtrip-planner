@@ -85,7 +85,7 @@ afterAll((done) => {
   });
 });
 
-it('gets emergency details for a roadtrip for a specific user from the server', async () => {
+it('returns emergency details for a roadtrip for a specific user', async () => {
   const response = await axios.get(`http://localhost:3000/api/roadtrip/${roadTrip._id}/emergencydetails/user`);
   const emergencyDetailsRes = response.data;
 

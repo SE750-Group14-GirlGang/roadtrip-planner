@@ -58,7 +58,7 @@ afterAll((done) => {
   });
 });
 
-it('gets packing list for a roadtrip from the server', async () => {
+it('returns packing list for a roadtrip', async () => {
   const response = await axios.get(`http://localhost:3000/api/roadtrip/${roadTrip._id}/packinglist`);
   const packingListRes = response.data;
 

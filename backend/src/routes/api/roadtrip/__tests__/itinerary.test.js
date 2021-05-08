@@ -72,7 +72,7 @@ afterAll((done) => {
   });
 });
 
-it('gets itinerary for a roadtrip from the server', async () => {
+it('returns itinerary for a roadtrip', async () => {
   const response = await axios.get(`http://localhost:3000/api/roadtrip/${roadTrip._id}/itinerary`);
   const itineraryRes = response.data;
 

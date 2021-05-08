@@ -58,7 +58,7 @@ afterAll((done) => {
   });
 });
 
-it('gets spotify for a roadtrip from the server', async () => {
+it('returns spotify for a roadtrip', async () => {
   const response = await axios.get(`http://localhost:3000/api/roadtrip/${roadTrip._id}/spotify`);
   const spotifyRes = response.data;
 
