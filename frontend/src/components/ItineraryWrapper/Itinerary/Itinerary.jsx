@@ -1,11 +1,12 @@
 import { React, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import DateRangePickerModal from './DateRangePickerModal/DateRangePickerModal';
-import AddButton from '../commons/buttons/AddButton/AddButton';
+import AddButton from '../../commons/buttons/AddButton/AddButton';
 import styles from './Itinerary.module.css';
-import getDaysInbetween from '../../utils/dates/getDaysInbetween';
-import usePost from '../../hooks/usePost';
-import { OrganiserContext } from '../../contexts/OrganiserContextProvider';
+import getDaysInbetween from '../../../utils/dates/getDaysInbetween';
+import usePost from '../../../hooks/usePost';
+import { OrganiserContext } from '../../../contexts/OrganiserContextProvider';
+import DailyItinerary from './DailyItinerary/DailyItinerary';
 
 export default function Itinerary({ itineraryData }) {
   const { id } = useParams();
@@ -43,9 +44,9 @@ export default function Itinerary({ itineraryData }) {
   };
 
   return (
-    <div>
+    <>
       {itinerary ? (
-        <div>An actual itinerary with dates</div>
+        <DailyItinerary itinerary={itinerary} isUserOrganiser={isUserOrganiser} setItinerary={setItinerary} />
       ) : (
         <div>
           <p className={styles.emptyItineraryPageDescription}>
@@ -60,6 +61,6 @@ export default function Itinerary({ itineraryData }) {
           )}
         </div>
       )}
-    </div>
+    </>
   );
 }

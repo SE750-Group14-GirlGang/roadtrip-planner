@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+}
+
+.card {
+  width: 70%;
+  min-width: 350px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-flow: column;
+}
+
+.cardHeader {
+  padding: 5px;
+  font-size: 25px;
+  color: #24305e;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardContent {
+  padding: 20px;
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  color: #24305e;
+}
+
+.cardFooter {
+  padding: 15px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.date {
+  margin: 10px;
+}
+
+.noEventDescription {
+  font-style: italic;
+  font-size: 20px;
+}
+
+.card ::-webkit-scrollbar {
+  height: 8px;
+}
+
+.card ::-webkit-scrollbar-track {
+  background: none;
+}
+
+.card ::-webkit-scrollbar-thumb {
+  background: rgb(207, 206, 206);
+  border-radius: 4px;
+}
+
+/*Handle on hover */
+.card ::-webkit-scrollbar-thumb:hover {
+  background: #24305e;
+}

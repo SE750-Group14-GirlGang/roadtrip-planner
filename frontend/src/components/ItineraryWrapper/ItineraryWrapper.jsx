@@ -1,8 +1,8 @@
 import { React } from 'react';
 import { useParams } from 'react-router-dom';
-import Itinerary from '../Itinerary';
-import Spinner from '../../commons/Spinner/Spinner';
-import useGet from '../../../hooks/useGet';
+import Itinerary from './Itinerary/Itinerary';
+import Spinner from '../commons/Spinner/Spinner';
+import useGet from '../../hooks/useGet';
 
 export default function ItineraryWrapper() {
   const { id } = useParams();
@@ -11,5 +11,5 @@ export default function ItineraryWrapper() {
   const { response, loading } = useGet(URL);
 
   // show spinner while data is being fetched
-  return <div>{loading || !response ? <Spinner /> : <Itinerary itineraryData={response.data} />}</div>;
+  return <>{loading || !response ? <Spinner /> : <Itinerary itineraryData={response.data} />}</>;
 }
