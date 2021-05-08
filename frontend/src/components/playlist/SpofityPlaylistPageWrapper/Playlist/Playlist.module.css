@@ -1,0 +1,23 @@
+.playlist {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.tracks {
+    width: 100%;
+}
+
+.headerRow {
+    font-weight: bold;
+    background-color: #a8d0e6;
+    cursor: default;
+}
+
+.tableRow:hover {
+    background-color: #f76c6c;
+    cursor: default;
+}
+
+.emptyPlaylist {
+    text-align: center;
+}

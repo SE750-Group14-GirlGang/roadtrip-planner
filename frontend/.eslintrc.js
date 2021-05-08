@@ -26,6 +26,7 @@ module.exports = {
     'no-underscore-dangle': 0,
     'no-unused-vars': [1, { args: 'all' }],
     'no-shadow': 'off',
+    camelcase: 'off',
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
   },
 };
