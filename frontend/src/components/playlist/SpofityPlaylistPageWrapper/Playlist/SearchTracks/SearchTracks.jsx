@@ -18,7 +18,7 @@ export default function SearchTracks({ playlistId, setPlaylist }) {
 
   return (
     <div className={styles.search}>
-      <h1>Search Tracks</h1>
+      <p className={styles.title}>Search Tracks</p>
       <TextField
         className={styles.searchField}
         required
