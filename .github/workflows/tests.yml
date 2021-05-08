@@ -13,16 +13,12 @@ jobs:
       run:
         working-directory: frontend
 
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x]
-
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: '14.x'
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
@@ -33,16 +29,12 @@ jobs:
       run:
         working-directory: backend
 
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x]
-
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: '14.x'
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
