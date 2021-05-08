@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { MONGO_DB_PW, MONGO_DB_USERNAME } from '../config';
+import { MONGO_DB_PW, MONGO_DB_USERNAME, REACT_APP_AUTH0_AUDIENCE } from '../config';
 
 const pw = MONGO_DB_PW;
 const user = MONGO_DB_USERNAME;
