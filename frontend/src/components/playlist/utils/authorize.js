@@ -20,13 +20,13 @@ export const getCode = () => {
 };
 
 function callAuthApi(body) {
-  return new Promise(function (resolve) {
+  return new Promise((resolve) => {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', TOKEN, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Authorization', `Basic ${btoa(`${client_id}:${client_secret}`)}`);
     xhr.send(body);
-    xhr.onload = function () {
+    xhr.onload = () => {
       if (this.status === 200) {
         const data = JSON.parse(this.responseText);
         if (data.access_token !== undefined) {

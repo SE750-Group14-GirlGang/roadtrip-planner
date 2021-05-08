@@ -7,7 +7,7 @@ it('renders a switch components', () => {
   expect(wrapper).toContainExactlyOneMatchingElement('Switch');
 });
 
-it('renders two protected routes', () => {
+it('renders three protected routes', () => {
   const wrapper = shallow(<App />);
-  expect(wrapper).toContainMatchingElements(2, 'ProtectedRoute');
+  expect(wrapper).toContainMatchingElements(3, 'ProtectedRoute');
 });
