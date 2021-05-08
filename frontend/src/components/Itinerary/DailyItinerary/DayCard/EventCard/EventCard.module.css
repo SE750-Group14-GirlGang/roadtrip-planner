@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.card {
+  width: 85%;
+  min-width: 300px;
+  margin: 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 8px;
+  display: flex;
+  flex-flow: column;
+}
+
+.cardContent {
+  margin: 20px 20px 3px;
+  padding-bottom: 10px;
+  flex: 1;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: minmax(70px, 20%) auto minmax(70px, 40%);
+  color: #24305e;
+  text-align: left;
+}
+
+.descriptionContainer {
+  margin: 12px;
+  overflow: hidden;
+}
+
+.description {
+  font-size: 20px;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.time {
+  font-size: 16px;
+}
+
+.locationTimeContainer {
+  justify-content: center;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.locationTimeContainer > p {
+  margin: 5px 0;
+}
