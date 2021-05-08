@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
-import Button from '@material-ui/core/Button';
 import { OrganiserContext } from '../../../contexts/OrganiserContextProvider';
 import { refreshAccessToken, requestAuthorization } from '../utils/authorize';
 import { getPlaylist } from '../utils/spotifyApiCalls';
 import CreatePlaylist from './CreatePlaylist/CreatePlaylist';
 import Playlist from './Playlist/Playlist';
+import styles from './SpotifyPlaylistWrapper.module.css';
+import AddButton from '../../commons/buttons/AddButton/AddButton';
 
 const TOKEN_EXPIRATION = 60 * 60 * 1000;
 
@@ -38,14 +39,14 @@ export default function SpotifyPlaylistWrapper({ spotifyPlaylistId }) {
   if (!playlistId && !isUserOrganiser) {
     return (
       <div>
-        <h1>Playlist</h1>
-        <p>The organiser has not created a playlist yet.</p>
+        <p className={styles.title}>Playlist</p>
+        <p className={styles.emptyPlaylistDescription}>The organiser has not created a playlist yet!</p>
       </div>
     );
   }
 
   if (!accessToken || !refreshToken) {
-    return <Button onClick={requestAuthorization}>Authorize Spotify</Button>;
+    return <AddButton onClick={requestAuthorization}>Authorize Spotify</AddButton>;
   }
 
   return (

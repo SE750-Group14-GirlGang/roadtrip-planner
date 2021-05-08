@@ -1,3 +1,8 @@
+.title {
+    color: #24305e;
+    font-size: 30px;
+}
+
 .playlist {
     padding-left: 15%;
     padding-right: 15%;
@@ -9,15 +14,23 @@
 
 .headerRow {
     font-weight: bold;
-    background-color: #a8d0e6;
+    background-color: #24305e;
     cursor: default;
 }
 
+.headerText {
+    color: #ffffff;
+}
+
 .tableRow:hover {
-    background-color: #f76c6c;
+    background-color: #a8d0e6;
     cursor: default;
 }
 
 .emptyPlaylist {
     text-align: center;
+}
+
+.spotifyActionButton {
+    margin: 5px;
 }
