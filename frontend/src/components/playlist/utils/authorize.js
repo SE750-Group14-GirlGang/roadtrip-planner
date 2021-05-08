@@ -20,13 +20,15 @@ export const getCode = () => {
 };
 
 function callAuthApi(body) {
-  return new Promise((resolve) => {
+  // eslint-disable-next-line func-names
+  return new Promise(function (resolve) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', TOKEN, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Authorization', `Basic ${btoa(`${client_id}:${client_secret}`)}`);
     xhr.send(body);
-    xhr.onload = () => {
+    // eslint-disable-next-line func-names
+    xhr.onload = function () {
       if (this.status === 200) {
         const data = JSON.parse(this.responseText);
         if (data.access_token !== undefined) {

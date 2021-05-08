@@ -29,4 +29,12 @@ module.exports = {
     camelcase: 'off',
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
   },
+  overrides: [
+    {
+      files: ['src/setupTests.js'],
+      rules: {
+        'import/no-extraneous-dependencies': 0,
+      },
+    },
+  ],
 };
