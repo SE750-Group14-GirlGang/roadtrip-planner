@@ -3,8 +3,8 @@ import Button from '@material-ui/core/Button';
 import { OrganiserContext } from '../../../contexts/OrganiserContextProvider';
 import { refreshAccessToken, requestAuthorization } from '../utils/authorize';
 import { getPlaylist } from '../utils/spotifyApiCalls';
-import CreatePlaylist from '../CreatePlaylist/CreatePlaylist';
-import Playlist from '../Playlist/Playlist';
+import CreatePlaylist from './CreatePlaylist/CreatePlaylist';
+import Playlist from './Playlist/Playlist';
 
 const TOKEN_EXPIRATION = 60 * 60 * 1000;
 
