@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './PackingList.module.css';
 
@@ -17,6 +17,11 @@ export default function PackingList({ startingPackingList, startingPackedItems }
 
   const [packingList, setPackingList] = useState(startingPackingList);
   const [packedItems, setPackedItems] = useState(startingPackedItems);
+
+  useEffect(() => {
+    setPackingList(startingPackingList);
+    setPackedItems(startingPackedItems);
+  }, [startingPackingList, startingPackedItems]);
 
   const [addItemModalOpen, setAddItemModalOpen] = useState(false);
   const [submitItemError, setSubmitItemError] = useState(false);
@@ -47,7 +52,6 @@ export default function PackingList({ startingPackingList, startingPackedItems }
     if (error) {
       setSubmitItemError(true);
     } else {
-      handleCloseAddItemModal();
       setPackingList(newPackingList);
     }
   };
