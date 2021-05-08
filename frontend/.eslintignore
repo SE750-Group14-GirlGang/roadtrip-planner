@@ -1,0 +1,2 @@
+# ignore cypress integration test examples
+cypress/integration/examples/*
