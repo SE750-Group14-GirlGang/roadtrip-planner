@@ -12,8 +12,8 @@ export default function SpotifyPlaylistWrapper({ spotifyPlaylistId }) {
   const { isUserOrganiser } = useContext(OrganiserContext);
   const [playlistId, setPlaylistId] = useState(spotifyPlaylistId);
   const [playlist, setPlaylist] = useState({
-    name: null,
-    description: null,
+    name: '',
+    description: '',
     tracks: [],
   });
 

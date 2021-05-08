@@ -19,8 +19,8 @@ export default function CreatePlaylist({ setPlaylistId }) {
   const post = usePost();
 
   const [values, setValues] = React.useState({
-    name: null,
-    description: null,
+    name: '',
+    description: '',
   });
 
   const handleChangeForm = (name) => (event) => {

@@ -42,8 +42,8 @@ export async function createPlaylist(name, description, roadTrip, setPlaylistId,
 
 const handlePlaylistData = (response) => {
   const playlist = {
-    name: null,
-    description: null,
+    name: '',
+    description: '',
     tracks: [],
   };
 
