@@ -2,9 +2,9 @@ name: Eslint
 
 on:
   push:
-    branches: [ test-workflow ]
+    branches: [ main ]
   pull_request:
-    branches: [ test-workflow ]
+    branches: [ main ]
 
 jobs:
   frontend:
