@@ -7,7 +7,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import ReactMapGL from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
-import usePost from '../../../../hooks/usePost';
+import usePost from '../../hooks/usePost';
 import ActionButton from './MapModal.styles';
 
 const dotenv = require('dotenv');
