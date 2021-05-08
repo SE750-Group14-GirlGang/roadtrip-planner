@@ -15,11 +15,7 @@ import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import styles from './Playlist.module.css';
-import {
-  addSong,
-  followPlaylist,
-  searchTrack,
-} from '../../../pages/RoadTripPage/SpotifyPlaylistPage/utils/spotifyApiCalls';
+import { addSong, followPlaylist, searchTrack } from '../utils/spotifyApiCalls';
 
 export default function Playlist({ playlistId, content, isUserOrganiser, setPlaylist }) {
   const OPEN_SPOTIFY_LINK = `https://open.spotify.com/playlist/${playlistId}`;

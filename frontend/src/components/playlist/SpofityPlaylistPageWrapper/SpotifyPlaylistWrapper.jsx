@@ -1,11 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import { OrganiserContext } from '../../../contexts/OrganiserContextProvider';
-import {
-  refreshAccessToken,
-  requestAuthorization,
-} from '../../../pages/RoadTripPage/SpotifyPlaylistPage/utils/authorize';
-import { getPlaylist } from '../../../pages/RoadTripPage/SpotifyPlaylistPage/utils/spotifyApiCalls';
+import { refreshAccessToken, requestAuthorization } from '../utils/authorize';
+import { getPlaylist } from '../utils/spotifyApiCalls';
 import CreatePlaylist from '../CreatePlaylist/CreatePlaylist';
 import Playlist from '../Playlist/Playlist';
 

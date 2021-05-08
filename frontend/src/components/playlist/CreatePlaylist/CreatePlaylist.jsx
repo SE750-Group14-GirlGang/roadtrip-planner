@@ -3,7 +3,7 @@ import { TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { useParams } from 'react-router-dom';
 import styles from './CreatePlaylist.module.css';
-import { createPlaylist } from '../../../pages/RoadTripPage/SpotifyPlaylistPage/utils/spotifyApiCalls';
+import { createPlaylist } from '../utils/spotifyApiCalls';
 import usePost from '../../../hooks/usePost';
 
 function handleCreate(name, description, roadTrip, setPlaylistId, post) {
