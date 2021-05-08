@@ -24,6 +24,7 @@ export default function AttendeesModal({ open, closeModal }) {
 
   const [email, setEmail] = useState('');
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (event) => {
     setEmail(event.target.value);
@@ -39,6 +40,7 @@ export default function AttendeesModal({ open, closeModal }) {
     const { error: addAttendeeError } = await patch(`/api/roadtrip/${id}/attendees`, { userEmail: email });
     if (addAttendeeError) {
       setError(true);
+      setErrorMessage(addAttendeeError.response.data);
     } else {
       refetch();
     }
@@ -49,15 +51,10 @@ export default function AttendeesModal({ open, closeModal }) {
   return (
     <div>
       <Dialog fullWidth open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <ColouredDialogTitle>List of Attendees</ColouredDialogTitle>
+        <ColouredDialogTitle>Attendees</ColouredDialogTitle>
         <CustomDialogContent>
-          {showSpinner && (
-            <div className={styles.spinner}>
-              <Spinner />
-            </div>
-          )}
-          {!showSpinner && (
-            <List>
+          <List>
+            {organiser && (
               <div key={organiser._id}>
                 <ListItem>
                   <ColouredAccountIcon />
@@ -67,16 +64,21 @@ export default function AttendeesModal({ open, closeModal }) {
                   </div>
                 </ListItem>
               </div>
-              {response &&
-                response.data.map((attendee) => (
-                  <div key={attendee._id}>
-                    <ListItem>
-                      <ColouredAccountIcon />
-                      <ColouredListItemText primary={attendee.email} />
-                    </ListItem>
-                  </div>
-                ))}
-            </List>
+            )}
+            {response &&
+              response.data.map((attendee) => (
+                <div key={attendee._id}>
+                  <ListItem>
+                    <ColouredAccountIcon />
+                    <ColouredListItemText primary={attendee.email} />
+                  </ListItem>
+                </div>
+              ))}
+          </List>
+          {showSpinner && (
+            <div className={styles.spinner}>
+              <Spinner />
+            </div>
           )}
         </CustomDialogContent>
         <DialogActions>
@@ -91,7 +93,7 @@ export default function AttendeesModal({ open, closeModal }) {
                 defaultValue={email}
                 onChange={handleChange}
                 error={error}
-                label={error ? 'User not found' : ''}
+                label={error && errorMessage}
                 autoFocus
                 onFocus={(event) => event.target.select()}
               />
