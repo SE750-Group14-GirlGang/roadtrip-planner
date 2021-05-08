@@ -87,7 +87,11 @@ function SearchTracks({ playlistId, setPlaylist }) {
       <List>
         {tracks.length > 0 ? (
           tracks.map((track) => (
-            <ListItem className={styles.listItem} onClick={() => addSong(playlistId, track, setPlaylist)}>
+            <ListItem
+              key={track.key}
+              className={styles.listItem}
+              onClick={() => addSong(playlistId, track, setPlaylist)}
+            >
               <ListItemIcon>
                 <AddIcon fontSize="small" />
               </ListItemIcon>
