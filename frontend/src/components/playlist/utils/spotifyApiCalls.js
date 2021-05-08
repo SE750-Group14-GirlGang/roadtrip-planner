@@ -17,6 +17,8 @@ async function setUserId() {
 }
 
 export async function createPlaylist(name, description, roadTrip, setPlaylistId, post) {
+  if (!name) return;
+
   const accessToken = localStorage.getItem('access_token');
   const spotify_user_id = localStorage.getItem('spotify_user_id');
 

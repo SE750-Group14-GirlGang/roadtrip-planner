@@ -6,14 +6,6 @@ import styles from './CreatePlaylist.module.css';
 import { createPlaylist } from '../../utils/spotifyApiCalls';
 import usePost from '../../../../hooks/usePost';
 
-function handleCreate(name, description, roadTrip, setPlaylistId, post) {
-  if (!name) {
-    alert('You must submit a name for your playlist.');
-  } else {
-    createPlaylist(name, description, roadTrip, setPlaylistId, post);
-  }
-}
-
 export default function CreatePlaylist({ setPlaylistId }) {
   const { id } = useParams();
   const post = usePost();
@@ -22,6 +14,8 @@ export default function CreatePlaylist({ setPlaylistId }) {
     name: '',
     description: '',
   });
+
+  const ERROR_NAME = values.name === '';
 
   const handleChangeForm = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
@@ -40,6 +34,7 @@ export default function CreatePlaylist({ setPlaylistId }) {
             variant="outlined"
             onChange={handleChangeForm('name')}
             value={values.name}
+            error={ERROR_NAME}
           />
         </div>
         <div className={styles.inputSection}>
@@ -55,7 +50,7 @@ export default function CreatePlaylist({ setPlaylistId }) {
       </form>
       <Button
         className={styles.createButton}
-        onClick={() => handleCreate(values.name, values.description, id, setPlaylistId, post)}
+        onClick={() => createPlaylist(values.name, values.description, id, setPlaylistId, post)}
       >
         Create
       </Button>
