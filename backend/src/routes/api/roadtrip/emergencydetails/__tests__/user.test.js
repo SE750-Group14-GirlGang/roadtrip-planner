@@ -9,8 +9,8 @@ let app;
 let server;
 
 let roadTrip;
-let packedItems1;
-let packedItems2;
+let emergencyDetails1;
+let emergencyDetails2;
 
 const userId1 = '608360966dcb41278446d3da';
 const userId2 = '679554266dcb41278446d3da';
@@ -38,28 +38,42 @@ beforeAll(async (done) => {
 
 beforeEach(async () => {
   const roadTripsColl = await mongoose.connection.db.createCollection('roadtrips');
-  const packedItemsColl = await mongoose.connection.db.createCollection('packeditems');
+  const emergencyDetailsColl = await mongoose.connection.db.createCollection('emergencydetails');
 
-  packedItems1 = {
+  emergencyDetails1 = {
     user: userId1,
-    items: ['togs', 'clothes', 'sleeping bag'],
+    name: 'Charlie',
+    phoneNumber: '0000000',
+    emergencyContact: {
+      name: 'Peter',
+      phoneNumber: '1111111',
+      relation: 'Father',
+    },
   };
-  packedItems2 = {
+
+  emergencyDetails2 = {
     user: userId2,
-    items: ['alcohol'],
+    name: 'Daniel',
+    phoneNumber: '1234567',
+    emergencyContact: {
+      name: 'Susan',
+      phoneNumber: '7654321',
+      relation: 'Mother',
+    },
   };
-  await packedItemsColl.insertMany([packedItems1, packedItems2]);
+  await emergencyDetailsColl.insertOne(emergencyDetails1);
+  await emergencyDetailsColl.insertOne(emergencyDetails2);
 
   roadTrip = {
     name: 'My Road Trip',
-    packedItems: [packedItems1._id, packedItems2._id],
+    emergencyDetails: [emergencyDetails1._id, emergencyDetails2._id],
   };
   await roadTripsColl.insertOne(roadTrip);
 });
 
 afterEach(async () => {
   await mongoose.connection.db.dropCollection('roadtrips');
-  await mongoose.connection.db.dropCollection('packeditems');
+  await mongoose.connection.db.dropCollection('emergencydetails');
 });
 
 afterAll((done) => {
@@ -71,14 +85,13 @@ afterAll((done) => {
   });
 });
 
-it('gets packed items for a roadtrip for the current user from the server', async () => {
-  const response = await axios.get(`http://localhost:3000/api/roadtrip/${roadTrip._id}/packeditems/user`);
-  const packedItemsRes = response.data;
+it('gets emergency details for a roadtrip for a specific user from the server', async () => {
+  const response = await axios.get(`http://localhost:3000/api/roadtrip/${roadTrip._id}/emergencydetails/user`);
+  const emergencyDetailsRes = response.data;
 
-  expect(packedItemsRes).toBeTruthy();
+  expect(emergencyDetailsRes).toBeTruthy();
 
-  expect(packedItemsRes.items.length).toBe(3);
-  expect(packedItemsRes.items[0]).toBe('togs');
-  expect(packedItemsRes.items[1]).toBe('clothes');
-  expect(packedItemsRes.items[2]).toBe('sleeping bag');
+  expect(emergencyDetailsRes.name).toBe('Charlie');
+  expect(emergencyDetailsRes.phoneNumber).toBe('0000000');
+  expect(emergencyDetailsRes.emergencyContact.name).toBe('Peter');
 });
