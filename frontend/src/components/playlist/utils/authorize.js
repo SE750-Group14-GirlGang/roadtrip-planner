@@ -29,7 +29,6 @@ function callAuthApi(body) {
     xhr.onload = function () {
       if (this.status === 200) {
         const data = JSON.parse(this.responseText);
-        console.log(data);
         if (data.access_token !== undefined) {
           localStorage.setItem('access_token', data.access_token);
           localStorage.setItem('token_retrieved', new Date().getTime());
