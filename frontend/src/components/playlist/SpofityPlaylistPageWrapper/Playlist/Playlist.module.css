@@ -21,33 +21,3 @@
 .emptyPlaylist {
     text-align: center;
 }
-
-.search {
-    margin: 5% 0 2% 0;
-}
-
-.searchField {
-    margin: 0 0 2% 0;
-    width: 65%;
-}
-
-.addSongSection {
-    width: 90%;
-    text-align: center;
-    display:table-cell;
-    vertical-align:middle;
-}
-
-.addButton {
-    height: 50px;
-    width: 150px;
-}
-
-.text {
-    margin: 0 10px 0 10px;
-}
-
-.listItem:hover {
-    background-color: #f76c6c;
-    cursor: pointer;
-}

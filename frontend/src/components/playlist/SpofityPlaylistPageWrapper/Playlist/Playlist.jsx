@@ -1,21 +1,9 @@
-import {
-  Divider,
-  List,
-  ListItem,
-  ListItemIcon,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TextField,
-} from '@material-ui/core';
-import React, { useState } from 'react';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
+import React from 'react';
 import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
 import styles from './Playlist.module.css';
-import { addSong, followPlaylist, searchTrack } from '../../utils/spotifyApiCalls';
+import { followPlaylist } from '../../utils/spotifyApiCalls';
+import SearchTracks from './SearchTracks/SearchTracks';
 
 export default function Playlist({ playlistId, content, isUserOrganiser, setPlaylist }) {
   const OPEN_SPOTIFY_LINK = `https://open.spotify.com/playlist/${playlistId}`;
@@ -58,52 +46,6 @@ export default function Playlist({ playlistId, content, isUserOrganiser, setPlay
         </Table>
       </TableContainer>
       {isUserOrganiser && <SearchTracks playlistId={playlistId} setPlaylist={setPlaylist} />}
-    </div>
-  );
-}
-
-function SearchTracks({ playlistId, setPlaylist }) {
-  const [tracks, setTracks] = useState([]);
-
-  const handleChangeForm = (event) => {
-    const { value } = event.target;
-    if (!value) {
-      setTracks([]);
-    } else {
-      searchTrack(value, setTracks);
-    }
-  };
-
-  return (
-    <div className={styles.search}>
-      <h1>Search Tracks</h1>
-      <TextField
-        className={styles.searchField}
-        required
-        id="outlined-required"
-        variant="outlined"
-        onChange={handleChangeForm}
-      />
-      <List>
-        {tracks.length > 0 ? (
-          tracks.map((track) => (
-            <ListItem
-              key={track.key}
-              className={styles.listItem}
-              onClick={() => addSong(playlistId, track, setPlaylist)}
-            >
-              <ListItemIcon>
-                <AddIcon fontSize="small" />
-              </ListItemIcon>
-              <b className={styles.text}>{track.name}</b>
-              <Divider orientation="vertical" flexItem m={20} />
-              <body className={styles.text}>{track.artists.join(', ')}</body>
-            </ListItem>
-          ))
-        ) : (
-          <p>Search songs to add!</p>
-        )}
-      </List>
     </div>
   );
 }
