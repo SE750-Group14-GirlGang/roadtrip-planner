@@ -53,7 +53,32 @@ context('Actions', () => {
       });
   });
 
-  it('opens the map modal and submits a destination, if the user is an organiser', () => {
+  it('opens the map modal and submits a destination correctly, if the user is an organiser', () => {
+    cy.intercept('GET', '/api/roadtrip/1/isUserOrganiser', {
+      statusCode: 200,
+      body: { result: true },
+    });
+    cy.intercept('GET', '/api/roadtrip/1/map', {
+      statusCode: 200,
+      body: {},
+    });
+    cy.get('#add-destination-button').click();
+    cy.get('input')
+      .type('Whangamata')
+      .then(() => {
+        cy.wait(1000);
+        cy.get('ul li:first').click();
+        cy.wait(1000);
+        cy.get('#modal-submit').click();
+        cy.intercept('POST', '/api/roadtrip/1/map', (req) => {
+          expect(req.body).to.include(175.876205);
+          expect(req.body).to.include(-37.211686);
+          expect(req.body).to.include('Whangamata Beach, Esplanade Drive, Whangamata, Waikato 3620, New Zealand');
+        });
+      });
+  });
+
+  it('opens the map modal and handles submitted destination information (loads submitted data into map page), if the user is an organiser', () => {
     cy.intercept('GET', '/api/roadtrip/1/isUserOrganiser', {
       statusCode: 200,
       body: { result: true },
@@ -85,10 +110,10 @@ context('Actions', () => {
       });
   });
 
-  it('loads a destination into the map page correctly if the user is an organiser', () => {
+  it('loads a destination into the map page correctly if map data has already been submitted', () => {
     cy.intercept('GET', '/api/roadtrip/1/isUserOrganiser', {
       statusCode: 200,
-      body: { result: true },
+      body: { result: false },
     });
     cy.intercept('GET', '/api/roadtrip/1/map', {
       statusCode: 200,
