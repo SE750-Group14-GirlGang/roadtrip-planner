@@ -1,10 +1,10 @@
 import React from 'react';
 import { TextField } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
 import { useParams } from 'react-router-dom';
 import styles from './CreatePlaylist.module.css';
 import { createPlaylist } from '../../utils/spotifyApiCalls';
 import usePost from '../../../../hooks/usePost';
+import AddButton from '../../../commons/buttons/AddButton/AddButton';
 
 export default function CreatePlaylist({ setPlaylistId }) {
   const { id } = useParams();
@@ -23,7 +23,7 @@ export default function CreatePlaylist({ setPlaylistId }) {
 
   return (
     <div>
-      <h1>Create Playlist</h1>
+      <p className={styles.title}>Create Playlist</p>
       <form noValidate autoComplete="off">
         <div className={styles.inputSection}>
           <TextField
@@ -48,12 +48,12 @@ export default function CreatePlaylist({ setPlaylistId }) {
           />
         </div>
       </form>
-      <Button
+      <AddButton
         className={styles.createButton}
         onClick={() => createPlaylist(values.name, values.description, id, setPlaylistId, post)}
       >
         Create
-      </Button>
+      </AddButton>
     </div>
   );
 }

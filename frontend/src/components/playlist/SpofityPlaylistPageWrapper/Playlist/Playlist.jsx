@@ -1,28 +1,36 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import styles from './Playlist.module.css';
 import { followPlaylist } from '../../utils/spotifyApiCalls';
 import SearchTracks from './SearchTracks/SearchTracks';
+import AddButton from '../../../commons/buttons/AddButton/AddButton';
 
 export default function Playlist({ playlistId, content, isUserOrganiser, setPlaylist }) {
   const OPEN_SPOTIFY_LINK = `https://open.spotify.com/playlist/${playlistId}`;
 
   return (
     <div className={styles.playlist}>
-      <h1>{content.name}</h1>
+      <p className={styles.title}>{content.name}</p>
       <p>{content.description}</p>
-      {!isUserOrganiser && <Button onClick={() => followPlaylist(playlistId)}>Follow</Button>}
-      <Button href={OPEN_SPOTIFY_LINK} target="_blank">
+      {!isUserOrganiser && (
+        <AddButton className={styles.spotifyActionButton} onClick={() => followPlaylist(playlistId)}>
+          Follow
+        </AddButton>
+      )}
+      <AddButton className={styles.spotifyActionButton} href={OPEN_SPOTIFY_LINK} target="_blank">
         Open Spotify
-      </Button>
+      </AddButton>
 
       <TableContainer className={styles.tracks}>
         <Table aria-label="simple table">
-          <TableHead>
-            <TableRow className={styles.headerRow}>
-              <TableCell>Name</TableCell>
-              <TableCell align="right">Artist</TableCell>
+          <TableHead className={styles.headerRow}>
+            <TableRow>
+              <TableCell>
+                <div className={styles.headerText}>Name</div>
+              </TableCell>
+              <TableCell align="right">
+                <div className={styles.headerText}>Artist</div>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

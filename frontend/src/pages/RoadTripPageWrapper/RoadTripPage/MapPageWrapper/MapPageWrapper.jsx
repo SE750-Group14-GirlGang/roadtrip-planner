@@ -1,8 +1,8 @@
 import { React } from 'react';
 import { useParams } from 'react-router-dom';
 import MapPage from './MapPage/MapPage';
-import Spinner from '../../../components/commons/Spinner/Spinner';
-import useGet from '../../../hooks/useGet';
+import Spinner from '../../../../components/commons/Spinner/Spinner';
+import useGet from '../../../../hooks/useGet';
 
 export default function MapPageWrapper() {
   const { id } = useParams();

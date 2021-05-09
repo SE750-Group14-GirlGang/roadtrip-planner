@@ -1,11 +1,11 @@
 import { React } from 'react';
 import { useParams } from 'react-router-dom';
-import PackingList from '../../../components/PackingList/PackingList';
+import PackingList from '../../../../components/PackingList/PackingList';
 import styles from './PackingListPage.module.css';
 
-import Spinner from '../../../components/commons/Spinner/Spinner';
+import Spinner from '../../../../components/commons/Spinner/Spinner';
 
-import useGet from '../../../hooks/useGet';
+import useGet from '../../../../hooks/useGet';
 
 export default function PackingListPage() {
   const { id } = useParams();

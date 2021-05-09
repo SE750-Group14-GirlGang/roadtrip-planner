@@ -1,9 +1,9 @@
 import { React, useState, useContext, useEffect } from 'react';
 import ReactMapGL, { Marker } from 'react-map-gl';
-import MapModal from '../../../../components/MapModal/MapModal';
+import MapModal from '../../../../../components/MapModal/MapModal';
 import styles from './MapPage.module.css';
-import AddButton from '../../../../components/commons/buttons/AddButton/AddButton';
-import { OrganiserContext } from '../../../../contexts/OrganiserContextProvider';
+import AddButton from '../../../../../components/commons/buttons/AddButton/AddButton';
+import { OrganiserContext } from '../../../../../contexts/OrganiserContextProvider';
 import MapMarker from './MapPage.styles';
 
 const dotenv = require('dotenv');
