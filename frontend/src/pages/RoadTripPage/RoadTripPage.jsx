@@ -1,23 +1,44 @@
 import React from 'react';
-import { Route, useParams, BrowserRouter, useHistory } from 'react-router-dom';
-import './RoadTrip.css';
-import RoadTripPageInner from './RoadTripPageInner';
+import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom';
 
-import { OrganiserContextProvider } from '../../contexts/OrganiserContextProvider';
+import RoadTripTopBar from '../../components/RoadTripTopBar/RoadTripTopBar';
+import MapPageWrapper from './MapPageWrapper/MapPageWrapper';
+import ItineraryPage from './ItineraryPage/ItineraryPage';
+import EmergencyDetailsPage from './EmergencyDetailsPage/EmergencyDetailsPage';
+import PackingListPage from './PackingListPage/PackingListPage';
+import SpotifyPlaylistPage from './SpotifyPlaylistPage/SpotifyPlaylistPage';
 
-export default function RoadTripPage() {
-  const { id } = useParams();
-  const history = useHistory();
+export default function RoadTripPage({ dashboardPageHistory }) {
+  const { path, url } = useRouteMatch();
 
   return (
-    <OrganiserContextProvider roadTripId={id}>
-      <div className="roadTrip">
-        <BrowserRouter>
-          <Route path="/road-trip/:id">
-            <RoadTripPageInner dashboardPageHistory={history} />
-          </Route>
-        </BrowserRouter>
-      </div>
-    </OrganiserContextProvider>
+    <div>
+      <RoadTripTopBar dashboardPageHistory={dashboardPageHistory} />
+      <Switch>
+        <Route path={`${path}/map`}>
+          <MapPageWrapper />
+        </Route>
+
+        <Route path={`${path}/itinerary`}>
+          <ItineraryPage />
+        </Route>
+
+        <Route path={`${path}/emergency-details`}>
+          <EmergencyDetailsPage />
+        </Route>
+
+        <Route path={`${path}/packing-list`}>
+          <PackingListPage />
+        </Route>
+
+        <Route path={`${path}/spotify-playlist`}>
+          <SpotifyPlaylistPage />
+        </Route>
+
+        <Route path={`${path}/`}>
+          <Redirect to={`${url}/map`} />
+        </Route>
+      </Switch>
+    </div>
   );
 }
