@@ -60,6 +60,7 @@ export default function EditDetailsModal({ userEmergencyDetails, open, onClose, 
         <DialogContent>
           <div className={styles.textField}>
             <TextField
+              id="enter-name-field"
               variant="outlined"
               fullWidth
               label="Enter name"
@@ -69,6 +70,7 @@ export default function EditDetailsModal({ userEmergencyDetails, open, onClose, 
           </div>
           <div className={styles.textField}>
             <TextField
+              id="phone-number-field"
               variant="outlined"
               fullWidth
               label="Enter phone number"
@@ -78,6 +80,7 @@ export default function EditDetailsModal({ userEmergencyDetails, open, onClose, 
           </div>
           <div className={styles.textField}>
             <TextField
+              id="emergency-contact-name-field"
               variant="outlined"
               fullWidth
               label="Enter emergency contact's name"
@@ -87,6 +90,7 @@ export default function EditDetailsModal({ userEmergencyDetails, open, onClose, 
           </div>
           <div className={styles.textField}>
             <TextField
+              id="emergency-contact-relation-field"
               variant="outlined"
               fullWidth
               label="Enter emergency contact's relation"
@@ -96,6 +100,7 @@ export default function EditDetailsModal({ userEmergencyDetails, open, onClose, 
           </div>
           <div className={styles.bottomTextField}>
             <TextField
+              id="emergency-contact-phone-field"
               variant="outlined"
               fullWidth
               label="Enter emergency contact's phone number"
@@ -106,6 +111,7 @@ export default function EditDetailsModal({ userEmergencyDetails, open, onClose, 
         </DialogContent>
         <DialogActions>
           <Button
+            id="submit-details"
             onClick={() =>
               handleSubmit({
                 name,
@@ -121,7 +127,7 @@ export default function EditDetailsModal({ userEmergencyDetails, open, onClose, 
           >
             Submit
           </Button>
-          <Button onClick={onClose} color="primary">
+          <Button id="cancel-button" onClick={onClose} color="primary">
             Cancel
           </Button>
         </DialogActions>

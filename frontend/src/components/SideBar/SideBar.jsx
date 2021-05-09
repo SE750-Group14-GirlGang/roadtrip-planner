@@ -26,7 +26,13 @@ export default function SideBar() {
 
   return (
     <div>
-      <ResizableIconButton size="large" aria-label="open drawer" onClick={() => handleSideBarToggle()} edge="start">
+      <ResizableIconButton
+        size="large"
+        aria-label="open drawer"
+        onClick={() => handleSideBarToggle()}
+        edge="start"
+        id="burger-button"
+      >
         <MenuIcon />
       </ResizableIconButton>
 
@@ -40,24 +46,24 @@ export default function SideBar() {
           <ArrowBackIosIcon />
         </ResizableIconButton>
 
-        <div className={styles.navSideBar}>
-          <NavLink to={`${url}/map`} activeClassName={styles.activeLink}>
+        <div className={styles.navSideBar} id="side-bar">
+          <NavLink to={`${url}/map`} activeClassName={styles.activeLink} id="map-link">
             Map
           </NavLink>
 
-          <NavLink to={`${url}/itinerary`} activeClassName={styles.activeLink}>
+          <NavLink to={`${url}/itinerary`} activeClassName={styles.activeLink} id="itinerary-link">
             Itinerary
           </NavLink>
 
-          <NavLink to={`${url}/emergency-details`} activeClassName={styles.activeLink}>
+          <NavLink to={`${url}/emergency-details`} activeClassName={styles.activeLink} id="emergency-details-link">
             Emergency Details
           </NavLink>
 
-          <NavLink to={`${url}/packing-list`} activeClassName={styles.activeLink}>
+          <NavLink to={`${url}/packing-list`} activeClassName={styles.activeLink} id="packing-list-link">
             Packing List
           </NavLink>
 
-          <NavLink to={`${url}/spotify-playlist`} activeClassName={styles.activeLink}>
+          <NavLink to={`${url}/spotify-playlist`} activeClassName={styles.activeLink} id="spotify-playlist-link">
             Spotify Playlist
           </NavLink>
         </div>

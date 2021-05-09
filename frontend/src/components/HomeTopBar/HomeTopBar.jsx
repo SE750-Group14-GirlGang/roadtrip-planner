@@ -24,7 +24,9 @@ export default function HomeTopBar({ refetchRoadTrips }) {
         <Toolbar variant="dense">
           <p className={styles.title}>Roadie</p>
           <div className={classes.grow} />
-          <AddButton onClick={handleOpenCreateTripModal}>Create New Trip</AddButton>
+          <AddButton onClick={handleOpenCreateTripModal} id="create-new-trip-button">
+            Create New Trip
+          </AddButton>
           <div className={styles.spacer} />
           <LogoutButton />
         </Toolbar>
