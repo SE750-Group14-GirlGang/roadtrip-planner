@@ -37,14 +37,11 @@ export default function SideBar() {
       </ResizableIconButton>
 
       <Drawer anchor="left" variant="persistent" open={sideBarOpen} className={classes.root}>
-        <ResizableIconButton
-          aria-label="close drawer"
-          onClick={() => handleSideBarToggle()}
-          className={styles.iconButtonSideBar}
-        >
-          <div className={styles.filler} />
-          <ArrowBackIosIcon />
-        </ResizableIconButton>
+        <div className={styles.iconButtonSideBar}>
+          <ResizableIconButton aria-label="close drawer" onClick={() => handleSideBarToggle()}>
+            <ArrowBackIosIcon className={styles.iconButtonColor} />
+          </ResizableIconButton>
+        </div>
 
         <div className={styles.navSideBar} id="side-bar">
           <NavLink to={`${url}/map`} activeClassName={styles.activeLink} id="map-link">

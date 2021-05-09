@@ -34,9 +34,6 @@ export default function DialogContentAndTitle({ handleClose, handleSubmit }) {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
-          Cancel
-        </Button>
         <Button
           onClick={() => handleSubmit(startDate, endDate)}
           color="primary"
@@ -44,6 +41,9 @@ export default function DialogContentAndTitle({ handleClose, handleSubmit }) {
           disabled={!(startDate && endDate)}
         >
           Submit
+        </Button>
+        <Button onClick={handleClose} color="primary">
+          Cancel
         </Button>
       </DialogActions>
     </>
