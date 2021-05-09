@@ -36,11 +36,6 @@ it('log out and back in before testing', () => {
     statusCode: 200,
     body: {},
   });
-
-  cy.intercept('POST', '/oauth/token', {
-    statusCode: 204,
-    body: {},
-  });
 });
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
