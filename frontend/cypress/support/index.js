@@ -16,18 +16,21 @@
 // Import commands.js using ES2015 syntax:
 import './commands';
 
-before(() => {
+it('log out and back in before testing', () => {
+  cy.visit('http://localhost:3000');
   cy.clearCookies();
   cy.clearLocalStorage();
   cy.window().then((win) => {
     win.sessionStorage.clear();
+    win.localStorage.clear();
   });
   cy.reload();
-  cy.visit('http://localhost:3000');
-  cy.get('#username').type('cypress-testing@mydomain.com');
-  cy.get('#password').type('Cypress14');
-  cy.get('button').click();
-});
 
+  if (document.getElementById('username') !== null) {
+    cy.get('#username').type('cypress-testing@mydomain.com');
+    cy.get('#password').type('Cypress14');
+    cy.get('button').click();
+  }
+});
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
