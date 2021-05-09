@@ -76,7 +76,7 @@ afterAll((done) => {
   });
 });
 
-it('gets all roadtrips', async () => {
+it('returns all roadtrips', async () => {
   const response = await axios.get('http://localhost:3000/api/roadtrip');
   const roadTrips = response.data;
 
@@ -91,7 +91,7 @@ it('gets all roadtrips', async () => {
   expect(roadTrips.roadTripsOrganising[1].name).toBe('The Second Roadtrip user is organising');
 });
 
-it('gets a single roadtrip', async () => {
+it('returns a single roadtrip', async () => {
   const response = await axios.get(`http://localhost:3000/api/roadtrip/${roadTrip2._id}`);
   const roadTrip = response.data;
 

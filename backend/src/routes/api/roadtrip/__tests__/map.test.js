@@ -63,7 +63,7 @@ afterAll((done) => {
   });
 });
 
-it('gets map for a roadtrip from the server', async () => {
+it('returns map for a roadtrip', async () => {
   const response = await axios.get(`http://localhost:3000/api/roadtrip/${roadTrip._id}/map`);
   const mapRes = response.data;
 

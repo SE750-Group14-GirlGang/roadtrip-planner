@@ -12,10 +12,11 @@ router.get('/:id/emergencydetails/user', async (req, res) => {
   const userId = formatUserId(req.user.sub);
 
   const emergencyDetailsForUser = await emergencydetails.getEmergencyDetailsForUser(roadTripId, userId);
+
   if (emergencyDetailsForUser) {
     res.json(emergencyDetailsForUser);
   } else {
-    res.sendStatus(constants.HTTP_NOT_FOUND); // emergency details have not been put for this user
+    res.status(constants.HTTP_NOT_FOUND).send({ message: 'Emergency details have not been created for this user' });
   }
 });
 
