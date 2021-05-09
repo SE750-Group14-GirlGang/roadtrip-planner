@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
-import { OrganiserContext } from '../../../contexts/OrganiserContextProvider';
-import { refreshAccessToken, requestAuthorization } from '../utils/authorize';
-import { getPlaylist } from '../utils/spotifyApiCalls';
+import { refreshAccessToken, requestAuthorization } from '../../utils/spotify/authorize';
+import { OrganiserContext } from '../../contexts/OrganiserContextProvider';
+import { getPlaylist } from '../../utils/spotify/spotifyApiCalls';
 import CreatePlaylist from './CreatePlaylist/CreatePlaylist';
 import Playlist from './Playlist/Playlist';
 import styles from './SpotifyPlaylistWrapper.module.css';
-import AddButton from '../../commons/buttons/AddButton/AddButton';
+import AddButton from '../commons/buttons/AddButton/AddButton';
 
 const TOKEN_EXPIRATION = 60 * 60 * 1000;
 
