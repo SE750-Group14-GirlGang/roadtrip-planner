@@ -11,6 +11,7 @@ export default function LogoutButton() {
     isAuthenticated && (
       <ResizableIconButton
         size="large"
+        id="logout"
         onClick={() => {
           logout();
         }}

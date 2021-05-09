@@ -28,7 +28,7 @@ context('Actions', () => {
 
   // https://on.cypress.io/interacting-with-elements
 
-  it('opens the map selection modal and selects a destination', () => {
+  it('opens the map selection modal and selects a destination if the user is an organiser', () => {
     cy.get('#add-destination-button').click();
   });
 });
