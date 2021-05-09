@@ -71,7 +71,11 @@ export default function MapPage({ mapData }) {
           <p className={styles.mapPageTitle}>Destination</p>
           <p className={styles.emptyMapDescription}>The organiser has not entered a destination yet!</p>
           <br />
-          {isUserOrganiser && <AddButton onClick={handleOpenModal}>Add Destination</AddButton>}
+          {isUserOrganiser && (
+            <AddButton id="add-destination-button" onClick={handleOpenModal}>
+              Add Destination
+            </AddButton>
+          )}
           <MapModal
             open={modalOpen}
             handleClose={handleCloseModal}
