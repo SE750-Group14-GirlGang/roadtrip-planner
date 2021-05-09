@@ -1,4 +1,4 @@
-const redirect_uri = 'http://localhost:3000/road-trip/spotify-playlist/callback';
+const redirect_uri = process.env.REACT_APP_SPOTIFY_REDIRECT_URI;
 const client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const client_secret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { fetchAccessToken, getCode } from '../../components/playlist/utils/authorize';
+import { fetchAccessToken, getCode } from '../../utils/spotify/authorize';
 import Spinner from '../../components/commons/Spinner/Spinner';
 
 export default function GenericSpotifyRedirectPage() {

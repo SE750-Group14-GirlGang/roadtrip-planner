@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import useGet from '../../../../hooks/useGet';
 import Spinner from '../../../../components/commons/Spinner/Spinner';
-import SpotifyPlaylistWrapper from '../../../../components/playlist/SpofityPlaylistPageWrapper/SpotifyPlaylistWrapper';
+import SpotifyPlaylistWrapper from '../../../../components/SpofityPlaylistWrapper/SpotifyPlaylistWrapper';
 
 export default function SpotifyPlaylistPage() {
   const { id } = useParams();
