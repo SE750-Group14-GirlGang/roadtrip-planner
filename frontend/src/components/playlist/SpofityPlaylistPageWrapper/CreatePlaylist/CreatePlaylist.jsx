@@ -2,7 +2,7 @@ import React from 'react';
 import { TextField } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
 import styles from './CreatePlaylist.module.css';
-import { createPlaylist } from '../../utils/spotifyApiCalls';
+import { createPlaylist } from '../../../../utils/spotify/spotifyApiCalls';
 import usePost from '../../../../hooks/usePost';
 import AddButton from '../../../commons/buttons/AddButton/AddButton';
 

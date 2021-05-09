@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Divider, List, ListItem, ListItemIcon, TextField } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import { addSong, searchTrack } from '../../../utils/spotifyApiCalls';
+import { addSong, searchTrack } from '../../../../../utils/spotify/spotifyApiCalls';
 import styles from './SearchTracks.module.css';
 
 export default function SearchTracks({ playlistId, setPlaylist }) {

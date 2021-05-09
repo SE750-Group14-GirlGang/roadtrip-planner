@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { OrganiserContext } from '../../../contexts/OrganiserContextProvider';
-import { refreshAccessToken, requestAuthorization } from '../utils/authorize';
-import { getPlaylist } from '../utils/spotifyApiCalls';
+import { refreshAccessToken, requestAuthorization } from '../../../utils/spotify/authorize';
+import { getPlaylist } from '../../../utils/spotify/spotifyApiCalls';
 import CreatePlaylist from './CreatePlaylist/CreatePlaylist';
 import Playlist from './Playlist/Playlist';
 import styles from './SpotifyPlaylistWrapper.module.css';
@@ -35,7 +35,7 @@ export default function SpotifyPlaylistWrapper({ spotifyPlaylistId }) {
     }
   });
 
-  // If no playlist has been set up, and the user is not a host
+  // If no spotify has been set up, and the user is not a host
   if (!playlistId && !isUserOrganiser) {
     return (
       <div>

@@ -5,7 +5,7 @@ const client_secret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
 const TOKEN = 'https://accounts.spotify.com/api/token';
 
 export function requestAuthorization() {
-  const scopes = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
+  const scopes = 'user-read-private user-read-email spotify-modify-public spotify-modify-private';
   window.location.href =
     `https://accounts.spotify.com/authorize?` +
     `client_id=${client_id}` +

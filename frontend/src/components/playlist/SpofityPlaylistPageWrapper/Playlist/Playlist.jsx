@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import React from 'react';
 import styles from './Playlist.module.css';
-import { followPlaylist } from '../../utils/spotifyApiCalls';
+import { followPlaylist } from '../../../../utils/spotify/spotifyApiCalls';
 import SearchTracks from './SearchTracks/SearchTracks';
 import AddButton from '../../../commons/buttons/AddButton/AddButton';
 
