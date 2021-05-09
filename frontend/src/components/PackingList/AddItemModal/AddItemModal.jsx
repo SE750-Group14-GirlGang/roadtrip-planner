@@ -19,6 +19,7 @@ export default function AddItemModal({ open, onClose, onSubmit, error }) {
         <DialogTitle>Add item</DialogTitle>
         <DialogContent>
           <TextField
+            id="add-item-text-field"
             fullWidth
             error={error}
             helperText={error ? 'Error adding item. Try again' : ''}
@@ -30,10 +31,10 @@ export default function AddItemModal({ open, onClose, onSubmit, error }) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => onSubmit(item)} color="primary" disabled={!item}>
+          <Button id="add-item-submit" onClick={() => onSubmit(item)} color="primary" disabled={!item}>
             Submit
           </Button>
-          <Button onClick={onClose} color="primary">
+          <Button id="add-item-cancel" onClick={onClose} color="primary">
             Cancel
           </Button>
         </DialogActions>
