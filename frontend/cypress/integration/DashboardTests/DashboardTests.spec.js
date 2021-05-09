@@ -36,7 +36,6 @@ context('Dashboard', () => {
   });
 
   it('should disable the submit button if trip name is empty', () => {
-    cy.get('#create-new-trip-button').click();
     cy.get('#create-trip-input-text').clear();
     cy.get('#create-trip-submit-button').should('be.disabled');
   });
