@@ -16,5 +16,17 @@
 // Import commands.js using ES2015 syntax:
 import './commands';
 
+it('log out and back in before testing', () => {
+  cy.visit('http://localhost:3000');
+
+  cy.get('#username').type('cypress-testing@mydomain.com');
+  cy.get('#password').type('Cypress14');
+  cy.get('button').click();
+
+  cy.intercept('GET', '/api/roadtrip', {
+    statusCode: 200,
+    body: {},
+  });
+});
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
