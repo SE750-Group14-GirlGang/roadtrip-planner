@@ -99,5 +99,14 @@ context('Test Filled Emergency Details', () => {
     cy.get('#emergency-contact-name-field').clear().type('Emergency Contact Name');
     cy.get('#emergency-contact-relation-field').clear().type('Relation');
     cy.get('#emergency-contact-phone-field').clear().type('+64 21 456 4536');
+
+    // Check details were sent correctly
+    cy.intercept('PUT', '/api/roadtrip/1/emergencydetails/user', (req) => {
+      expect(req.body).to.include('Change Full Name');
+      expect(req.body).to.include('+64 21 980 9378');
+      expect(req.body).to.include('Emergency Contact Name');
+      expect(req.body).to.include('Relation');
+      expect(req.body).to.include('+64 21 456 4536');
+    });
   });
 });
