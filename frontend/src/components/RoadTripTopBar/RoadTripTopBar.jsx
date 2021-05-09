@@ -13,7 +13,7 @@ import { OrganiserContext } from '../../contexts/OrganiserContextProvider';
 import ResizableIconButton from '../commons/buttons/ResizableIconButton/ResizableIconButton';
 import { CustomTopBar, useStyles } from './RoadTripTopBar.styles';
 
-export default function RoadTripTopBar() {
+export default function RoadTripTopBar({ dashboardPageHistory }) {
   const { id } = useParams();
   const { response } = useGet(`/api/roadtrip/${id}`);
   const { isUserOrganiser } = useContext(OrganiserContext);
@@ -29,6 +29,10 @@ export default function RoadTripTopBar() {
     setModalOpen(false);
   };
 
+  const handleRedirectDashboard = () => {
+    dashboardPageHistory.push('/');
+  };
+
   return (
     <CustomTopBar position="static">
       <Toolbar variant="dense">
@@ -42,11 +46,9 @@ export default function RoadTripTopBar() {
             <GroupRoundedIcon onClick={handleOpenModal} />
           )}
         </ResizableIconButton>
-        <NavLink to="/">
-          <ResizableIconButton size="large">
-            <HomeRoundedIcon />
-          </ResizableIconButton>
-        </NavLink>
+        <ResizableIconButton size="large" onClick={handleRedirectDashboard}>
+          <HomeRoundedIcon />
+        </ResizableIconButton>
         <ResizableIconButton size="large">
           <AccountCircleIcon />
         </ResizableIconButton>

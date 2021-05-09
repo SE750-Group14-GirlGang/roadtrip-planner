@@ -1,0 +1,12 @@
+.playlistPageTitle {
+  font-size: 30px;
+}
+
+.playlistPage {
+  height: 90%;
+  width: 100%;
+}
+
+.playlistPage Button:hover {
+  background-color: #a8d0e6;
+}

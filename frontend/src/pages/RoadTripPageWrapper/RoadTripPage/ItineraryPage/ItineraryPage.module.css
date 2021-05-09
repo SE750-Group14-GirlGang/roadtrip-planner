@@ -1,0 +1,16 @@
+.itineraryPage {
+  justify-content: center;
+  align-items: center;
+}
+
+.itineraryPage p {
+  color: #24305e;
+}
+
+.itineraryPageTitle {
+  font-size: 30px;
+}
+
+.emptyItineraryPageDescription {
+  font-style: italic;
+}
