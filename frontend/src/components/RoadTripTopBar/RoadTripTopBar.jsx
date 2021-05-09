@@ -37,13 +37,15 @@ export default function RoadTripTopBar({ dashboardPageHistory }) {
     <CustomTopBar position="static">
       <Toolbar variant="dense">
         <SideBar />
-        <p className={styles.title}>{response?.data.name}</p>
+        <p id="road-trip-name" className={styles.title}>
+          {response?.data.name}
+        </p>
         <div className={classes.grow} />
         <ResizableIconButton size="large">
           {isUserOrganiser ? (
-            <GroupAddRoundedIcon onClick={handleOpenModal} />
+            <GroupAddRoundedIcon id="organiser-attendees-button" onClick={handleOpenModal} />
           ) : (
-            <GroupRoundedIcon onClick={handleOpenModal} />
+            <GroupRoundedIcon id="regular-attendees-button" onClick={handleOpenModal} />
           )}
         </ResizableIconButton>
         <ResizableIconButton size="large" onClick={handleRedirectDashboard}>
