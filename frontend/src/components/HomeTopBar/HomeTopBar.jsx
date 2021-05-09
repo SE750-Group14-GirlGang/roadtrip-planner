@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Toolbar } from '@material-ui/core';
 import styles from './HomeTopBar.module.css';
-import LogoutButton from '../commons/LogoutButton/LogoutButton';
+import LogoutButton from '../commons/buttons/LogoutButton/LogoutButton';
 import AddButton from '../commons/buttons/AddButton/AddButton';
 import { useStyles, CustomTopBar } from './HomeTopBar.styles';
 import CreateTripModal from './CreateTripModal/CreateTripModal';
