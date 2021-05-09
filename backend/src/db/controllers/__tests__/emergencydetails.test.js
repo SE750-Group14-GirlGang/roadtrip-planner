@@ -11,24 +11,24 @@ beforeEach(() => {
   jest.clearAllMocks();
 });
 
-describe('getEmergencyDetails', () => {
-  it('returns the emergency details of the given roadtrip', async () => {
+describe('getAllEmergencyDetails', () => {
+  it('returns all the emergency details of the given roadtrip', async () => {
     jest
       .spyOn(roadtrips, 'getRoadTrip')
       .mockImplementation(() => Promise.resolve({ emergencyDetails: ['details 1', 'details 2'] }));
 
-    const result = await emergencydetails.getEmergencyDetails(1);
+    const result = await emergencydetails.getAllEmergencyDetails(1);
     expect(result).toStrictEqual(['details 1', 'details 2']);
   });
 });
 
-describe('createEmergencyDetails', () => {
+describe('createEmergencyDetailsForUser', () => {
   it('creates emergency details object in database', async () => {
     const roadTrip = { emergencyDetails: [432], save: jest.fn() };
     jest.spyOn(roadtrips, 'getRoadTrip').mockImplementation(() => Promise.resolve(roadTrip));
 
     const emergencyDetails = { name: 'Denise' };
-    await emergencydetails.createEmergencyDetails(1, emergencyDetails);
+    await emergencydetails.createEmergencyDetailsForUser(1, 2, emergencyDetails);
 
     expect(EmergencyDetails).toHaveBeenCalledTimes(1);
     expect(EmergencyDetails).toHaveBeenCalledWith(emergencyDetails);
@@ -45,7 +45,7 @@ describe('createEmergencyDetails', () => {
       };
     });
 
-    const result = await emergencydetails.createEmergencyDetails(1, { name: 'Denise' });
+    const result = await emergencydetails.createEmergencyDetailsForUser(1, 2, { name: 'Denise' });
 
     expect(result.name).toBe('Denise');
     expect(roadTrip.emergencyDetails).toStrictEqual([432, 123]);

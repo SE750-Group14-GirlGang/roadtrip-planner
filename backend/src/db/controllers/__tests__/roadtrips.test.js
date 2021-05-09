@@ -58,11 +58,11 @@ describe('addAttendee', () => {
     expect(result.attendees).toStrictEqual([1234, 4321, 6789]);
   });
 
-  it('does not add an attendee when they are already in the list of attendees', async () => {
-    roadtripsRewireApi.__Rewire__('getRoadTrip', () =>
-      Promise.resolve({ attendees: [1234, 2345, 4321], save: jest.fn() })
-    );
+  it('does not add an attendee when they are already in the list of attendees, and it returns null', async () => {
+    const dbRoadTrip = { organiser: 2, attendees: [1234, 2345, 4321], save: jest.fn() };
+    roadtripsRewireApi.__Rewire__('getRoadTrip', () => Promise.resolve(dbRoadTrip));
     const result = await roadtrips.addAttendee(1, 1234);
-    expect(result.attendees).toStrictEqual([1234, 2345, 4321]);
+    expect(dbRoadTrip.attendees).toStrictEqual([1234, 2345, 4321]);
+    expect(result).toBeNull();
   });
 });
