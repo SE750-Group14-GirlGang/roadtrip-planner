@@ -46,7 +46,11 @@ export default function SpotifyPlaylistWrapper({ spotifyPlaylistId }) {
   }
 
   if (!accessToken || !refreshToken) {
-    return <AddButton onClick={requestAuthorization}>Authorize Spotify</AddButton>;
+    return (
+      <AddButton id="authorise-playlist-button" onClick={requestAuthorization}>
+        Authorize Spotify
+      </AddButton>
+    );
   }
 
   return (

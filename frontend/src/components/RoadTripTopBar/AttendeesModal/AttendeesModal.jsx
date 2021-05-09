@@ -50,10 +50,10 @@ export default function AttendeesModal({ open, closeModal }) {
 
   return (
     <div>
-      <Dialog fullWidth open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog fullWidth open={open} onClose={handleClose} aria-labelledby="form-dialog-title" id="attendees-modal">
         <ColouredDialogTitle>Attendees</ColouredDialogTitle>
         <CustomDialogContent>
-          <List>
+          <List id="attendee-list">
             {organiser && (
               <div key={organiser._id}>
                 <ListItem>
@@ -96,8 +96,11 @@ export default function AttendeesModal({ open, closeModal }) {
                 label={error && errorMessage}
                 autoFocus
                 onFocus={(event) => event.target.select()}
+                id="add-attendee-text-field"
               />
-              <ActionButton onClick={handleSubmit}>Add</ActionButton>
+              <ActionButton id="add-attendee-button" onClick={handleSubmit}>
+                Add
+              </ActionButton>
             </>
           )}
           <ActionButton onClick={handleClose}>Cancel</ActionButton>
