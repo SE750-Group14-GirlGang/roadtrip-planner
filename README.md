@@ -2,7 +2,8 @@
 
 **Roadie** is an application designed to help with all aspects of roadtrip planning
 
-[Click here](https://github.com/SE750-Group14-GirlGang/roadtrip-planner/wiki) to view our wiki! It has tons of information about our Github workflow, application features, frontend and backend structure, design, and our project management.  
+[Click here](https://github.com/SE750-Group14-GirlGang/roadtrip-planner/wiki) to view our wiki! It has tons of information about our Github workflow, application features, frontend and backend structure, design, and our project management.
+
 This README is just for how run the application and how to run tests.
 
 # To Run the Application
@@ -14,11 +15,11 @@ Follow the general installation instructions, then follow the separate instructi
 
 -   Install node.js from https://nodejs.org/en/
 -   Open a terminal and navigate to the project root folder
--   Install npm version 6 using `npm install -g npm@3.10.10`
+-   Install npm version 6 using `npm install -g npm@3.10.10` (this is so peer dependencies resolve in the legacy manner. Especially important for Windows users. See [here](https://stackoverflow.com/questions/66734503/react-npm-start-not-working-no-version-of-chokidar-available))
 
 ## Run the Frontend
 
--   Create a .env file in the `frontend` folder with the following content:
+-   Create a `.env` file in the `frontend` folder with the following content:
 
 ```
 REACT_APP_AUTH0_DOMAIN=XXXXX
@@ -36,7 +37,7 @@ REACT_APP_SPOTIFY_REDIRECT_URI=XXXXX
 
 ## Run the Backend
 
--   Create a .env file in the `backend` folder with the following content:
+-   Create a `.env` file in the `backend` folder with the following content:
 
 ```
 MONGO_DB_PW=XXXXX
@@ -44,7 +45,7 @@ MONGO_DB_USERNAME=XXXXX
 REACT_APP_AUTH0_AUDIENCE=XXXXX
 ```
 
--   Open a terminal and navigate to the `frontend` folder
+-   Open a terminal and navigate to the `backend` folder
 -   Run `npm install` to install dependencies
 -   Run `npm start` to run the backend
 
@@ -60,7 +61,8 @@ Cypress is used for frontend testing. The frontend must be running for these tes
 
 -   Follow the instructions above to run the `frontend`
 -   Open a terminal and navigate to the `frontend` folder
--   Run `npm run cypress:open`
+-   Run `npm run cypress:open` to open the Cypress application
+-   Click on whichever test you would like to run, or click the 'Run x integration specs' at the top of the list to run all tests
 
 ## Test the Backend
 
