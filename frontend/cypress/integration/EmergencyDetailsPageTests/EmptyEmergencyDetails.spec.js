@@ -31,7 +31,6 @@ context('Test Empty Emergency Details', () => {
     cy.get('#logout').click();
   });
 
-  // TODO assert request made
   it('Fill in emergency details in modal and submit', () => {
     cy.get('#details-button').contains('Add Your Details');
     cy.get('#details-button').click();
