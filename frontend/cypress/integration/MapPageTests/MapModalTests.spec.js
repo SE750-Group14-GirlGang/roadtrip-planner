@@ -26,6 +26,11 @@ context('Actions', () => {
     });
   });
 
+  after(() => {
+    cy.reload();
+    cy.get('#logout').click();
+  });
+
   // https://on.cypress.io/interacting-with-elements
 
   it('opens the map selection modal and selects a destination if the user is an organiser', () => {

@@ -19,23 +19,9 @@ import './commands';
 it('log out and back in before testing', () => {
   cy.visit('http://localhost:3000');
 
-  if (document.getElementById('logout') !== null) {
-    cy.get('#logout').click();
-    cy.clearCookies();
-    cy.clearLocalStorage();
-    cy.window().then((win) => {
-      win.sessionStorage.clear();
-      win.localStorage.clear();
-    });
-  }
-
-  cy.reload();
-
-  if (document.getElementById('username') !== null) {
-    cy.get('#username').type('cypress-testing@mydomain.com');
-    cy.get('#password').type('Cypress14');
-    cy.get('button').click();
-  }
+  cy.get('#username').type('cypress-testing@mydomain.com');
+  cy.get('#password').type('Cypress14');
+  cy.get('button').click();
 
   cy.intercept('GET', '/api/roadtrip', {
     statusCode: 200,
