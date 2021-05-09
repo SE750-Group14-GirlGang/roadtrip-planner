@@ -19,7 +19,7 @@ jest.mock('../../../../../auth/checkJwt', () =>
   // mock user id
   jest.fn((req, res, next) => {
     req.user = {
-      sub: `prefix|${userId1}`,
+      sub: `prefix|608360966dcb41278446d3da`,
     };
     next();
   })
