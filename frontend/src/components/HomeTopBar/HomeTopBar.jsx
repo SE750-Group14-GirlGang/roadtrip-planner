@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Toolbar } from '@material-ui/core';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import styles from './HomeTopBar.module.css';
-import ResizableIconButton from '../commons/buttons/ResizableIconButton/ResizableIconButton';
+import LogoutButton from '../commons/LogoutButton/LogoutButton';
 import AddButton from '../commons/buttons/AddButton/AddButton';
 import { useStyles, CustomTopBar } from './HomeTopBar.styles';
 import CreateTripModal from './CreateTripModal/CreateTripModal';
@@ -27,9 +26,7 @@ export default function HomeTopBar({ refetchRoadTrips }) {
           <div className={classes.grow} />
           <AddButton onClick={handleOpenCreateTripModal}>Create New Trip</AddButton>
           <div className={styles.spacer} />
-          <ResizableIconButton size="large">
-            <AccountCircleIcon />
-          </ResizableIconButton>
+          <LogoutButton />
         </Toolbar>
       </CustomTopBar>
       <CreateTripModal

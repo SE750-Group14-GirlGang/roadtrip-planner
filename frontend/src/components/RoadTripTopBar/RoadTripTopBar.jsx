@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { Toolbar } from '@material-ui/core';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
 import GroupAddRoundedIcon from '@material-ui/icons/GroupAddRounded';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
@@ -12,6 +11,7 @@ import AttendeesModal from './AttendeesModal/AttendeesModal';
 import { OrganiserContext } from '../../contexts/OrganiserContextProvider';
 import ResizableIconButton from '../commons/buttons/ResizableIconButton/ResizableIconButton';
 import { CustomTopBar, useStyles } from './RoadTripTopBar.styles';
+import LogoutButton from '../commons/LogoutButton/LogoutButton';
 
 export default function RoadTripTopBar({ dashboardPageHistory }) {
   const { id } = useParams();
@@ -49,9 +49,7 @@ export default function RoadTripTopBar({ dashboardPageHistory }) {
         <ResizableIconButton size="large" onClick={handleRedirectDashboard}>
           <HomeRoundedIcon />
         </ResizableIconButton>
-        <ResizableIconButton size="large">
-          <AccountCircleIcon />
-        </ResizableIconButton>
+        <LogoutButton />
       </Toolbar>
       <AttendeesModal open={modalOpen} closeModal={handleCloseModal} />
     </CustomTopBar>
