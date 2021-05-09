@@ -1,0 +1,26 @@
+[
+  {
+    "emergencyContact": {
+      "name": "Tim Peter",
+      "relation": "Father",
+      "phoneNumber": "065 568 8790"
+    },
+    "_id": "6094777b69357ad3cc80addf",
+    "name": "Rachel Peter",
+    "phoneNumber": "0279620695",
+    "user": "60853b82081aff00692b2ac7",
+    "__v": 0
+  },
+  {
+    "emergencyContact": {
+      "name": "Billy Scott",
+      "relation": "Mother",
+      "phoneNumber": "722 783 2973"
+    },
+    "_id": "6097778360f73b5693163c7d",
+    "name": "April Scott",
+    "phoneNumber": "891 287 2891",
+    "user": "608602c6c4155b006f4d3124",
+    "__v": 0
+  }
+]

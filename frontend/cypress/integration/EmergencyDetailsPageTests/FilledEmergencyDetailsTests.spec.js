@@ -1,5 +1,8 @@
 /// <reference types="cypress" />
 
+import allEmergencyDetails from '../../fixtures/allEmergencyDetails.json';
+import userEmergencyDetails from '../../fixtures/userEmergencyDetails.json';
+
 context('Test Filled Emergency Details', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/road-trip/1/emergency-details');
@@ -26,43 +29,11 @@ context('Test Filled Emergency Details', () => {
     });
     cy.intercept('GET', '/api/roadtrip/1/emergencydetails/user', {
       statusCode: 200,
-      body: {
-        emergencyContact: { name: 'Tim', relation: 'Father', phoneNumber: '982 7380 289' },
-        _id: '609770ac85a60252abedd1a5',
-        name: 'Sally Blue',
-        phoneNumber: '83 392 839',
-        user: '608602c6c4155b006f4d3124',
-        __v: 0,
-      },
+      body: userEmergencyDetails,
     });
     cy.intercept('GET', '/api/roadtrip/1/emergencydetails', {
       statusCode: 200,
-      body: [
-        {
-          emergencyContact: {
-            name: 'Tim Peter',
-            relation: 'Father',
-            phoneNumber: '065 568 8790',
-          },
-          _id: '6094777b69357ad3cc80addf',
-          name: 'Rachel Peter',
-          phoneNumber: '0279620695',
-          user: '60853b82081aff00692b2ac7',
-          __v: 0,
-        },
-        {
-          emergencyContact: {
-            name: 'Billy Scott',
-            relation: 'Mother',
-            phoneNumber: '722 783 2973',
-          },
-          _id: '6097778360f73b5693163c7d',
-          name: 'April Scott',
-          phoneNumber: '891 287 2891',
-          user: '608602c6c4155b006f4d3124',
-          __v: 0,
-        },
-      ],
+      body: allEmergencyDetails,
     });
   });
 
