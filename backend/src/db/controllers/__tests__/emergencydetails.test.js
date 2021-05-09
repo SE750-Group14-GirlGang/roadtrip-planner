@@ -37,7 +37,7 @@ describe('createEmergencyDetailsForUser', () => {
   it('saves new emergency details object id in roadtrips emergency details array', async () => {
     const roadTrip = { emergencyDetails: [432], save: jest.fn() };
     jest.spyOn(roadtrips, 'getRoadTrip').mockImplementation(() => Promise.resolve(roadTrip));
-    const spy = jest.spyOn(EmergencyDetailsAll, 'EmergencyDetails').mockImplementation((emergencyDetails) => {
+    jest.spyOn(EmergencyDetailsAll, 'EmergencyDetails').mockImplementation((emergencyDetails) => {
       return {
         _id: 123,
         name: emergencyDetails.name,

@@ -37,7 +37,7 @@ describe('createMap', () => {
   it('saves new map object id as the map for the roadtrip', async () => {
     const roadTrip = { map: 1, save: jest.fn() };
     jest.spyOn(roadtrips, 'getRoadTrip').mockImplementation(() => Promise.resolve(roadTrip));
-    const spy = jest.spyOn(MapAll, 'Map').mockImplementation((map) => {
+    jest.spyOn(MapAll, 'Map').mockImplementation((map) => {
       return {
         _id: 2,
         destination: map.destination,

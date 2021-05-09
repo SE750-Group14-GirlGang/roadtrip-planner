@@ -1,4 +1,5 @@
 import * as roadtrips from '../roadtrips';
+// eslint-disable-next-line import/named
 import { __RewireAPI__ as roadtripsRewireApi } from '../roadtrips';
 import * as users from '../users';
 import { RoadTrip } from '../../models/RoadTrip';
@@ -8,6 +9,7 @@ jest.mock('../users');
 
 beforeEach(() => {
   jest.clearAllMocks();
+  // eslint-disable-next-line no-undef
   __rewire_reset_all__();
 });
 
