@@ -18,13 +18,11 @@ export default function PackingListPage() {
   return (
     <div className={styles.packingListPage}>
       <p className={styles.title}>Packing List</p>
+      <PackingList
+        startingPackingList={packingListResponse?.data?.items || []}
+        startingPackedItems={packedItemsResponse?.data?.items || []}
+      />
       {isLoading && <Spinner />}
-      {!isLoading && (
-        <PackingList
-          startingPackingList={packingListResponse?.data?.items || []}
-          startingPackedItems={packedItemsResponse?.data?.items || []}
-        />
-      )}
     </div>
   );
 }
