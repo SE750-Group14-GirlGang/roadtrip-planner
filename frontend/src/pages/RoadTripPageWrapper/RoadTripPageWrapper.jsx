@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, useParams, BrowserRouter, useHistory } from 'react-router-dom';
-import './RoadTrip.css';
-import RoadTripPage from './RoadTripPage';
+import styles from './RoadTripPageWrapper.module.css';
+import RoadTripPage from './RoadTripPage/RoadTripPage';
 
 import { OrganiserContextProvider } from '../../contexts/OrganiserContextProvider';
 
@@ -11,7 +11,7 @@ export default function RoadTripPageWrapper() {
 
   return (
     <OrganiserContextProvider roadTripId={id}>
-      <div className="roadTrip">
+      <div className={styles.roadTrip}>
         <BrowserRouter>
           <Route path="/road-trip/:id">
             <RoadTripPage dashboardPageHistory={history} />

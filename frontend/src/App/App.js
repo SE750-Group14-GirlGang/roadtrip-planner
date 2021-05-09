@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
-import RoadTripPageWrapper from '../pages/RoadTripPage/RoadTripPageWrapper';
+import RoadTripPageWrapper from '../pages/RoadTripPageWrapper/RoadTripPageWrapper';
 import DashboardPage from '../pages/DashboardPage/DashboardPage';
 import GenericSpotifyRedirectPage from '../pages/GenericSpotifyPlaylistRedirectPage/GenericSpotifyRedirectPage';
 import ProtectedRoute from '../auth/protected-route';

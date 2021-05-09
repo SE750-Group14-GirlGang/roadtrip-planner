@@ -2,10 +2,10 @@ import { React } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './EmergencyDetailsPage.module.css';
 
-import EmergencyDetails from '../../../components/EmergencyDetails/EmergencyDetails';
-import Spinner from '../../../components/commons/Spinner/Spinner';
+import EmergencyDetails from '../../../../components/EmergencyDetails/EmergencyDetails';
+import Spinner from '../../../../components/commons/Spinner/Spinner';
 
-import useGet from '../../../hooks/useGet';
+import useGet from '../../../../hooks/useGet';
 
 export default function EmergencyDetailsPage() {
   const { id } = useParams();
