@@ -1,9 +1,9 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import React from 'react';
 import styles from './Playlist.module.css';
-import { followPlaylist } from '../../../../utils/spotify/spotifyApiCalls';
+import { followPlaylist } from '../../../utils/spotify/spotifyApiCalls';
 import SearchTracks from './SearchTracks/SearchTracks';
-import AddButton from '../../../commons/buttons/AddButton/AddButton';
+import AddButton from '../../commons/buttons/AddButton/AddButton';
 
 export default function Playlist({ playlistId, content, isUserOrganiser, setPlaylist }) {
   const OPEN_SPOTIFY_LINK = `https://open.spotify.com/playlist/${playlistId}`;
