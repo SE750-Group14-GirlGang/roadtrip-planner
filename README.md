@@ -62,7 +62,7 @@ Cypress is used for frontend integration testing. The frontend must be running f
 -   Follow the instructions above to run the `frontend`
 -   Open a terminal and navigate to the `frontend` folder
 -   Run `npm run cypress:open` to open the Cypress application
--   Click on whichever test you would like to run, or click the 'Run x integration specs' at the top of the list to run all tests
+-   Click on whichever test you would like to run (please run each test individually)
 
 ## Test the Frontend Using Jest
 
