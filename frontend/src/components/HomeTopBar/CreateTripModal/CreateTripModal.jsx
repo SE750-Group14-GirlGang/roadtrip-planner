@@ -36,7 +36,7 @@ export default function CreateTripModal({ open, handleClose, refetchRoadTrips })
 
   return (
     <div>
-      <Dialog fullWidth open={open} onClose={handleClose}>
+      <Dialog fullWidth open={open} onClose={handleClose} id="create-trip-modal">
         <DialogTitle>Create new trip</DialogTitle>
         <DialogContent>
           <TextField
@@ -49,10 +49,11 @@ export default function CreateTripModal({ open, handleClose, refetchRoadTrips })
             defaultValue={name}
             onChange={handleChange}
             inputProps={{ maxLength: 50 }}
+            id="create-trip-input-text"
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleSubmit} color="primary" disabled={!name}>
+          <Button onClick={handleSubmit} color="primary" disabled={!name} id="create-trip-submit-button">
             Submit
           </Button>
           <Button onClick={handleClose} color="primary">
