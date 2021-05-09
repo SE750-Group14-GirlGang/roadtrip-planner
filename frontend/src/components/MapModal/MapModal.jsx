@@ -114,11 +114,11 @@ export default function MapModal({ open, handleClose, destName, setDestName, set
           </ReactMapGL>
         </DialogContent>
         <DialogActions>
-          <ActionButton onClick={handleClose} color="primary">
-            Cancel
-          </ActionButton>
           <ActionButton onClick={handleSubmit} color="primary">
             Submit
+          </ActionButton>
+          <ActionButton onClick={handleClose} color="primary">
+            Cancel
           </ActionButton>
         </DialogActions>
       </Dialog>
