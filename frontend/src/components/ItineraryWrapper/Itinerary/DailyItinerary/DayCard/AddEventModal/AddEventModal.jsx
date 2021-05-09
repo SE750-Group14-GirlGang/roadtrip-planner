@@ -40,11 +40,11 @@ export default function AddEventModal({ open, handleClose, addEvent }) {
           <TextField defaultValue="" fullWidth label="Notes" onChange={(event) => setNotes(event.target.value)} />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleSubmit} color="primary" disabled={!(description && location && time)}>
-            Submit
-          </Button>
           <Button onClick={handleClose} color="primary">
             Cancel
+          </Button>
+          <Button onClick={handleSubmit} color="primary" disabled={!(description && location && time)}>
+            Submit
           </Button>
         </DialogActions>
       </Dialog>
