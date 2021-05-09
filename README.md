@@ -55,18 +55,26 @@ REACT_APP_AUTH0_AUDIENCE=XXXXX
 
 # To Test the Application
 
-## Test the Frontend
+## Test the Frontend Using Cypress
 
-Cypress is used for frontend testing. The frontend must be running for these tests to work. The backend does not need to be running.
+Cypress is used for frontend integration testing. The frontend must be running for these tests to work. The backend does not need to be running.
 
 -   Follow the instructions above to run the `frontend`
 -   Open a terminal and navigate to the `frontend` folder
 -   Run `npm run cypress:open` to open the Cypress application
 -   Click on whichever test you would like to run, or click the 'Run x integration specs' at the top of the list to run all tests
 
+## Test the Frontend Using Jest
+
+Jest is used for frontend unit testing.
+
+-   Open a terminal and navigate to the `frontend` folder
+-   Run `npm install`
+-   Run `npm test`
+
 ## Test the Backend
 
-Jest, Express, and MongoMemoryServer are used for backend testing. Backend dependencies must be installed. The backend and frontend must **not** be running for these tests to work (port usage will conflict)
+Jest, Express, MongoMemoryServer, and Babel Rewire are used for backend integration and unit testing. Backend dependencies must be installed. The backend and frontend must **not** be running for these tests to work (port usage will conflict)
 
 -   Open a terminal and navigate to the `backend` folder
 -   Run `npm install`
