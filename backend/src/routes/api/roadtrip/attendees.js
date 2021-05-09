@@ -19,6 +19,7 @@ router.patch('/:id/attendees', async (req, res) => {
   const { id: roadTripId } = req.params;
   if (!req.body.userEmail) {
     res.sendStatus(constants.HTTP_BAD_REQUEST);
+    return;
   }
 
   const user = await users.getUserByEmail(req.body.userEmail);

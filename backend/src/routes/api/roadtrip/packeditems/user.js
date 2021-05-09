@@ -15,7 +15,7 @@ router.get('/:id/packeditems/user', async (req, res) => {
   if (packedItemsForUser) {
     res.json(packedItemsForUser);
   } else {
-    res.sendStatus(constants.HTTP_NOT_FOUND); // packed items have not been put for this user
+    res.status(constants.HTTP_NOT_FOUND).send({ message: 'Packed items have not been created for this user' });
   }
 });
 
