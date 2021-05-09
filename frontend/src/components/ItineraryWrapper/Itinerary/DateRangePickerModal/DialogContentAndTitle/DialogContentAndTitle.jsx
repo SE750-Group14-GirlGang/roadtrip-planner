@@ -37,7 +37,8 @@ export default function DialogContentAndTitle({ handleClose, handleSubmit }) {
         <Button
           onClick={() => handleSubmit(startDate, endDate)}
           color="primary"
-          // only enable submit button is start and end date is selected
+          id="submit-dates-button"
+          // only enable submit button if start and end date is selected
           disabled={!(startDate && endDate)}
         >
           Submit

@@ -55,7 +55,9 @@ export default function Itinerary({ itineraryData }) {
           <br />
           {isUserOrganiser && (
             <>
-              <AddButton onClick={handleOpenModal}>Add Dates</AddButton>
+              <AddButton id="add-dates-button" onClick={handleOpenModal}>
+                Add Dates
+              </AddButton>
               <DateRangePickerModal open={modalOpen} handleClose={handleCloseModal} addDates={addDates} />
             </>
           )}

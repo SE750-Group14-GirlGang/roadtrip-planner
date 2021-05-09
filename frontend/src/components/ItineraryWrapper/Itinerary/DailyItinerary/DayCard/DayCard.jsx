@@ -36,11 +36,13 @@ export default function DayCard({ day, handleNext, hasNextDay, handlePrev, hasPr
     <div className={styles.container}>
       <div className={styles.card}>
         <div className={styles.cardHeader}>
-          <IconButton onClick={handlePrev} disabled={!hasPrevDay}>
+          <IconButton id="prev-day-button" onClick={handlePrev} disabled={!hasPrevDay}>
             <NavigateBeforeIcon fontSize="large" />
           </IconButton>
-          <p className={styles.date}>{formattedDate}</p>
-          <IconButton onClick={handleNext} disabled={!hasNextDay}>
+          <p id="date-of-day" className={styles.date}>
+            {formattedDate}
+          </p>
+          <IconButton id="next-day-button" onClick={handleNext} disabled={!hasNextDay}>
             <NavigateNextIcon fontSize="large" />
           </IconButton>
         </div>
@@ -54,7 +56,9 @@ export default function DayCard({ day, handleNext, hasNextDay, handlePrev, hasPr
         <div className={styles.cardFooter}>
           {isUserOrganiser && (
             <>
-              <AddButton onClick={handleOpenAddEventModal}>Add</AddButton>
+              <AddButton id="add-event-button" onClick={handleOpenAddEventModal}>
+                Add
+              </AddButton>
               <AddEventModal open={addEventModalOpen} handleClose={handleCloseAddEventModal} addEvent={addEvent} />
             </>
           )}
