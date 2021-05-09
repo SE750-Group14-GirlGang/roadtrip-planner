@@ -71,7 +71,11 @@ export default function PackingList({ startingPackingList, startingPackedItems }
           <div className={styles.emptyText}>The organiser has not added any items to the packing list yet!</div>
         )}
         <div className={styles.buttonContainer}>
-          {isUserOrganiser && <AddButton onClick={handleOpenAddItemModal}>Add Item</AddButton>}
+          {isUserOrganiser && (
+            <AddButton id="add-item-button" onClick={handleOpenAddItemModal}>
+              Add Item
+            </AddButton>
+          )}
         </div>
       </div>
       <AddItemModal
