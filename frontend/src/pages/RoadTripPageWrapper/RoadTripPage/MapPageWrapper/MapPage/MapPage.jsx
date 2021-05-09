@@ -60,7 +60,7 @@ export default function MapPage({ mapData }) {
               </Marker>
             </ReactMapGL>
           </div>
-          <div className={styles.mapDescription}>
+          <div className={styles.mapDescription} id="map-description">
             <p className={styles.mapPageTitle}>Destination</p>
             <p className={styles.mapDescriptionText}>{destName}</p>
           </div>

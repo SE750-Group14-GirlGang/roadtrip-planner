@@ -30,7 +30,7 @@ export default function EmergencyDetails({ allEmergencyDetails, userEmergencyDet
       <div className={styles.container}>
         <div className={styles.table}>
           <TableContainer component={Paper}>
-            <Table>
+            <Table id="emergency-details-table">
               <TableHead>
                 <CustomTableRow>
                   <CustomTableCell>Name</CustomTableCell>
@@ -56,7 +56,9 @@ export default function EmergencyDetails({ allEmergencyDetails, userEmergencyDet
           </TableContainer>
         </div>
         <div className={styles.buttonContainer}>
-          <AddButton onClick={handleOpenEditDetailsModal}>{addButtonText}</AddButton>
+          <AddButton id="details-button" onClick={handleOpenEditDetailsModal}>
+            {addButtonText}
+          </AddButton>
         </div>
       </div>
       <EditDetailsModal
