@@ -15,7 +15,7 @@ Follow the general installation instructions, then follow the separate instructi
 
 -   Install node.js from https://nodejs.org/en/
 -   Open a terminal and navigate to the project root folder
--   Install npm version 6 using `npm install -g npm@3.10.10` (this is so peer dependencies resolve in the legacy manner. Especially important for Windows users. See [here](https://stackoverflow.com/questions/66734503/react-npm-start-not-working-no-version-of-chokidar-available))
+-   Install npm version 6 using `npm install -g npm@6` (this is so peer dependencies resolve in the legacy manner. Especially important for Windows users. See [here](https://stackoverflow.com/questions/66734503/react-npm-start-not-working-no-version-of-chokidar-available))
 
 ## Run the Frontend
 
